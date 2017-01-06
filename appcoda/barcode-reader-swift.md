@@ -12,7 +12,7 @@ description:
 作者=Simon Ng
 原文日期=2016/11/02
 译者=小锅
-校对=
+校对=saitjr
 定稿=
 
 <!--此处开始正文-->
@@ -78,36 +78,37 @@ var qrCodeFrameView:UIView?
 正如在前面小节中提到过的，二维码的扫描完全是基于视频捕获的。为了做到实时捕获，我们所需要做的就是创建一个 `AVCaptureSession` 对象，并且将它的输入设置到对应的 `AVCaptureDevice` 用于视频捕获。在 `QRScannerController` 类中的 `viewDidLoad` 方法插入如下代码：
 
 ```swift
-// Get an instance of the AVCaptureDevice class to initialize a device object and provide the video as the media type parameter.
+// 获得 AVCaptureDevice 对象，用于初始化捕获视频的硬件设备，并配置硬件属性
 let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
  
 do {
-    // Get an instance of the AVCaptureDeviceInput class using the previous device object.
-    let input = try AVCaptureDeviceInput(device: captureDevice)
+    // 通过之前获得的硬件设备，获得 AVCaptureDeviceInput 对象
+    let input = try AVCaptureDeviceInput(device: captureDevice)
+    let input = try AVCaptureDeviceInput(device: captureDevice)
     
-    // Initialize the captureSession object.
-    captureSession = AVCaptureSession()
+    // 初始化 captureSession 对象
+    captureSession = AVCaptureSession()
     
-    // Set the input device on the capture session.
-    captureSession?.addInput(input)
+    // 给 session 添加输入设备
+    captureSession?.addInput(input)
     
 } catch {
-    // If any error occurs, simply print it out and don't continue any more.
-    print(error)
+    // 如果出现任何错误，仅做输出处理，并返回
+    print(error)
     return
 }
 ``` 
 
-一个 `AVCaptureDevice` 对象表示一个物理的捕获设备。我们使用一个捕获设备来配置底层硬件的属性。因为我们需要捕获视频的数据，需要调用 `defaultDevice(withMediaType:)` 方法，给它传递 `AVMediaTypeVideo` 类型来获取视频捕获设备。
+一个 `AVCaptureDevice` 对象表示一个物理的捕获设备。我们使用捕获设备来配置底层硬件的属性。因为我们需要捕获视频的数据，需要调用 `defaultDevice(withMediaType:)` 方法，给它传递 `AVMediaTypeVideo` 类型来获取视频捕获设备。
 
 为了执行实时捕获，我们实例化了一个 `AVCaptureSession` 对象，并为它添加了视频捕获设备。这个 `AVCaptureSession` 对象被用于定位输入的数据流并将其输出。
 
-在这里，我们设置一个 `AVCaptureMetaDataOutput` 作为该 session 的输出。这个 `AVCaptureMetaDataOutput` 类是二维码扫描功能的核心。这个类与 `AVCaptureMetadataOutputObjectsDelegate` 协议配合，主要用于拦截在输入设置中发现的元数据（即在设备摄像头中捕获到的二维码）并且将其转化为人类可读的格式。
+在这里，我们设置 `AVCaptureMetaDataOutput` 作为该 session 的输出。这个 `AVCaptureMetaDataOutput` 类是二维码扫描功能的核心。这个类与 `AVCaptureMetadataOutputObjectsDelegate` 协议配合，主要用于拦截在输入设置中发现的元数据（即在设备摄像头中捕获到的二维码）并且将其转化为人类可读的格式。
 
 如果你对其中的一些概念感到不解，不用慌——等下你就会全部明白的。现在，继续往 `viewDidLoad` 中的 `do` 代码块中添加如下的代码：
 
 ```swift
-// Initialize a AVCaptureMetadataOutput object and set it as the output device to the capture session.
+// 初始化 AVCaptureMetadataOutput 对象，并将它作为输出
 let captureMetadataOutput = AVCaptureMetadataOutput()
 captureSession?.addOutput(captureMetadataOutput)
 ```
@@ -115,7 +116,7 @@ captureSession?.addOutput(captureMetadataOutput)
 接下来，继续添加下面的代码。我们将 `captureMetadataOutput` 对象的代码设置为 `self`。这就是为什么 `QRReaderViewController` 类要遵守 `AVCaptureMetadataOutputObjectsDelegate` 协议的原因。
 
 ```swift
-// Set delegate and use the default dispatch queue to execute the call back
+// 设置 delegate 并使用默认的 dispatch 队列来执行回调
 captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
 captureMetadataOutput.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
 ```
@@ -124,10 +125,10 @@ captureMetadataOutput.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
 
 这里的 `metadataObjectTypes` 属性也相当重要；因为它是告诉应用我们对何种元数据类型感兴趣的关键点。而 `AVMetadataObjectTypeQRCode` 很明显地表明了我们的意图。我们需要的是二维码扫描。
 
-现在我们已经创建并设置好 `AVCaptureMetadataOutput` 对象了，接下来需要将设备捕获到的视频显示在屏幕上。这个可以使用 `AVCaptureVideoPreviewLayer` 类来完成，这个类是 `CALayer` 的一个子类。我们使用这个预览的 layer 与 AV 捕获 session 进行配合来显示视频。这个预览的 layer 被添加到当前视频的子 layer 上。在 `do-catch` 代码块中添加如下代码：
+现在我们已经创建并设置好 `AVCaptureMetadataOutput` 对象了，接下来需要将设备捕获到的视频显示在屏幕上。这个可以使用 `AVCaptureVideoPreviewLayer` 类来完成，它是 `CALayer` 的一个子类。我们使用这个预览的 layer 与 AV 捕获 session 进行配合来显示视频。这个预览的 layer 被添加到当前视频的子 layer 上。在 `do-catch` 代码块中添加如下代码：
 
 ```swift
-// Initialize the video preview layer and add it as a sublayer to the viewPreview view's layer.
+// 初始化视频预览 layer，并将其作为 viewPreview 的 sublayer
 videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
 videoPreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
 videoPreviewLayer?.frame = view.layer.bounds
@@ -137,7 +138,7 @@ view.layer.addSublayer(videoPreviewLayer!)
 最后，调用捕获 session 的 `startRunning` 方法来开始进行视频捕获：
 
 ```swift
-// Start video capture.
+// 开始视频捕获
 captureSession?.startRunning()
 ```
 
@@ -154,7 +155,7 @@ This app has crashed because it attempted to access privacy-sensitive data witho
 完成编辑后，部署应用并再次在真机上运行。点击扫描按钮会打开内置的摄像头并开始视频捕获。但是，现在信息 label 和顶部栏是隐藏的。可以使用如下的代码进行修复。这可以将信息 label 以及顶部栏显示到视频 layer 之上。
 
 ```swift
-// Move the message label and top bar to the front
+// 将显示信息的 label 与 top bar 提到最前面
 view.bringSubview(toFront: messageLabel)
 view.bringSubview(toFront: topbar)
 ```
@@ -173,7 +174,7 @@ view.bringSubview(toFront: topbar)
 为了高亮显示二维码，我们首先创建一个 `UIView` 对象，并将它的边框设置为绿色。在 `viewDidLoad` 方法中的 `do` 代码块中添加如下代码：
 
 ```swift
-// Initialize QR Code Frame to highlight the QR code
+// 初始化二维码选框并高亮边框
 qrCodeFrameView = UIView()
  
 if let qrCodeFrameView = qrCodeFrameView {
@@ -183,7 +184,7 @@ if let qrCodeFrameView = qrCodeFrameView {
     view.bringSubview(toFront: qrCodeFrameView)
 }
 ```
-这个 `qrCodeFrameView` 对象目前在屏幕上是不可见的，因为`UIView` 的尺寸现在被默认设置为 0。接着，在检测到二维码的进修，我们需要改变它的尺寸，使其显示为一个绿色边框。
+这个 `qrCodeFrameView` 对象目前在屏幕上是不可见的，因为`UIView` 的尺寸现在被默认设置为 0。接着，在检测到二维码的时候，我们需要改变它的尺寸，使其显示为一个绿色边框。
 
 ## 对二维码进行解码
 
@@ -198,19 +199,19 @@ optional func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadata
 ```swift
 func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
     
-    // Check if the metadataObjects array is not nil and it contains at least one object.
-    if metadataObjects == nil || metadataObjects.count == 0 {
+    // 检查：metadataObjects 对象不为空，并且至少包含一个元素
+    if metadataObjects == nil || metadataObjects.count == 0 {
         qrCodeFrameView?.frame = CGRect.zero
         messageLabel.text = "No QR code is detected"
         return
     }
     
-    // Get the metadata object.
-    let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
+    // 获得元数据对象
+    let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
     
     if metadataObj.type == AVMetadataObjectTypeQRCode {
-        // If the found metadata is equal to the QR code metadata then update the status label's text and set the bounds
-        let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
+        // 如果元数据是二维码，则更新二维码选框大小与 label 的文本
+        let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
         qrCodeFrameView?.frame = barCodeObject!.bounds
         
         if metadataObj.stringValue != nil {
