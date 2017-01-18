@@ -1,19 +1,19 @@
 title: "使用 Swift 3 与 Xocde 8 创建条码与二维码扫描应用"
-date: 
-tags: 
-categories: 
-permalink: 
-keywords: 
+date: 2017-01-18
+tags: [iOS 开发]
+categories: [AppCoda]
+permalink: barcode-reader-swift
+keywords: 条码,二维码,扫描
 custom_title: 
-description: 
+description: 本文详细描述如何创建条码与二维码扫描应
 
 ---
 原文链接=http://appcoda.com/barcode-reader-swift/
 作者=Simon Ng
-原文日期=2016/11/02
+原文日期=2016-11-02
 译者=小锅
 校对=saitjr
-定稿=
+定稿=CMB
 
 <!--此处开始正文-->
 
@@ -27,7 +27,7 @@ description:
 
 > 小贴士：可以使用 [http://www.qrcode-monkey.com](http://www.qrcode-monkey.com) 这个网站来生成属于你自己的二维码。
 
-<!-- more -->
+<!--more-->
 
 ## 创建一个二维码扫描应用
 
@@ -37,7 +37,7 @@ description:
 
 如下面的截图所示，这就是整个应用的 UI 展示。这个应用与视频捕捉类应用长得很像，只是它没有录像的功能。当应用启动的时候，它利用 iPhone 的后置摄像头来自动发现并扫描二维码。被解码的信息（比如说 URL）会在屏幕的正下方显示出来。
 
-![QR Reader App Demo](http://appcoda.com/wp-content/uploads/2016/11/qrcode-reader-1-1024x630.png)
+![](http://appcoda.com/wp-content/uploads/2016/11/qrcode-reader-1-1024x630.png)
 
 就是如此地简单。
 
@@ -184,6 +184,7 @@ if let qrCodeFrameView = qrCodeFrameView {
     view.bringSubview(toFront: qrCodeFrameView)
 }
 ```
+
 这个 `qrCodeFrameView` 对象目前在屏幕上是不可见的，因为`UIView` 的尺寸现在被默认设置为 0。接着，在检测到二维码的时候，我们需要改变它的尺寸，使其显示为一个绿色边框。
 
 ## 对二维码进行解码
