@@ -131,7 +131,7 @@ BigNerdCoding
 |---- |---- |---- |---- |
 | 冬瓜 | [冬瓜争做全栈瓜](https://weibo.com/desgard/profile?rightmod=1&wvr=6&mod=personinfo) | [Guardia · 瓜地](http://www.desgard.com/) | [Desgard](https://github.com/desgard) |
 | Forelax ||||
-| jojo ||||
+|jojo|[Jojotov](https://weibo.com/dingtongzhou/profile?rightmod=1&wvr=6&mod=personinfo)|[JOJOTOV](https://dingtz.com)|[jojotov](https://github.com/jojotov)|
 | 石峰铭 ||||
 
 
