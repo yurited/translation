@@ -56,7 +56,7 @@ BigNerdCoding
 | ennisk ||||
 | focus ||||
 | Hale ||||
-| 灰s ||||
+| 灰s |[灰s](https://weibo.com/u/2159669295)|[灰s](https://juejin.im/user/5862fa678d6d810065fe0efd)|[灰s](https://github.com/dzyding)|
 | Lefe_x ||||
 | 卖茶叶蛋的小伙子 ||||
 | muhlenXi ||||
