@@ -89,7 +89,7 @@ BigNerdCoding
 |---- |---- |---- |---- |
 | MM ||||
 | shanksyang ||||
-|冬🍉||||
+| 冬瓜 | [冬瓜争做全栈瓜](https://weibo.com/desgard/profile?rightmod=1&wvr=6&mod=personinfo) | [Guardia · 瓜地](http://www.desgard.com/) | [Desgard](https://github.com/desgard) |
 |小铁匠||||
 | littledogboy ||||
 | Forelax ||||
@@ -129,7 +129,7 @@ BigNerdCoding
 
 |群ID|微博|个站|Github|
 |---- |---- |---- |---- |
-| 冬🍉 ||||
+| 冬瓜 | [冬瓜争做全栈瓜](https://weibo.com/desgard/profile?rightmod=1&wvr=6&mod=personinfo) | [Guardia · 瓜地](http://www.desgard.com/) | [Desgard](https://github.com/desgard) |
 | Forelax ||||
 | jojo ||||
 | 石峰铭 ||||
