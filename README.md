@@ -47,7 +47,7 @@ BigNerdCoding
 |群ID|微博|个站|Github|
 |---- |---- |---- |---- |
 | BigNerdCoding ||||
-|森尼羊||||
+|森尼羊|[Sunnyyoung咩](https://weibo.com/34992577)|[Sunnyyoung](https://www.sunnyyoung.net)|[Sunnyyoung](https://github.com/Sunnyyoung)|
 |Darren||||
 |jojo||||
 |imiem|imiem|[imiem](https://imiem.github.io/)|[imiem](https://github.com/imiem)|
