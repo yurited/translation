@@ -50,7 +50,7 @@ BigNerdCoding
 |森尼羊|[Sunnyyoung咩](https://weibo.com/34992577)|[Sunnyyoung](https://www.sunnyyoung.net)|[Sunnyyoung](https://github.com/Sunnyyoung)|
 |Darren||||
 |jojo|[Jojotov](https://weibo.com/dingtongzhou/profile?rightmod=1&wvr=6&mod=personinfo)|[JOJOTOV](https://dingtz.com)|[jojotov](https://github.com/jojotov)|
-|imiem|imiem|[imiem](https://imiem.github.io/)|[imiem](https://github.com/imiem)|
+|imiem|[imiem](https://weibo.com/u/3822885844?is_all=1)|[imiem](https://imiem.github.io/)|[imiem](https://github.com/imiem)|
 |\_ixxichai\_||||
 |Tuccuay||||
 | ennisk ||||
