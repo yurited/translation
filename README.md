@@ -39,8 +39,8 @@ BigNerdCoding
 
 ### 相关文档
 
-- 格式：
-- 翻译建议：
+- 书写规范及Demo：https://github.com/SwiftGGTeam/GGHexo/tree/master/
+- Cee 翻译指南（需要翻墙）：https://speakerdeck.com/cee/guan-yu-pai-ban
 
 ### 名单
 
@@ -49,7 +49,6 @@ BigNerdCoding
 | BigNerdCoding ||||
 |森尼羊||||
 |Darren||||
-|冬🍉||||
 |jojo||||
 |imiem||||
 |\_ixxichai\_||||
@@ -63,6 +62,7 @@ BigNerdCoding
 | muhlenXi ||||
 | √3 ||||
 | 微信的“龙” ||||
+| 木瓜先森 ||||
 | LE ||||
 | 李凯 ||||
 | Damonwong ||||
