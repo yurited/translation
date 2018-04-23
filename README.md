@@ -95,7 +95,7 @@ BigNerdCoding
 | Forelax ||||
 | pmst ||||
 | Lision ||||
-| liberalism |Liberalisman|[Liberalism](http://www.xiaolu520.com)|Liberalisman|
+| liberalism |[Liberalisman](https://weibo.com/1743643682/profile?topnav=1&wvr=6)|[Liberalism](http://www.xiaolu520.com)|[Liberalisman](https://github.com/liberalisman)|
 | 水水 | Zx_Young027 | [曦息地](blog.yousanflics.com.cn) | Yousanflics |
 
 ## 文章更新
