@@ -57,7 +57,7 @@ BigNerdCoding
 |imiem|[imiem](https://weibo.com/u/3822885844?is_all=1)|[imiem](https://imiem.github.io/)|[imiem](https://github.com/imiem)|
 |\_ixxichai\_||||
 |Tuccuay||||
-| ennisk ||||
+| ennisk |[ennisk](https://weibo.com/u/1771329710)|||
 | focus ||||
 | Hale |[迷惘一代丶](https://weibo.com/p/1005053233770040)|[Hale's Blog](http://wuqiuhao.github.io/)|[Hale](https://github.com/wuqiuhao)|
 | 灰s |[灰s](https://weibo.com/u/2159669295)|[灰s](https://juejin.im/user/5862fa678d6d810065fe0efd)|[灰s](https://github.com/dzyding)|
