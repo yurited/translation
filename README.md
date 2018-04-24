@@ -122,7 +122,7 @@ BigNerdCoding
 
 |群ID|微博|个站|Github|
 |---- |---- |---- |---- |
-| CMB ||||
+| CMB |[MBChan](https://weibo.com/1884833803/profile?topnav=1&wvr=6&is_all=1)|[cmb blog](http://www.billchan.me)|[BillChan](https://github.com/chenmingbiao)|
 | Forelax ||||
 
 ## 日常维护
