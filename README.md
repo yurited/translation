@@ -37,6 +37,10 @@ BigNerdCoding
 - 跟进翻译进度
 - 新人翻译培训
 
+### 要求
+
+每个月至少翻译一篇
+
 ### 相关文档
 
 - 书写规范及Demo：https://github.com/SwiftGGTeam/GGHexo/tree/master/
@@ -67,8 +71,7 @@ BigNerdCoding
 | 李凯 ||||
 | Damonwong ||||
 | 阳仔 ||||
-| pmst |[pmst](https://weibo.cn/u/2085734687)|[pmst](https://www.jianshu.com/u/596f2ba91ce9)|[pmst](https://github.com/colourful987)|
-| saitjr |[saitjr](https://weibo.com/u/1918545437)|[saitjr](http://saitjr.com/)|[saitjr](github.com/saitjr)|
+
 
 ## 校对
 
@@ -89,6 +92,7 @@ BigNerdCoding
 
 |群ID|微博|个站|Github|
 |---- |---- |---- |---- |
+| 水水 | Zx_Young027 | [曦息地](blog.yousanflics.com.cn) | Yousanflics |
 | MM |画喵程序猿mmoaay||mmoaay|
 | shanksyang ||||
 | 冬瓜 | [冬瓜争做全栈瓜](https://weibo.com/desgard/profile?rightmod=1&wvr=6&mod=personinfo) | [Guardia · 瓜地](http://www.desgard.com/) | [Desgard](https://github.com/desgard) |
@@ -98,7 +102,8 @@ BigNerdCoding
 | pmst ||||
 | Lision ||||
 | liberalism |[Liberalisman](https://weibo.com/1743643682/profile?topnav=1&wvr=6)|[Liberalism](http://www.xiaolu520.com)|[Liberalisman](https://github.com/liberalisman)|
-| 水水 | Zx_Young027 | [曦息地](blog.yousanflics.com.cn) | Yousanflics |
+| pmst |[pmst](https://weibo.cn/u/2085734687)|[pmst](https://www.jianshu.com/u/596f2ba91ce9)|[pmst](https://github.com/colourful987)|
+| saitjr |[saitjr](https://weibo.com/u/1918545437)|[saitjr](http://saitjr.com/)|[saitjr](github.com/saitjr)|
 
 ## 文章更新
 
