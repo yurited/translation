@@ -46,7 +46,7 @@ BigNerdCoding
 
 |群ID|微博|个站|Github|
 |---- |---- |---- |---- |
-| BigNerdCoding ||||
+| BigNerdCoding |[BigNerdCoding](https://weibo.com/1314ddml)|[BigNerdCoding](https://bignerdcoding.com)|[BigNerdCoding](https://github.com/BigNerdCoding)|
 |森尼羊|[Sunnyyoung咩](https://weibo.com/34992577)|[Sunnyyoung](https://www.sunnyyoung.net)|[Sunnyyoung](https://github.com/Sunnyyoung)|
 |Darren||||
 |jojo|[Jojotov](https://weibo.com/dingtongzhou/profile?rightmod=1&wvr=6&mod=personinfo)|[JOJOTOV](https://dingtz.com)|[jojotov](https://github.com/jojotov)|
