@@ -13,6 +13,7 @@
 
 ### 校对者流程
 
+
 1. 进入相关 issue，在 comment 中加入校对评论。
 2. 第一人校对后将 Labels 改为『已初步校对』
 3. 超过两人评论后，视为校对完成，最后一个校对者将 Labels 改为『待发布』。
@@ -59,6 +60,8 @@ BigNerdCoding
 |Tuccuay||||
 | ennisk ||||
 | focus |[叫我丁丁就好](https://weibo.com/u/2510419843/home)|暂时没有，是真的懒...|[Pancf](https://github.com/Pancf)|
+| ennisk |[ennisk](https://weibo.com/u/1771329710)|||
+| focus ||||
 | Hale |[迷惘一代丶](https://weibo.com/p/1005053233770040)|[Hale's Blog](http://wuqiuhao.github.io/)|[Hale](https://github.com/wuqiuhao)|
 | 灰s |[灰s](https://weibo.com/u/2159669295)|[灰s](https://juejin.im/user/5862fa678d6d810065fe0efd)|[灰s](https://github.com/dzyding)|
 | Lefe_x ||||
