@@ -67,7 +67,7 @@ BigNerdCoding
 | 李凯 ||||
 | Damonwong ||||
 | 阳仔 ||||
-| ppt |[pmst](https://weibo.cn/u/2085734687)|[NinthDay](https://www.jianshu.com/u/596f2ba91ce9)|[PMST](https://github.com/colourful987)|
+| pmst |[pmst](https://weibo.cn/u/2085734687)|[pmst](https://www.jianshu.com/u/596f2ba91ce9)|[pmst](https://github.com/colourful987)|
 | saitjr |[saitjr](https://weibo.com/u/1918545437)|[saitjr](http://saitjr.com/)|[saitjr](github.com/saitjr)|
 
 ## 校对
