@@ -107,7 +107,7 @@ BigNerdCoding
 | 冬瓜 | [冬瓜争做全栈瓜](https://weibo.com/desgard/profile?rightmod=1&wvr=6&mod=personinfo) | [Guardia · 瓜地](http://www.desgard.com/) | [Desgard](https://github.com/desgard) |
 |小铁匠||||
 | littledogboy ||||
-| Forelax ||||
+| Forelax |[ForelaxMe](https://weibo.com/3889029090/profile)|[Forelax's Blog](http://forelax.space/)|[ForelaxX](https://github.com/ForelaxX)|
 | pmst ||||
 | Lision ||||
 | liberalism |[Liberalisman](https://weibo.com/1743643682/profile?topnav=1&wvr=6)|[Liberalism](http://www.xiaolu520.com)|[Liberalisman](https://github.com/liberalisman)|
@@ -137,7 +137,7 @@ BigNerdCoding
 |群ID|微博|个站|Github|
 |---- |---- |---- |---- |
 | CMB |[MBChan](https://weibo.com/1884833803/profile?topnav=1&wvr=6&is_all=1)|[cmb blog](http://www.billchan.me)|[BillChan](https://github.com/chenmingbiao)|
-| Forelax ||||
+| Forelax |[ForelaxMe](https://weibo.com/3889029090/profile)|[Forelax's Blog](http://forelax.space/)|[ForelaxX](https://github.com/ForelaxX)|
 
 ## 日常维护
 
@@ -146,7 +146,7 @@ BigNerdCoding
 |群ID|微博|个站|Github|
 |---- |---- |---- |---- |
 | 冬瓜 | [冬瓜争做全栈瓜](https://weibo.com/desgard/profile?rightmod=1&wvr=6&mod=personinfo) | [Guardia · 瓜地](http://www.desgard.com/) | [Desgard](https://github.com/desgard) |
-| Forelax ||||
+| Forelax |[ForelaxMe](https://weibo.com/3889029090/profile)|[Forelax's Blog](http://forelax.space/)|[ForelaxX](https://github.com/ForelaxX)|
 |jojo|[Jojotov](https://weibo.com/dingtongzhou/profile?rightmod=1&wvr=6&mod=personinfo)|[JOJOTOV](https://dingtz.com)|[jojotov](https://github.com/jojotov)|
 | 石峰铭 |[石不帅_](https://weibo.com/2817334765/profile?topnav=1&wvr=6&is_all=1)|[石不帅_](https://juejin.im/user/5a152631518825329314305d)|[sfmDev](https://github.com/sfmDev)|
 
