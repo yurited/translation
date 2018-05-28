@@ -74,7 +74,6 @@ BigNerdCoding
 | 李凯 ||||
 | Damonwong ||||
 | 阳仔 |[一只羊的北京](https://weibo.com/u/1967612625/home?wvr=5&lf=reg)|[Sheep's Blog](https://yanggao1991.github.io)|[shift_sheep](https://github.com/YangGao1991)|
-| 智多芯 |[智多芯](https://weibo.com/hulz)|[智多芯的博客](http://blog.hulizhen.me/)|[智多芯](https://github.com/hulizhen)|
 
 | 小袋子   | [小袋子](https://weibo.com/chunai520/home?wvr=5&lf=reg) | [Daizi](https://www.daizi.me/)    | [小袋子](https://github.com/lin493369)  |
 | -------- | ------------------------------------------------------- | --------------------------------- | --------------------------------------- |
@@ -114,6 +113,7 @@ BigNerdCoding
 | liberalism |[Liberalisman](https://weibo.com/1743643682/profile?topnav=1&wvr=6)|[Liberalism](http://www.xiaolu520.com)|[Liberalisman](https://github.com/liberalisman)|
 | pmst |[pmst](https://weibo.cn/u/2085734687)|[pmst](https://www.jianshu.com/u/596f2ba91ce9)|[pmst](https://github.com/colourful987)|
 | saitjr |[saitjr](https://weibo.com/u/1918545437)|[saitjr](http://saitjr.com/)|[saitjr](github.com/saitjr)|
+| 智多芯 |[智多芯](https://weibo.com/hulz)|[智多芯的博客](http://blog.hulizhen.me/)|[智多芯](https://github.com/hulizhen)|
 
 ## 文章更新
 
