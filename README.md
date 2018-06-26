@@ -114,6 +114,9 @@ BigNerdCoding
 | pmst |[pmst](https://weibo.cn/u/2085734687)|[pmst](https://www.jianshu.com/u/596f2ba91ce9)|[pmst](https://github.com/colourful987)|
 | saitjr |[saitjr](https://weibo.com/u/1918545437)|[saitjr](http://saitjr.com/)|[saitjr](github.com/saitjr)|
 | 智多芯 |[智多芯](https://weibo.com/hulz)|[智多芯的博客](http://blog.hulizhen.me/)|[智多芯](https://github.com/hulizhen)|
+|numbbbbb |---- |---- |---- |
+|MaxXD |---- |---- |---- |
+|muhlenXi |---- |---- |---- |
 
 ## 文章更新
 
