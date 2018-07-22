@@ -23,8 +23,8 @@
 - 需要添加原文tag
 - 需要添加categories
 - 需要添加permalink
-- 需要添加keywords
-- 需要添加custom_title
+- 需要添加keywords 
+- 需要添加custom_title 
 - 需要添加description
 
 具体格式如下：
@@ -37,7 +37,7 @@
 
 **pull request**：
 1.GitHub 的功能之一。这里我们将其定义成为一次翻译+校对的抽象。
-2.翻译者通过临时分支提交翻译文件，发起 PR 对 master 分支新增一个文件（翻译的文章）。
+2.翻译者通过临时分支提交翻译文件，发起 PR 对 stage 分支新增一个文件（翻译的文章），可以直接点击[create new file](https://github.com/SwiftGGTeam/GGHexo/new/stage/src)。
 创建临时分支规则如下：
 - 分支命名规则 [hostname]/[title]，host 为翻译的文章网站的除去协议部分，title 即为原文的英文标题
 - 分支合并请求规则，必须完成整个翻译流程后才能提出 PR
