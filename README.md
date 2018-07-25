@@ -62,7 +62,7 @@ BigNerdCoding
 | focus |[叫我丁丁就好](https://weibo.com/u/2510419843/home)|暂时没有，是真的懒...|[Pancf](https://github.com/Pancf)|
 | ennisk |[ennisk](https://weibo.com/u/1771329710)|||
 | focus ||||
-| Hale |[迷惘一代丶](https://weibo.com/p/1005053233770040)|[Hale's Blog](http://wuqiuhao.github.io/)|[Hale](https://github.com/wuqiuhao)|
+| Hale |[Hale0101](https://weibo.com/p/1005053233770040)|[Hale's Blog](http://wuqiuhao.github.io/)|[Hale](https://github.com/wuqiuhao)|
 | 灰s |[灰s](https://weibo.com/u/2159669295)|[灰s](https://juejin.im/user/5862fa678d6d810065fe0efd)|[灰s](https://github.com/dzyding)|
 | Lefe_x |[Lefe_x](https://weibo.com/u/5953150140)|[LefeWork](https://github.com/lefex/LefexWork)|[Lefex](https://github.com/lefex)|
 | 米开朗鸡儿罗 |[东莞大唐和尚](https://weibo.com/u/5029986118)|[认知即事实](http://robin4han.github.io/)|[dearbojack](https://github.com/dearbojack)|
