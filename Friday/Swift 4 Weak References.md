@@ -90,7 +90,7 @@ Side table 本质就是用于保存额外信息的单独内存块，并且它还
 
 更多关于堆对象的实现和注释在 [stdlib/public/runtime/HeapObject.cpp](https://github.com/apple/swift/blob/c262440e70896299118a0a050c8a834e1270b606/stdlib/public/runtime/HeapObject.cpp)。
 
-上诉链接其实带着版本信息，以便后面的读者也能找到本文内容当时的上下文。如果你想看最新的实现代码，你在点击链接后切换到 master 分支即可。
+上述链接其实带着版本信息，以便后面的读者也能找到本文内容当时的上下文。如果你想看最新的实现代码，你在点击链接后切换到 master 分支即可。
 
 ## 总结
 
