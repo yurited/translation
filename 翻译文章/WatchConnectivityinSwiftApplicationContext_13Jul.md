@@ -71,7 +71,7 @@ class ViewController: UIViewController, WCSessionDelegate {
 
 下一步，我们需要实现 `WCSessionDelegate ` 中的一些方法。对于当前这个app，它们不是特别必要，但是如果想要快速在 watch app 中切换，你就需要进一步实现它们。
 
-之后，我们需要创建一个变量用于存储 `WCSession` 。在技术上来说我们并不需要这样做，因为`WCSession` 实际上是一个单例，但每次输入 `session？` 肯定要比 `WCSession.default` 更简短。
+之后，我们需要创建一个变量用于存储 `WCSession` 。因为`WCSession` 实际上是一个单例，技术上不需要选择这种简短的方式，但每次输入 session？ 肯定要比 WCSession.default 更简短。
 
 你应该在代码运行初期对 session 进行设置。在大多数情况下，应该在程序初始化的时候来做。但是由于我们是在 ViewController 中执行此操作，所以最早执行的地方大概就只有 viewDidLoad 方法中了。一般情况下来说，你不应该在 viewController 中执行这个操作，因为你的 app 希望在屏幕上未加载特定 viewController 时就可以更新它的数据模型。为了简单起见，我在 viewController 中做了这个操作，这仅仅是为了展示如何使用这些API。如果这个 ViewController 是唯一关心使用 `WCSession` 的东西，那就没关系。但通常情况并非如此。
 
