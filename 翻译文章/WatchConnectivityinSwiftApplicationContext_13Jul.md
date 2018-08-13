@@ -1,6 +1,6 @@
 # Watch Connectivity in Swift — Application Context
 
-title: "在 Swift 中使用 Watch Connectivity — 应用程序上下文"
+title: "在 Swift 中使用 Watch Connectivity — Application Context"
 date: 2018-07-18
 tags: [教程]
 categories: [codingexplorer]
@@ -14,13 +14,13 @@ description: 本文详细讲解了如何通过 Watch Connectivity 的 Applicatio
 作者=codingexplorer
 原文日期=2018-07-18
 译者=Khala-wan
-校对=
+校对=Yousanflics
 定稿=
 
 
-在 watchOS 1时代，`watchKit extension` 位于已配对的 iOS 设备上，我们可以通过它轻松地在宿主 app 和 watch 之间进行数据共享。类似偏好设置这种最简单的数据，只需要通过 App Groups 来存取 NSUserDefaults。目前在手机上留存的其他扩展程序,列如 `today view extension` 和主 app 之间共享数据仍然应该使用这种方式,但已不再适用于 watchOS 的 app。
+在 watchOS 1时代，`WatchKit Extension` 位于已配对的 iOS 设备上，这使得数据共享在宿主 app 和 watch 之间变得简单。类似偏好设置这种最简单的数据，只需要通过 App Groups 功能来存取 NSUserDefaults。目前在手机上留存的其他扩展程序,列如 `Today View Extension` 和主 app 之间共享数据仍然应该使用这种方式,但它已不再适用于 watchOS 的 app。
 
-辛运的是，苹果为我们提供了新的API来做这件事。相比 App Groups，Watch Connectivity 拥有更强大的功能。它不仅提供了更多 AppleWatch 与其配对的 iPhone 之间连接状态的相关信息，还允许它们之间通过 3 种后台传输的方式进行交互式消息传输，分别是：
+辛运的是，苹果为我们提供了新的API来做这件事。相比 App Groups，Watch Connectivity 拥有更强大的功能。它不仅提供了更多 AppleWatch 和与其配对的 iPhone 之间连接状态的相关信息，还允许它们之间进行交互消息和 3 种方式的后台传输，这些方式分别是：
 
 1. Application Context
 2. User Info Transfer
@@ -28,15 +28,15 @@ description: 本文详细讲解了如何通过 Watch Connectivity 的 Applicatio
 
 我们今天先讨论第一种方式：Application Context。
 
-## 什么是 Application Context（应用程序上下文）
+## 什么是 Application Context
 
-假设你有个 watch app，它有一些可以在 iOS app 端设置的设置项，比如温度的显示单位是摄氏度还是华氏度。对于这样的设置项，除非你希望在用户在设置完成之后立即使用 watch 上的 app，否则将设置项的信息通过后台传输发送到 watch 是比较合理的。
+假设你有个 watch app，它有一些可以在 iOS app 端设置的设置项，比如温度的显示单位是摄氏度还是华氏度。对于这样的设置项，除非你希望在用户在设置完成之后立即使用 watch 上的 app，否则将设置项的信息通过后台传输发送到 watch 才会是比较合理的。
 
-因为它可能不是`立即`需要的，所以系统可能会在节省最多电量的情况下将其发送出去。你也不需要任何历史记录，因为用户可能并不关心一小时之前的设置是摄氏度。
+因为它可能不是`立即`需要的，所以系统可能会在节省电量最多的情况下将其发送出去。你也不需要任何历史记录，因为用户可能并不关心一小时之前的设置是摄氏度。
 
 这就是 Application Context 的用武之地。它仅用于发送最新的数据。如果你将温度设置项从摄氏度改为华氏度，然后在 Application Context 发送到 watch 之前再将它（或者其他设置项）设置为不同的值，那么最新的值会覆盖之前等待发送的信息。
 
-如果你确实希望它能保存先前信息的历史记录，而且是以最省电的方式传输。那么可以使用 `User Info` 方式进行传输。它的使用方式和 Application Context 很相似，但它会将更新操作加入一个队列并逐一发送（而不是仅仅覆盖某些内容只发送最新的信息）。具体 `User Info` 的使用将作为以后另一篇文章的主题来讲。
+如果你确实希望它能保存先前信息的历史记录，而且是以最省电的方式传输。那么可以使用 `User Info` 方式进行传输。它的使用方式和 Application Context 很相似，但它会将更新操作加入到一个队列中并逐一发送（而不是仅仅覆盖某些内容只发送最新的信息）。具体 `User Info` 的使用将作为以后另一篇文章的主题来讲。
 
 ## 设置 iOS 应用程序
 
@@ -67,9 +67,9 @@ class ViewController: UIViewController, WCSessionDelegate {
 }
 
 ```
-因此，我们需要先导入 WatchConnectivity 框架。没有它，我们所做的都是无用功。接下来，为了响应来自 WCSession 的回调，我们需要将当前这个 ViewController 设置为 WCSession 的代理，为此我们需要在 ViewController 的父类声明后面添加 `WCSessionDelegate` 来让它遵守这个协议。
+下面，我们最先需要导入 WatchConnectivity 框架。没有它，我们所做的都是无用功。接下来，为了响应来自 WCSession 的回调，我们需要将当前这个 ViewController 设置为 WCSession 的代理，为此我们需要让它遵守这个协议,所以在 ViewController 的父类声明后面添加 `WCSessionDelegate` 协议。
 
-下一步，我们需要实现一些 `WCSessionDelegate ` 的代理方法。对于当前这个app，它们不是特别必要，但是如果想要快速在 watch app 中切换，你需要进一步实现它们。
+下一步，我们需要实现 `WCSessionDelegate ` 中的一些方法。对于当前这个app，它们不是特别必要，但是如果想要快速在 watch app 中切换，你就需要进一步实现它们。
 
 之后，我们需要创建一个变量用于存储 `WCSession` 。在技术上来说我们并不需要这样做，因为`WCSession` 实际上是一个单例，但每次输入 `session？` 肯定要比 `WCSession.default` 更简短。
 
@@ -100,7 +100,7 @@ class ViewController: UIViewController, WCSessionDelegate {
 
 首先检查我们是否有一个有效的 session，如果是运行在iPad上，那么将跳过整个代码块。 `Application Context` 是一个 Swift 字典，它以 `String` 作为 `key`，`AnyObject` 作为 `value` (`Dictionary<String, AnyObject>`)。 value 必须遵循属性列表的规则，并且只包含某些类型。它和 NSUserDefaults 具有相同的限制,所以在上一篇文章[NSUserDefaults — A Swift Introduction](http://www.codingexplorer.com/nsuserdefaults-a-swift-introduction/)中已经介绍过了具体可以使用哪些类型。尽管如此，当我们发送一个Swift Bool类型时，其将会被转换为NSNumber boolean value，所以没关系。
 
-调用 `updateApplicationContext` 可能会抛出异常，所以我们需要将它包装在 `do-block` 中并通过 `try` 来调用。如果出现异常，我们只是在控制台上打印了一些信息，你还可以设置任何你需要的东西，比如你可能需要让用户知道发生了错误，那就可以显示一个 UIAlerController，同样，如果有必要可以加入异常的清理或恢复代码。以上就是为了发送上下文，我们所需要的全部准备。
+调用 `updateApplicationContext` 可能会抛出异常，所以我们需要将它包装在 `do-block` 中并通过 `try` 来调用。如果出现异常，我们只是在控制台上打印了一些信息，你还可以设置任何你需要的东西，比如你可能需要让用户知道发生了错误，那就可以显示一个 UIAlerController，同样，如果有必要可以加入异常的清理或恢复代码。这就是为了发送 `Application Context`，我们所需要的全部准备。
 
 ## 设置 watchOS 应用程序
 
@@ -131,7 +131,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
 
 接下来，在代码的初期，我们需要设置 session 。在 InterfaceController 中 awakeWithContext 方法是个很好的地方，所以我们在这里做相关设置。和 iOS App 一样，我们设置当前类作为 session 的代理，然后激活 session。
 
-让我们写一个辅助方法来处理 Application Context 的回调，因为我们可能会多次调用它，而不是仅仅当我们收到一个新上下文时（你很快会看到）。
+让我们写一个辅助方法来处理 Application Context 的回调，因为我们可能会多次调用它，而不是仅仅当我们收到一个新 `context` 时（你很快会看到）。
 
 ```swift
 func processApplicationContext() {
@@ -149,10 +149,10 @@ func processApplicationContext() {
 
 `WCSession` 有 2 个与 `Application Context` 相关的属性，`applicationContext` 和 `receivedApplicationContext`。它们的不同之处是：
 
-* applicationContext - 此设备最近一次**发送**的应用程序上下文。
-* receivedApplicationContext - 此设备最近一次**接收**的应用程序上下文。
+* applicationContext - 此设备最近一次**发送**的 `Application Context`。
+* receivedApplicationContext - 此设备最近一次**接收**的 `Application Context`。
 
-现在，把它俩放到一起来看，至少接收到的看起来很明显。但在我第一次涉及这个时（不记得 WWDC 中 Watch Connectivity的介绍视频的全部内容？），我认为 applicationContext 是从最近的发送或接收来更新的，因为我认为它们是一致的上下文。然而我大错特错，我花了一段时间才意识到它们是分开的。我当然能看出来原因，因为我们可能每次都会发送不一样的数据，就像从 Watch 的角度来看，applicationContext 就是 iPhone 端需要的 Watch 相关上下文，而 receivedApplicationContext 则是 Watch 端需要的 iPhone 相关上下文。无论哪种方式，请记住它们是不同的两个东西，并根据实际情况选择你所需要的那个。
+现在，把它俩放到一起来看，至少接收到的看起来很明显。但在我第一次涉及这个时（不记得 WWDC 中 Watch Connectivity的介绍视频的全部内容？），我认为 applicationContext 是从最近的发送或接收来更新的，因为我认为它们是一致的 `context`。然而我大错特错，我花了一段时间才意识到它们是分开的。我当然能看出来原因，因为我们可能每次都会发送不一样的数据，就像从 Watch 的角度来看，applicationContext 就是 iPhone 端需要的 Watch 相关 `context`，而 receivedApplicationContext 则是 Watch 端需要的 iPhone 相关 `context`。无论哪种方式，请记住它们是不同的两个东西，并根据实际情况选择你所需要的那个。
 
 所以在这个方法中，我们首先尝试将 `receivedApplicationContext` 由 `[String: AnyObject]`类型的字典转换为我们需要的`[String: Bool]`类型。如果转换成功，则再根据字典中布尔值的状态将 displayLabel 的 text 值设置为“Switch On”或“Switch Off”。
 
@@ -166,18 +166,18 @@ func session(_ session: WCSession, didReceiveApplicationContext applicationConte
 }
 ```
 
-现在，你大概看到了 didReceiveApplicationContext 方法的入参带有它接收到的上下文副本。它存储在上面提到的 receivedApplicationContext 属性中。所以当我们调用辅助方法时，并不需要它，这就就是为什么辅助方法不需要接受任何入参。
+现在，你大概看到了 didReceiveApplicationContext 方法的入参带有它接收到的 `Application Context` 副本。它存储在上面提到的 receivedApplicationContext 属性中。所以当我们调用辅助方法时，并不需要它，这就就是为什么辅助方法不需要接受任何行参。
 
 ***************
 译者注：
-	其实对于辅助方法 `processApplicationContext` 来说，增加入参 context 反而更"函数式"，也更"swift"。 通过增加一个 context 的入参，可以让方法内部实现和外部依赖解耦，更加方便我们对它进行单元测试。
+	其实对于辅助方法 `processApplicationContext` 来说，增加行参 context 反而更"函数式"，也更"swift"。 通过增加一个 context 的入参，可以让方法内部实现和外部依赖解耦，更加方便我们对它进行单元测试。
 
 ***************
 那么，调用 `dispatch_async` 是为了做什么呢？好吧，这些代理回调不在主线程上。你永远不应该在除主线程以外的任何线程更新 iOS 或 watchOS 中的 UI。而我们的辅助方法除了从 `receivedApplicationContext` 中读取信息之外，主要目的是用来更新 UI 元素。因此，我们要通过 `dispatch_async` 方法返回主线程来调用该方法。调用 `dispatch_async` 需要 2 个参数，首先是派发队列（对于主线程，我们通过 `dispatch_get_main_queue` 方法获取），其次是一个闭包来告诉它需要做什么操作，这里我们只是告诉它去调用辅助方法。
 
 所以，为什么我们要在辅助方法里这样做，而不是直接在回调方法里面直接处理呢？好吧，当你实际接收到一个新的 `Application Context` 时，会回调 `didReceiveApplicationContext` 代理方法。当 `WCSession` 在关闭时接收到新的 `ApplicationContext` 会调用 activateSession 方法,在那不久之后也会回调到 `didReceiveApplicationContext` 方法。在这种情况下，我使用此 ApplicationContext 作为该信息的后备存储。我不确定这是不是一个好的主意，但是对于一个简单的 app 来说，这是合理的， 因为 label 的重点是显示 iPhone 上的 UISwitch 是开启还是关闭。
 
-那么，当我们的 app 完成加载之后想使用最后一次接收到的值，但是 app 在关闭期间又没有收到新的上上下文，这种情况该怎么办？我们在视图生命周期的早期设置 label，所以现在 awakeWithContext 看起来应该是这样：
+那么，当我们的 app 完成加载之后想使用最后一次接收到的值，但是 app 在关闭期间又没有收到新的 `context`，这种情况该怎么办？我们在视图生命周期的早期设置 label，所以现在 awakeWithContext 看起来应该是这样：
 
 ```swift
 override func awake(withContext context: Any?) {
@@ -193,7 +193,7 @@ override func awake(withContext context: Any?) {
 
 由于 awakeWithContext 肯定在主线程上，我们不需要 dispatch_async。 因此这就是它仅用于在 didReceiveApplicationContext 回调中来调用辅助方法而不是在辅助方法内部使用的原因。
 
-此时 iOS App 并没有保留该 UISwitch 的状态，所以在启动时保持它们的同步并不那么重要，对于一个有价值的 app 来说，我们应该将 UISwitch 的状态存储在某个地方。比如可以在 iPhone 端使用 WCSession 的 applicationContex 属性。（请记住，applicationContext 是从设备**发送**过来的最后一个上下文），但如果是在iPad上运行呢？你可以将它存储在 NSUserDefaults,或者其他许多地方，但这些不在如何使用 WatchConnectivity 的讨论范畴内。具体你可以在早期的[NSUserDefaults — A Swift Introduction]()文章中了解到。
+此时 iOS App 并没有保留该 UISwitch 的状态，所以在启动时保持它们的同步并不那么重要，对于一个有价值的 app 来说，我们应该将 UISwitch 的状态存储在某个地方。比如可以在 iPhone 端使用 WCSession 的 ApplicationContext 属性。（请记住，applicationContext 是从设备**发送**过来的最后一个 `context`），但如果是在iPad上运行呢？你可以将它存储在 NSUserDefaults,或者其他许多地方，但这些不在如何使用 WatchConnectivity 的讨论范畴内。具体你可以在早期的[NSUserDefaults — A Swift Introduction]()文章中了解到。
 
 ## 代码
 
