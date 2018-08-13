@@ -1,6 +1,6 @@
 # Watch Connectivity in Swift — Application Context
 
-title: "在 Swift 应用中使用 Watch Connectivity"
+title: "在 Swift 中使用 Watch Connectivity — 应用程序上下文"
 date: 2018-07-18
 tags: [教程]
 categories: [codingexplorer]
