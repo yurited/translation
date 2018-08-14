@@ -18,9 +18,8 @@ description: 本文详细讲解了如何通过 Watch Connectivity 的 Applicatio
 定稿=
 
 
-在 watchOS 1时代，`WatchKit Extension` 位于已配对的 iOS 设备上，这使得数据共享在宿主 app 和 watch 之间变得简单。类似偏好设置这种最简单的数据，只需要通过 App Groups 功能来存取 NSUserDefaults。目前在手机上留存的其他扩展程序,列如 `Today View Extension` 和主 app 之间共享数据仍然应该使用这种方式,但它已不再适用于 watchOS 的 app。
-
-辛运的是，苹果为我们提供了新的API来做这件事。相比 App Groups，Watch Connectivity 拥有更强大的功能。它不仅提供了更多 AppleWatch 和与其配对的 iPhone 之间连接状态的相关信息，还允许它们之间进行交互消息和 3 种方式的后台传输，这些方式分别是：
+在 watchOS 1 时代，`WatchKit Extension` 位于已配对的 iOS 设备上，使得宿主APP和watch之间的数据共享变得简单。类似偏好设置这种最简单的数据，只需要通过 App Groups 功能来存取 NSUserDefaults。目前在手机上留存的其他扩展程序和主 app 之间共享数据仍然应该使用这种方式，例如 `Today View Extension` ，但它已不再适用于 watchOS 的 app。
+幸运的是，苹果为我们提供了新的 API 来做这件事。相比 App Groups，Watch Connectivity 拥有更强大的功能。它不仅提供了你的 Apple Watch 与其配对 iPhone 之间连接状态的更多信息，还允许它们之间进行交互消息和 3 种方式的后台传输，这些方式分别是：
 
 1. Application Context
 2. User Info Transfer
@@ -40,7 +39,7 @@ description: 本文详细讲解了如何通过 Watch Connectivity 的 Applicatio
 
 ## 设置 iOS 应用程序
 
-我们将从一个类似于上一遍文章 [watchOS Hello World App in Swift](http://www.codingexplorer.com/watchos-2-hello-world-app-in-swift/) 中的app说起。不过在本文中，我们将在这个 iPhone app 上加入一个 UISwitch 控件，并通过更新 watchOS app 上的WKInterfaceLabel 来说明 UISwitch 的状态。
+我们将从一个类似于上一遍文章 [watchOS Hello World App in Swift](http://www.codingexplorer.com/watchos-2-hello-world-app-in-swift/) 中的 app 说起。不过在本文中，我们将在这个 iPhone app 上加入一个 UISwitch 控件，并通过更新 watchOS app 上的 WKInterfaceLabel 来说明 UISwitch 的状态。
 
 首先，在 iOS app 的 viewController 中，我们需要设置一些东西：
 
@@ -67,13 +66,13 @@ class ViewController: UIViewController, WCSessionDelegate {
 }
 
 ```
-下面，我们最先需要导入 WatchConnectivity 框架。没有它，我们所做的都是无用功。接下来，为了响应来自 WCSession 的回调，我们需要将当前这个 ViewController 设置为 WCSession 的代理，为此我们需要让它遵守这个协议,所以在 ViewController 的父类声明后面添加 `WCSessionDelegate` 协议。
+下面，我们最先需要导入 WatchConnectivity 框架。没有它，我们所做的都是无用功。接下来，为了响应来自 WCSession 的回调，我们需要将当前这个 ViewController 设置为 WCSession 的代理，为此我们需要让它遵守这个协议，所以在 ViewController 的父类声明后面添加 `WCSessionDelegate` 协议。
 
-下一步，我们需要实现 `WCSessionDelegate ` 中的一些方法。对于当前这个app，它们不是特别必要，但是如果想要快速在 watch app 中切换，你就需要进一步实现它们。
+下一步，我们需要实现 `WCSessionDelegate ` 中的一些方法。对于当前这个 app，它们不是特别必要，但是如果想要快速在 watch app 中切换，你就需要进一步实现它们。
 
-之后，我们需要创建一个变量用于存储 `WCSession` 。因为`WCSession` 实际上是一个单例，技术上不需要选择这种简短的方式，但每次输入 session？ 肯定要比 WCSession.default 更简短。
+之后，我们需要创建一个变量用于存储 `WCSession` 。因为 `WCSession` 实际上是一个单例，技术上我们可以跳过这一步，但每次输入 session？ 肯定要比 WCSession.default 更简短。
 
-你应该在代码运行初期对 session 进行设置。在大多数情况下，应该在程序初始化的时候来做。但是由于我们是在 ViewController 中执行此操作，所以最早执行的地方大概就只有 viewDidLoad 方法中了。一般情况下来说，你不应该在 viewController 中执行这个操作，因为你的 app 希望在屏幕上未加载特定 viewController 时就可以更新它的数据模型。为了简单起见，我在 viewController 中做了这个操作，这仅仅是为了展示如何使用这些API。如果这个 ViewController 是唯一关心使用 `WCSession` 的东西，那就没关系。但通常情况并非如此。
+你应该在代码运行初期对 session 进行设置。在大多数情况下，应该在程序初始化的时候来做。但是由于我们是在 ViewController 中执行此操作，所以最早执行的地方大概就只有 viewDidLoad 方法中了。一般情况下来说，你不应该在 viewController 中执行这个操作，因为你的 app 希望在屏幕上未加载特定 viewController 时就可以更新它的数据模型。为了简单起见，我在 viewController 中做了这个操作，这仅仅是为了展示如何使用这些 API。如果这个 ViewController 是唯一关心使用 `WCSession` 的东西，那就没关系。但通常情况并非如此。
 
 要设置 session，我们需要先根据 `WCSession` 的 `isSupport` 方法的返回值来检查是否支持。如果程序在 iPad 上运行的话，这一点尤为重要。目前，你无法将 iPad 与 Apple Watch 配对，因此它会返回 `false` 表示不支持在 iPad 上使用 `WCSession`。在 iPhone 上它会返回 `true`。
 
@@ -98,13 +97,13 @@ class ViewController: UIViewController, WCSessionDelegate {
 
 ```
 
-首先检查我们是否有一个有效的 session，如果是运行在iPad上，那么将跳过整个代码块。 `Application Context` 是一个 Swift 字典，它以 `String` 作为 `key`，`AnyObject` 作为 `value` (`Dictionary<String, AnyObject>`)。 value 必须遵循属性列表的规则，并且只包含某些类型。它和 NSUserDefaults 具有相同的限制,所以在上一篇文章[NSUserDefaults — A Swift Introduction](http://www.codingexplorer.com/nsuserdefaults-a-swift-introduction/)中已经介绍过了具体可以使用哪些类型。尽管如此，当我们发送一个Swift Bool类型时，其将会被转换为NSNumber boolean value，所以没关系。
+首先检查我们是否有一个有效的 session，如果是运行在 iPad 上，那么将跳过整个代码块。 `Application Context` 是一个 Swift 字典，它以 `String` 作为 `key`，`AnyObject` 作为 `value` (`Dictionary<String, AnyObject>`)。 value 必须遵循属性列表的规则，并且只包含某些类型。它和 NSUserDefaults 具有相同的限制，所以在上一篇文章 [NSUserDefaults — A Swift Introduction](http://www.codingexplorer.com/nsuserdefaults-a-swift-introduction/) 中已经介绍过了具体可以使用哪些类型。尽管如此，当我们发送一个Swift Bool类型时，其将会被转换为 NSNumber boolean value，所以没关系。
 
 调用 `updateApplicationContext` 可能会抛出异常，所以我们需要将它包装在 `do-block` 中并通过 `try` 来调用。如果出现异常，我们只是在控制台上打印了一些信息，你还可以设置任何你需要的东西，比如你可能需要让用户知道发生了错误，那就可以显示一个 UIAlerController，同样，如果有必要可以加入异常的清理或恢复代码。这就是为了发送 `Application Context`，我们所需要的全部准备。
 
 ## 设置 watchOS 应用程序
 
-因为我们使用的是之前 [watchOS Hello World App in Swift](http://www.codingexplorer.com/watchos-2-hello-world-app-in-swift/) 文中的 Hellow World App,所以部分相同的设置已经替我们完成了。跟 iPhone 类似，我们还需要做一些设置才能使用 `WatchConnectivity`。
+因为我们使用的是之前 [watchOS Hello World App in Swift](http://www.codingexplorer.com/watchos-2-hello-world-app-in-swift/) 文中的 Hello World App，所以部分相同的设置已经替我们完成了。跟 iPhone 类似，我们还需要做一些设置才能使用 `WatchConnectivity`。
 
 ```swift
 import WatchConnectivity
@@ -166,7 +165,7 @@ func session(_ session: WCSession, didReceiveApplicationContext applicationConte
 }
 ```
 
-现在，你大概看到了 didReceiveApplicationContext 方法的入参带有它接收到的 `Application Context` 副本。它存储在上面提到的 receivedApplicationContext 属性中。所以当我们调用辅助方法时，并不需要它，这就就是为什么辅助方法不需要接受任何行参。
+现在，你大概看到了 didReceiveApplicationContext 方法的入参带有它接收到的 `Application Context` 副本。它存储在上面提到的 receivedApplicationContext 属性中。所以我们并不需要它来调用辅助方法, 因此这个方法不需要传入任何行参。
 
 ***************
 译者注：
@@ -175,7 +174,7 @@ func session(_ session: WCSession, didReceiveApplicationContext applicationConte
 ***************
 那么，调用 `dispatch_async` 是为了做什么呢？好吧，这些代理回调不在主线程上。你永远不应该在除主线程以外的任何线程更新 iOS 或 watchOS 中的 UI。而我们的辅助方法除了从 `receivedApplicationContext` 中读取信息之外，主要目的是用来更新 UI 元素。因此，我们要通过 `dispatch_async` 方法返回主线程来调用该方法。调用 `dispatch_async` 需要 2 个参数，首先是派发队列（对于主线程，我们通过 `dispatch_get_main_queue` 方法获取），其次是一个闭包来告诉它需要做什么操作，这里我们只是告诉它去调用辅助方法。
 
-所以，为什么我们要在辅助方法里这样做，而不是直接在回调方法里面直接处理呢？好吧，当你实际接收到一个新的 `Application Context` 时，会回调 `didReceiveApplicationContext` 代理方法。当 `WCSession` 在关闭时接收到新的 `ApplicationContext` 会调用 activateSession 方法,在那不久之后也会回调到 `didReceiveApplicationContext` 方法。在这种情况下，我使用此 ApplicationContext 作为该信息的后备存储。我不确定这是不是一个好的主意，但是对于一个简单的 app 来说，这是合理的， 因为 label 的重点是显示 iPhone 上的 UISwitch 是开启还是关闭。
+所以，为什么我们要在辅助方法里这样做，而不是直接在回调方法里面直接处理呢？好吧，当你实际接收到一个新的 `Application Context` 时，会回调 `didReceiveApplicationContext` 代理方法。当 `WCSession` 在关闭时接收到新的 `ApplicationContext` 会调用 activateSession 方法，在那不久之后也会回调到 `didReceiveApplicationContext` 方法。在这种情况下，我使用此 ApplicationContext 作为该信息的后备存储。我不确定这是不是一个好的主意，但是对于一个简单的 app 来说，这是合理的， 因为 label 的重点是显示 iPhone 上的 UISwitch 是开启还是关闭。
 
 那么，当我们的 app 完成加载之后想使用最后一次接收到的值，但是 app 在关闭期间又没有收到新的 `context`，这种情况该怎么办？我们在视图生命周期的早期设置 label，所以现在 awakeWithContext 看起来应该是这样：
 
@@ -193,7 +192,7 @@ override func awake(withContext context: Any?) {
 
 由于 awakeWithContext 肯定在主线程上，我们不需要 dispatch_async。 因此这就是它仅用于在 didReceiveApplicationContext 回调中来调用辅助方法而不是在辅助方法内部使用的原因。
 
-此时 iOS App 并没有保留该 UISwitch 的状态，所以在启动时保持它们的同步并不那么重要，对于一个有价值的 app 来说，我们应该将 UISwitch 的状态存储在某个地方。比如可以在 iPhone 端使用 WCSession 的 ApplicationContext 属性。（请记住，applicationContext 是从设备**发送**过来的最后一个 `context`），但如果是在iPad上运行呢？你可以将它存储在 NSUserDefaults,或者其他许多地方，但这些不在如何使用 WatchConnectivity 的讨论范畴内。具体你可以在早期的[NSUserDefaults — A Swift Introduction]()文章中了解到。
+此时 iOS App 并没有保留该 UISwitch 的状态，所以在启动时保持它们的同步并不那么重要，对于一个有价值的 app 来说，我们应该将 UISwitch 的状态存储在某个地方。比如可以在 iPhone 端使用 WCSession 的 ApplicationContext 属性。（请记住，applicationContext 是从设备**发送**过来的最后一个 `context`），但如果是在iPad上运行呢？你可以将它存储在 NSUserDefaults，或者其他许多地方，但这些不在如何使用 WatchConnectivity 的讨论范畴内。具体你可以在早期的 [NSUserDefaults — A Swift Introduction](http://www.codingexplorer.com/nsuserdefaults-a-swift-introduction/) 文章中了解到。
 
 ## 代码
 
@@ -298,11 +297,11 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
 
 ## 结论
 
-以上就是如何使用 Watch Connectivity 的  Application Context 方式进行后台传输。向手机端回传数据也是完全相同的，具有同样的代理回调和属性。虽然在这种情况下，根据你正在做的事情，可能还需要检查是否确实存在与该设备配对的 Apple Watch 或者 Watch 上是否安装了对应的app。
+以上就是如何使用 Watch Connectivity 的 Application Context 方式进行后台传输的教程。向手机端回传数据也是完全相同的，因为它们具有同样的代理回调和属性。虽然在那种情况下，你可能还需要根据实际情况检查是否存在与该设备配对的 Apple Watch 或者 Watch 上是否安装了对应的 app。
  
-正如我之前提到的，在 ViewController / InterfaceController 中执行所有代码可能不是最好的主意，但这只是为了简单地展示如何使用API​​。我个人非常喜欢在自己的 `Watch Connectivity manager` 实例中执行这些操作。所以我强烈建议你阅读 Natasha The Robot 的文章 [WatchConnectivity: Say Hello to WCSession](https://www.natashatherobot.com/watchconnectivity-say-hello-to-wcsession/)，并关联他的 [GitHub Gist](https://gist.github.com/NatashaTheRobot/6bcbe79afd7e9572edf6)。这将对你使用 WatchConnectivity 很有帮助。
+正如我之前提到的，在 ViewController / InterfaceController 中执行所有代码可能不是最好的主意，但这只是为了简单地展示如何使用 API​​。我个人非常喜欢在自己的 `Watch Connectivity manager` 实例中执行这些操作。所以我强烈建议你阅读 Natasha The Robot 的文章 [WatchConnectivity: Say Hello to WCSession](https://www.natashatherobot.com/watchconnectivity-say-hello-to-wcsession/)，并关联他的 [GitHub Gist](https://gist.github.com/NatashaTheRobot/6bcbe79afd7e9572edf6)。这将对你使用 WatchConnectivity 很有帮助。
 
-我希望本文能对你有所帮助。如果有帮到你，请不要犹豫，在Twitter或者你选择的社交媒体上分享这篇文章，每个分享对我都是帮助。当然，如果你有任何疑问，请随时通过[联系页面](http://www.codingexplorer.com/contact/)或 Twitter [@CodingExplorer](https://twitter.com/CodingExplorer) 与我联系，我会看看我能做些什么。谢谢！
+我希望本文能对你有所帮助。如果有帮到你，请不要犹豫，在 Twitter 或者你选择的社交媒体上分享这篇文章，每个分享对我都是帮助。当然，如果你有任何疑问，请随时通过[联系页面](http://www.codingexplorer.com/contact/)或 Twitter [@CodingExplorer](https://twitter.com/CodingExplorer) 与我联系，我会看看我能做些什么。谢谢！
 
 ## 来源
 
