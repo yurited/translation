@@ -1,56 +1,167 @@
-# 空格
+# SwiftGG 翻译组排版指南
 
-- 中英文之间需要增加空格
-  ```patch
-  + 我们是 SwiftGG 翻译组
-  - 我们是SwiftGG翻译组
-  - 我们是SwiftGG 翻译组
-  - 我们是 SwiftGG翻译组
-  ```
-  
-  ❗️注意：无论英文是否是一个链接（`[]()`）还是某种变量（使用 ``` ` ` ``` 引起来的内容），遇到中文都应该前后增加空格。
-  
-   ```patch
-   + [这是一个链接](github.com/Cee)。也可以通过访问 [Swift Evolution](https://github.com/apple/swift-evolution) 获得更多详细的解释。
-   - [这是一个链接](github.com/Cee)。也可以通过访问[Swift Evolution](https://github.com/apple/swift-evolution)获得更多详细的解释。
-   ```
+## 目录
 
-- 中文与数字之间需要增加空格
-  ```patch
-  + 这篇文章有 3 个小节
-  - 这篇文章有3个小节
-  - 这篇文章有3 个小节
-  - 这篇文章有 3个小节
-  ```
-
-- 数字与单位之间需要增加空格
-  ```patch
-  + 文件大小是 1 MB
-  - 文件大小是 1MB
-  ```
-
-- 全角标点（特指中文标点）与其他字符之间不加空格
-  ```patch
-  + 我的 GitHub 帐号是 @Cee，其他的联系方式可以私信。
-  - 我的 GitHub 帐号是 @Cee ，其他的联系方式可以私信。
-  ```
-  
-# 标点
-
+- 空格
+  * 中英文之间需要增加空格
+  * 中文与数字之间需要增加空格
+  * 数字与单位之间需要增加空格
+  * 全角标点（特指中文标点）与其他字符之间不加空格
+- 标点符号
+  * 不重复使用标点符号
 - 全角和半角
-  - 在中文的句子中使用全角符号（`，`、`。`、`、`、`「」`、`（）`）
-  - 数字使用半角
-  ```patch
-  + 哇！你注意到这篇文章的要点了么？
-  - 哇!你注意到这篇文章的要点了么?
+  * 使用全角中文标点
+  * 数字使用半角字符
+  * 遇到完整的英文整句、特殊名词，使用半角标点
+- 名词
+  * 专有名词使用正确的大小写
+  * 不要使用不地道的缩写
+- 引用
+  * 使用 `[^1]` 进行脚注标记
   
-  + 应用程序上下文（Application Context）通常用于下列情况。
-  - 应用程序上下文(Application Context)通常用于下列情况。
-  
-  + 代码共有 100 行
-  - 代码共有１００行
-  ```
-  
-# 引用
+## 空格
 
-- 使用 `[^1]` 进行脚注标记
+### 中英文之间需要增加空格
+
+✅
+> 我们是 SwiftGG 翻译组
+
+❌
+> 我们是SwiftGG翻译组
+
+> 我们是SwiftGG 翻译组
+
+> 我们是 SwiftGG翻译组
+
+❗️
+注意：无论英文是否是一个链接（`[]()`）还是某种变量（使用 ``` ` ` ``` 引起来的内容），遇到中文都应该前后增加空格。
+  
+✅
+```patch
++ [这是一个链接](github.com/Cee)。也可以通过访问 [Swift Evolution](https://github.com/apple/swift-evolution) 获得更多详细的解释。
+```
+
+❌
+```patch
+- [这是一个链接](github.com/Cee)。也可以通过访问[Swift Evolution](https://github.com/apple/swift-evolution)获得更多详细的解释。
+```
+
+### 中文与数字之间需要增加空格
+
+✅
+> 这篇文章有 3 个小节
+
+❌
+> 这篇文章有3个小节
+
+> 这篇文章有3 个小节
+
+> 这篇文章有 3个小节
+
+### 数字与单位之间需要增加空格
+
+✅
+> 文件大小是 1 MB
+
+❌
+> 文件大小是 1MB
+
+### 全角标点（特指中文标点）与其他字符之间不加空格
+
+✅
+> 我的 GitHub 帐号是 @Cee，其他的联系方式可以私信。
+
+❌
+> 我的 GitHub 帐号是 @Cee ，其他的联系方式可以私信。
+
+## 标点符号
+
+### 不重复使用标点符号
+
+✅
+> 你刚才说的话是认真的吗？
+
+❌
+> 你刚才说的话是认真的吗？？？
+
+## 全角和半角
+
+### 使用全角中文标点符号（`，`、`。`、`、`、`「」`、`（）`）
+
+✅
+> 哇！你注意到这篇文章的要点了么？
+
+❌
+> 哇!你注意到这篇文章的要点了么?
+
+✅
+> 应用程序上下文（Application Context）通常用于下列情况。
+
+❌
+> 应用程序上下文(Application Context)通常用于下列情况。
+  
+### 数字使用半角
+
+✅
+> 代码共有 100 行
+
+❌
+> 代码共有１００行
+
+### 遇到完整的英文整句、特殊名词，使用半角标点
+
+✅
+> 推荐你阅读《Hackers & Painters: Big Ideas from the Computer Age》，非常的有趣。
+
+❌
+> 推荐你阅读《Hackers＆Painters：Big Ideas from the Computer Age》，非常的有趣。
+  
+## 名词
+
+### 专有名词使用正确的大小写
+
+✅
+> 使用 GitHub 登录
+
+> 我们的客户有 GitHub、Google、Facebook 等
+
+❌
+> 使用 github 登录
+
+> 使用 Github 登录
+
+> 使用 gitHub 登录
+
+> 使用 GITHUB 登录
+
+> 我们的客户有 github、google、facebook 等
+
+> 我们的客户有 GITHUB、GOOGLE、FACEBOOK 等
+
+> 我们的客户有 Github、Google、FaceBook 等
+  
+### 不要使用不地道的缩写
+
+✅
+> 我们需要一位熟悉 JavaScript 和 HTML5 的前端开发者。
+
+❌
+> 我们需要一位熟悉 Js 和 h5 的 FED。
+
+## 引用
+
+### 使用 `[^1]` 进行脚注标记
+
+✅
+> [^1] [全角和半角 - 维基百科](http://zh.wikipedia.org/wiki/%E5%85%A8%E5%BD%A2%E5%92%8C%E5%8D%8A%E5%BD%A2)
+
+> [^2] [Guidelines for Using Capital Letters - About.com](http://grammar.about.com/od/punctuationandmechanics/a/Guidelines-For-Using-Capital-Letters.htm)
+
+❌
+> [^1][全角和半角 - 维基百科](http://zh.wikipedia.org/wiki/%E5%85%A8%E5%BD%A2%E5%92%8C%E5%8D%8A%E5%BD%A2)
+
+> [^1] http://zh.wikipedia.org/wiki/%E5%85%A8%E5%BD%A2%E5%92%8C%E5%8D%8A%E5%BD%A2
+
+> [^2][Guidelines for Using Capital Letters - About.com](http://grammar.about.com/od/punctuationandmechanics/a/Guidelines-For-Using-Capital-Letters.htm)
+
+> [^2] http://grammar.about.com/od/punctuationandmechanics/a/Guidelines-For-Using-Capital-Letters.htm
