@@ -17,7 +17,7 @@
   * [专有名词使用正确的大小写](#专有名词使用正确的大小写)
   * [不要使用不地道的缩写](#不要使用不地道的缩写)
 - [引用](#引用)
-  * [使用 `[^]` 进行脚注标记](#使用 `[^]` 进行脚注标记)
+  * 使用 [^1] 进行脚注标记
   
 ## 空格
 
@@ -152,18 +152,12 @@
 
 ## 引用
 
-### 使用 `[^]` 进行脚注标记
+### 使用 [^1] 进行脚注标记
 
 ✅
-> [^1] [全角和半角 - 维基百科](http://zh.wikipedia.org/wiki/%E5%85%A8%E5%BD%A2%E5%92%8C%E5%8D%8A%E5%BD%A2)
+> 原文出处[^1]
 
-> [^2] [Guidelines for Using Capital Letters - About.com](http://grammar.about.com/od/punctuationandmechanics/a/Guidelines-For-Using-Capital-Letters.htm)
+> ---
 
-❌
-> [^1][全角和半角 - 维基百科](http://zh.wikipedia.org/wiki/%E5%85%A8%E5%BD%A2%E5%92%8C%E5%8D%8A%E5%BD%A2)
+> ^1: http://zh.wikipedia.org/wiki/%E5%85%A8%E5%BD%A2%E5%92%8C%E5%8D%8A%E5%BD%A2
 
-> [^1] http://zh.wikipedia.org/wiki/%E5%85%A8%E5%BD%A2%E5%92%8C%E5%8D%8A%E5%BD%A2
-
-> [^2][Guidelines for Using Capital Letters - About.com](http://grammar.about.com/od/punctuationandmechanics/a/Guidelines-For-Using-Capital-Letters.htm)
-
-> [^2] http://grammar.about.com/od/punctuationandmechanics/a/Guidelines-For-Using-Capital-Letters.htm
