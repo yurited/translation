@@ -5,9 +5,9 @@ date: 2018-08-14
 tags: [Swift]|[iOS]
 categories: [AppCoda]
 permalink: swift-generics
-keywords: Swift 泛型, Swift generics
+keywords: Swift 泛型，Swift generics
 custom_title: Swift 泛型应用
-description: 本文详细讲解了 Swift 中的泛型是什么，如何使用泛型
+description: 本文详细讲解了 Swift 中的泛型是什么？ 如何使用泛型？
 
 ------
 
