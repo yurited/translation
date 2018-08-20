@@ -184,7 +184,7 @@ let isOneOfMyFloatNumbers = exists(item: 3.0000, inArray: myNumbersFloat)
 func exists<T: Equatable >(item: T, inArray: [T]) -> Bool
 ```
 
-我们看到**[那个](https://docs.Swift.org/Swift-book/LanguageGuide/Generics.html)** "函数使用一个占位符类型名字(名叫 `T`, 在这个案例)而不是真正的类型名(比如： `Int`, `Stirng`, or `Double` )　占位符类型名没有指定 `T ` 必须是什么，但他说明了`[item]`和`[inArray]`必须是相同的类型 `T` 无论 `T` 代表什么，每当 [`exists(_:_:)`] 函数被调用时，真实的类型用于替代 `T` 被确定下来。
+我们看到**[那个](https://docs.Swift.org/Swift-book/LanguageGuide/Generics.html)** 函数使用一个占位符类型名字(名叫 `T`, 在这个案例)而不是真正的类型名(比如： `Int`, `Stirng`, or `Double` )占位符类型名没有指定 `T `必须是什么，但他说明了`[item]`和`[inArray]`必须是相同的类型 `T` 无论 `T` 代表什么，每当 [`exists(_:_:)`] 函数被调用时，真实的类型用于替代 `T` 被确定下来。
 
 这个 "exists" 函数中的占位符类型 `T` 被称为类型参数**：
 
