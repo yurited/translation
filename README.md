@@ -65,7 +65,7 @@ BigNerdCoding
 | Hale |[Hale0101](https://weibo.com/p/1005053233770040)|[Hale's Blog](http://wuqiuhao.github.io/)|[Hale](https://github.com/wuqiuhao)|
 | 灰s |[灰s](https://weibo.com/u/2159669295)|[灰s](https://juejin.im/user/5862fa678d6d810065fe0efd)|[灰s](https://github.com/dzyding)|
 | Lefe_x |[Lefe_x](https://weibo.com/u/5953150140)|[LefeWork](https://github.com/lefex/LefexWork)|[Lefex](https://github.com/lefex)|
-| 米开朗鸡儿罗 |[东莞大唐和尚](https://weibo.com/u/5029986118)|[认知即事实](http://robin4han.github.io/)|[dearbojack](https://github.com/dearbojack)|
+| MaxXD |[MaxXD不能使用](https://weibo.com/u/5029986118)|[认知即事实](http://robin4han.github.io/)|[dearbojack](https://github.com/dearbojack)|
 | muhlenXi ||||
 | √3 ||||
 | 微信的“龙” ||||
@@ -116,7 +116,7 @@ BigNerdCoding
 | saitjr |[saitjr](https://weibo.com/u/1918545437)|[saitjr](http://saitjr.com/)|[saitjr](github.com/saitjr)|
 | 智多芯 |[智多芯](https://weibo.com/hulz)|[智多芯的博客](http://blog.hulizhen.me/)|[智多芯](https://github.com/hulizhen)|
 |numbbbbb | [梁杰_numbbbbb](https://weibo.com/numbbbbb) | [numbbbbb](http://numbbbbb.com/) | [numbbbbb](https://github.com/numbbbbb/) |
-|MaxXD |---- |---- |---- |
+|MaxXD |[MaxXD不能使用](https://weibo.com/u/5029986118)|[认知即事实](http://robin4han.github.io/)|[dearbojack](https://github.com/dearbojack)|
 |muhlenXi |---- |---- |---- |
 
 ## 文章更新
