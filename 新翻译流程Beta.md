@@ -71,7 +71,7 @@
 
 Fork 工作流与上述流程不一样，大家操作的并不是 GG 代码仓库。每个人都有一个属于自己的仓库，可以进行任意修改并且对 GG 仓库不会造成影响。Fork 工作流的主要优点在于贡献可以轻易地整合进项目，而不需要每个人都推送到单一的中央仓库。开发者推送到他们自己的服务端仓库，只有项目管理者可以推送到官方仓库。这使得管理者可以接受任何开发者的提交，却不需要给他们中央仓库的权限。
 
-1. Frok 该仓库到自己的 Github 账号。得到一个自己的私有仓库可以任意修改并不会影响 GG 的仓库。
+1. Fork 该仓库到自己的 GitHub 账号。得到一个自己的私有仓库可以任意修改并不会影响 GG 的仓库。
 2. Clone 自己的的仓库到本地，例如：*git clone git@github.com:BigNerdCoding/translation.git*。
 3. 添加 GG 仓库为另一个远程实现与 GG 仓库的同步，*git remote add upstream https://github.com/SwiftGGTeam/translation.git* 。
 4. 在本地仓库新建分支完成自己的文章翻译并提交到自己的仓库。
