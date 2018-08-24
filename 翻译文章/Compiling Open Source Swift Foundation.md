@@ -1,0 +1,132 @@
+# 编译开源 Swift Foundation 库
+
+title: Compiling Open Source Swift Foundation
+date: 2016.06.30
+tags: Swift
+categories: Swift
+permalink: http://dev.iachieved.it/iachievedit/compiling-open-source-swift-foundation/
+
+---
+
+原文链接=http://dev.iachieved.it/iachievedit/compiling-open-source-swift-foundation/
+作者=iAchieved.it 
+原文日期=2016-06-30
+译者=rsenjoyer
+校对=
+定稿=
+
+![](https://ws1.sinaimg.cn/large/006tNbRwgy1fuksdkfewij306o06omx6.jpg)
+
+我最近在开源的 [Swift Foundation](https://github.com/apple/swift-corelibs-foundation) 中遇到了 `NSThread` 实现的问题。 如果不是尝试在树莓派3上运行代码，我也许就不会发现这个问题:
+
+```swift
+import Foundation
+import Glibc
+ 
+var counter = 0
+while true {
+  sleep(2)
+  counter = counter + 1
+  let t = Thread(){
+    print("STARTED:\(counter)")
+    sleep(1)
+    print("EXIT:\(counter)")
+  }
+  print("START:\(counter)")
+  t.start()
+}
+
+```
+我所期望是每秒都会创建并销毁一个线程。不幸的是在大约启动 230 个线程之后，系统资源已经耗尽，不再有新的线程被创建。 解决的方式正如 [SR-1908](https://bugs.swift.org/browse/SR-1908) 所提到的, 初始化具有系统范围的分离状态的线程
+
+
+```swift
+public init(_ main: (Void) -> Void) {
+  _main = main
+  let _ = withUnsafeMutablePointer(&_attr) { attr in
+    pthread_attr_init(attr)
+    pthread_attr_setscope(attr, Int32(PTHREAD_SCOPE_SYSTEM))
+    pthread_attr_setdetachstate(attr, Int32(PTHREAD_CREATE_DETACHED))
+  }
+}
+
+```
+[Philippe Hausler](https://github.com/phausler) 在 SR-1908 中提出了解决方案。 正巧我有一个树莓派3， 我因此主动承担了实施和测试它的任务。
+
+## 针对 Foundation 的构建
+
+如果你阅读[开源库 Foundation](https://github.com/apple/swift-corelibs-foundation)的[新手入门文档](https://github.com/apple/swift-corelibs-foundation/blob/master/Docs/GettingStarted.md), 它建议你首先需要构建 Swift, clang 和 llvm。 如果可以在一个有大量的 CPU 和 快速磁盘的服务器上工作, 我丝毫不介意按照文档一步步构建。然而树莓派3与其他老式的设备一样，性能提升有点慢。我也可以考虑交叉编译Swift，但我还没有足够时间来解决交叉编译带来的问题(如果你曾经使用过交叉编译环境，你一定知道它需要很长时间来做相关的配置)。
+
+我们所需要的是充分利用已有的构建环境并自行编译 Foundation。事实证明是可以做到的，不然的话，我们也不会有这篇博客了。
+
+下面是你所需要的准备操作(无论你是在 x86 服务器上还是在像 BeagleBone 或 树莓派的 ARM 的计算机上)：
+
++ 全量构建 `swiftc`，通常位于 `build/buildbot_linux/swift-linux-armv7/bin` 目录
++ 全量构建 `swift`，同样位于 `build/buildbot_linux/swift-linux-armv7/bin` 目录
++ 全量构建 `clang`(从开源库中构建)，位于 `build/buildbot_linux/llvm-linux-armv7/bin` 目录中
+
+我希望提供各种已经编译过的“工具链”，但是现在你必须首先构建自己的工具链。然后你就可以自己构建 Foundation 了。
+
+现在，让我们来看看如何使用它来测试Foundation上的内容。 请注意，我们克隆的是我们 fork 的 swift-corelibs-foundation 的分支。 如果你打算给上游开源库(即 Apple 开源库)提交PR, 这一点非常的重要。
+
+```shell
+# git clone https://github.com/iachievedit/swift-corelibs-foundation
+# export PREBUILT_ROOT=/root/workspace/Swift-3.0-Pi3-ARM-Incremental/build/buildbot_linux/
+# SWIFTC=$PREBUILT_ROOT/swift-linux-armv7/bin/swiftc \
+CLANG=$PREBUILT_ROOT/llvm-linux-armv7/bin/clang      \
+SWIFT=$PREBUILT_ROOT/swift-linux-armv7/bin/swift     \
+SDKROOT=$PREBUILT_ROOT/swift-linux-armv7             \
+BUILD_DIR=build ./configure Debug
+# /usr/bin/ninja
+...
+[290/290] Link: build/Foundation/libFoundation.so
+
+```
+
+首先，我们将环境变量 `PREBUILT_ROOT` 设置到预构建的 Swift 及相关工具所在的位置。 如果你设置了环境变量 `./configure` 为 Debug （你也可以使用 Release)，这将在下一步中使用。 我们还需要将环境变量SWIFTC，CLANG，SWIFT和SDKROOT配置脚本指向我们的“工具链”。最后，环境变量 BUILD_DIR 设置所有中间件和最终输出（ libFoundation.so ）的放置位置。
+
+注意：我不得不指出有时你会对评论中留下的内容感到惊讶。 你的 `PREBUILT_ROOT` 是你预工具链的位置。不要期望在`/root/workspace/Swift-3.0-Pi3-ARM-Incremental` 上找到你系统上的任何内容！
+
+最后，`/usr/bin/ninja` 运行我们的构建。一旦构建结束后，在 build/Foundation/ 目录中会有一个 libFoundation.so 共享库 
+要使用现有的 Swift 安装来测试它，只需将 libFoundation.so 复制到$YOUR_SWIFT_ROOT/usr/lib/swift/linux/ libFoundation.so。
+
+## 运行测试用例
+
+你可以通过向 `./configure` 添加 `-DXCTEST_BUILD_DIR` 参数来运行 Foundation 测试套件
+
+```shell
+
+# export PREBUILT_ROOT=/root/workspace/Swift-3.0-Pi3-ARM-Incremental/build/buildbot_linux/
+# SWIFTC=$PREBUILT_ROOT/swift-linux-armv7/bin/swiftc \
+CLANG=$PREBUILT_ROOT/llvm-linux-armv7/bin/clang      \
+SWIFT=$PREBUILT_ROOT/swift-linux-armv7/bin/swift     \
+SDKROOT=$PREBUILT_ROOT/swift-linux-armv7             \
+BUILD_DIR=build ./configure Debug                    \
+-DXCTEST_BUILD_DIR=$PREBUILT_ROOT/xctest-linux-armv7
+# /usr/bin/ninja test
+[4/4] Building Tests
+**** RUNNING TESTS ****
+execute:
+LD_LIBRARY_PATH= build/TestFoundation/TestFoundation
+**** DEBUGGING TESTS ****
+execute:
+LD_LIBRARY_PATH= lldb build/TestFoundation/TestFoundation
+
+```
+
+运行测试需要为 `LD_LIBRARY_PATH` 提供两个路径：连接到 `libXCTest.so` 共享库 以及 “library under test” 的路径。
+如果 `libFoundation.so` 位于 `./build/Foundation` 目录中，我们可按以下方式操作。如果我们按照上述步骤操作，那就一定在。
+
+```shell
+# LD_LIBRARY_PATH=./build/Foundation:$PREBUILT_ROOT/xctest-linux-armv7 ./build/TestFoundation/TestFoundation
+...
+Test Suite 'All tests' passed at 03:16:45.315
+     Executed 483 tests, with 0 failures (0 unexpected) in 37.621 (37.621) seconds
+
+```
+
+### 结束语
+
+需要强调的是使用这种技术，你需要一个 “构建工具链”，它包含 Swift，clang 和 llvm。 此外，你的工具链最后一次构建到您尝试自行构建 Foundation 的时间间隔越长，Foundation 的语言特性在构建工具链不存在的风险就越高。 但如果您决定开始使用 Foundation，请首先构建完整的 Swift 工具链并保存构建目录以使用上述技术。
+
+祝你好运！
