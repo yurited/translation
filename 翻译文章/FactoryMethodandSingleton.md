@@ -1,24 +1,24 @@
 
 
- # Swift 中的设计模式 #1 工厂方法与单例方法
+ # “Swift 中的设计模式 \#1 工厂方法与单例方法”
 
-title: Design Patterns in Swift #1: Factory Method and Singleton
-date: 2018.07.24
+title: “Design Patterns in Swift \#1: Factory Method and Singleton”
+date: 2018-07-24
 tags: Design Patterns
 categories: Swift
-permalink: https://www.appcoda.com/design-pattern-creational/
+permalink: design-pattern-creational
 
 - - -
 原文链接=https://www.appcoda.com/design-pattern-creational/
-作者=[Andrew Jaffee](https://www.appcoda.com/author/andrewjaffee/)
-原文日期=2018.07.24
+作者=Andrew Jaffee
+原文日期=
 译者=大罗
 校对=
 定稿=
 
-这里大概有23中经典的设计模式最早被确认，整理，Erich Gamma,Richard Helm,Ralph Johonson，和 John Vlissides 在他们的重要著作 “Gang of Four” (“GOF”)，“[设计模式：面向对象软件设计复用的基本原理](https://smile.amazon.com/Design-Patterns-Object-Oriented-Addison-Wesley-Professional-ebook/dp/B000SEIBB8/)” 里有全部介绍。本教程集中在就 GOF 称之为创建型模式中的工厂方法和单例方法进行讨论。
+这里大概有23种经典的设计模式最早被确认，整理，由“Gang of Four” (“GOF”)四人组 Erich Gamma,Richard Helm,Ralph Johonson，和 John Vlissides 整理的重要著作[《设计模式：面向对象软件设计复用的基本原理》](https://smile.amazon.com/Design-Patterns-Object-Oriented-Addison-Wesley-Professional-ebook/dp/B000SEIBB8/)” 里有全部介绍。本教程集中在就 GOF 称之为创建型模式中的工厂方法和单例方法进行讨论。
 
-软件开发一直在努力的模拟真实世界的场景，希望通过创建工具的方式来加强人类的场景体验。管理财富工具，例如：像亚马逊或者 eBay iOS 应用类似的银行 App 和购物辅助工具，确确实实，这些工具相比十年前来说给消费者带来了更大的生活便利。回顾我们一路走来。对于消费者，当普遍地应用软件变得更加强大易用时，对于开发者，应用的开发也已经变得更加的复杂了。
+软件开发一直在努力的模拟真实世界的场景，希望通过创建工具的方式来加强人类的场景体验。管理财富工具，例如：像亚马逊或者 eBay 这样的银行和购物 App，这些工具确实相比十年前来说给消费者带来了更大的生活便利。回顾我们一路走来。对于消费者，当普遍地应用软件变得更加强大易用时，对于开发者，应用的开发也已经变得更加的复杂了。
 
 当然开发者也创造出了一系列的最佳实践来对付这些复杂性，像面[向对象编程](http://iosbrain.com/blog/2017/02/26/intro-to-object-oriented-principles-in-swift-3-via-a-message-box-class-hierarchy/)，[面向协议编程](https://www.appcoda.com/pop-vs-oop/)，值语义 （[value semantics](http://iosbrain.com/blog/2018/03/28/protocol-oriented-programming-in-swift-is-it-better-than-object-oriented-programming/#value_semantics)），局部推断（[local reasoning](http://iosbrain.com/blog/2018/03/28/protocol-oriented-programming-in-swift-is-it-better-than-object-oriented-programming/#local_reasoning)），通过很好的定义接口（像 Swift 的扩展），语法糖将大块的代码分解成小块，这样一些最流行的名字。最重要但我却没有提及的，便是设计模式的使用。
 
