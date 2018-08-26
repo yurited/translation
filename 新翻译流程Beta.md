@@ -45,7 +45,7 @@
 - 第一个校对的 assignee 由翻译者选取，Owner 为每一篇文章的默认 assignee
 - 一校和二校都通过（Approve）则定稿的同学可以 Merge 该分支
 - 所有的校对过程中校对者只是提供意见翻译的同学进行具体的修改，每个部分的修改一校和二校都应该知晓并被通过
-- 校对完成后，需要在页面右上角点击绿色按钮“Review changes”，在下拉菜单中根据情况选择对应的项并“Submit review”。具体来说，如果内容需要修改，选择”Request changes“；如果内容没问题，选择”Approve“
+- **校对完成后，需要在页面右上角点击绿色按钮“Review changes”，在下拉菜单中根据情况选择对应的项并“Submit review”。具体来说，如果内容需要修改，选择”Request changes“；如果内容没问题，选择”Approve“**
 
 **repository**：master 分支仅存储已经发布的文章列表。
 定稿规则：
