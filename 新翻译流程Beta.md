@@ -27,13 +27,9 @@
 - 需要添加custom_title 
 - 需要添加description
 
-具体格式如下：
+具体说明参考[这个内容](https://raw.githubusercontent.com/SwiftGGTeam/translation/master/%E4%B9%A6%E5%86%99%E8%A7%84%E8%8C%83%E5%8F%8ADemo/SwiftGG%E5%8D%9A%E6%96%87%E4%B9%A6%E5%86%99%E8%A7%84%E8%8C%83.md)。
 
-![rules](http://pb48jwobd.bkt.clouddn.com/Screen%20Shot%202018-07-21%20at%2012.21.55.png)
-
-效果如下：
-
-![display](http://pb48jwobd.bkt.clouddn.com/Screen%20Shot%202018-07-21%20at%2012.21.55.png)
+完整示例参考[这个文件](https://raw.githubusercontent.com/SwiftGGTeam/translation/master/%E4%B9%A6%E5%86%99%E8%A7%84%E8%8C%83%E5%8F%8ADemo/20160726_simple-barcode-reader-app-swift.md)。
 
 **pull request**：
 1.GitHub 的功能之一。这里我们将其定义成为一次翻译+校对的抽象。
@@ -45,15 +41,16 @@
 
 3.校对同学在翻译的 PR 中进行 comment，并在上面指出问题和修改方案，由 commit 提交者(即翻译者)继续修改。
 校对规则如下：
-- 校对分两个两个步骤进行，翻译者选择比较信任或合作较好的成员进行初次校对，Owner进行二次校对
-- 第一个校对的assignee由翻译者选取，Owner为每一篇文章的默认assignee
-- 一交 和 二交 都给予可OK则定稿的同学可以Merge该分支
-- 所有的校对过程中校对者只是提供意见翻译的同学进行具体的修改，每个部分的修改一交和二交都应该知晓并被通过 
+- 校对分两个两个步骤进行，翻译者选择比较信任或合作较好的成员进行初次校对，Owner 进行二次校对
+- 第一个校对的 assignee 由翻译者选取，Owner 为每一篇文章的默认 assignee
+- 一校和二校都通过（Approve）则定稿的同学可以 Merge 该分支
+- 所有的校对过程中校对者只是提供意见翻译的同学进行具体的修改，每个部分的修改一校和二校都应该知晓并被通过
+- 校对完成后，需要在页面右上角点击绿色按钮“Review changes”，在下拉菜单中根据情况选择对应的项并“Submit review”。具体来说，如果内容需要修改，选择”Request changes“；如果内容没问题，选择”Approve“
 
-**repository**：master分支仅存储已经发布的文章列表。
+**repository**：master 分支仅存储已经发布的文章列表。
 定稿规则：
 - 确定发布后可将该分支删掉
-- 后期文章发布后发现质量很低可以revert PR 相当于打回重新做一遍
+- 后期文章发布后发现质量很低可以 revert PR 相当于打回重新做一遍
 
 ## 整体流程梳理
 
