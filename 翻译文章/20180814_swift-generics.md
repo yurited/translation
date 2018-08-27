@@ -120,7 +120,7 @@ func existsManual(item:Person, inArray:[Person]) -> Bool
 
 （再次紧记学习泛型的目的，我们依旧假设 Swift 的数组类型的内置的函数，`index` 和  `contains` ，不存在。）
 
-让我们先尝试写这样一个 Swift 函数，判断 Swift 的标准类型(例如`String`,  `Integer`, `Float`, and `Double`)的一个特定实例是否存在于这个 Swift 标准类型的数组中。怎么做呢？ 
+让我们先尝试写这样一个 Swift 函数，判断 Swift 的标准类型(例如 `String`, `Integer`, `Float`, and `Double`)的一个特定实例是否存在于这个 Swift 标准类型的数组中。怎么做呢？ 
 
 让我们切换到 Swift 泛型，特别是泛型函数，类型参数，类型约束以及 `Equatable` 协议。在没有定义任何术语前，我写了一些代码，思考一下你看到的。
 
@@ -184,9 +184,9 @@ let isOneOfMyFloatNumbers = exists(item: 3.0000, inArray: myNumbersFloat)
 func exists<T: Equatable >(item: T, inArray: [T]) -> Bool
 ```
 
-我们看到**[那个](https://docs.Swift.org/Swift-book/LanguageGuide/Generics.html)** 函数使用一个占位符类型名字(名叫 `T`, 在这个案例)而不是真正的类型名(比如： `Int`, `Stirng`, or `Double` )占位符类型名没有指定 `T `必须是什么，但他说明了`[item]`和`[inArray]`必须是相同的类型 `T` 无论 `T` 代表什么，每当 [`exists(_:_:)`] 函数被调用时，真实的类型用于替代 `T` 被确定下来。
+我们看到[那个](https://docs.Swift.org/Swift-book/LanguageGuide/Generics.html) 函数使用一个占位符类型名字(名叫 `T`, 在这个案例)而不是真正的类型名(比如： `Int`, `String`, or `Double`)占位符类型名没有指定 `T` 必须是什么，但他说明了 `[item]` 和 `[inArray]` 必须是相同的类型 `T` 无论 `T` 代表什么，每当 [`exists(_:_:)`] 函数被调用时，真实的类型用于替代 `T` 被确定下来。
 
-这个 "exists" 函数中的占位符类型 `T` 被称为类型参数**：
+这个 "exists" 函数中的占位符类型 `T` 被称为类型参数：
 
 > [它](https://developer.apple.com/library/content/documentation/Swift/Conceptual/SwiftProgrammingLanguage/Generics.html)指定和命名了占位符的类型，直接写在函数名称的后面，在一对尖括号之间(比如 <T>)。
 >
@@ -242,9 +242,9 @@ let findIndexOfFriend2 = find(item: "Guinevere", inArray: myFriends)
 
 ## 关于 Equatable 协议
 
-"exists" 函数中 `<T: Equatable >` 标注是什么呢？它叫做类型约束，它规定了"那个类型参数必须继承自一个具体的类，或者遵守一个特定的协议或是协议组合。我指定了 "exists" 函数参数，`item: T` 和 `inArray: [T]`, 必须是类型 `T`, 而类型 `T` 必须遵守协议 `Equatable` 协议，为什么是这样的呢?
+"exists" 函数中 `<T: Equatable >` 标注是什么呢？它叫做类型约束，它规定了那个类型参数必须继承自一个具体的类，或者遵守一个特定的协议或是协议组合。我指定了 "exists" 函数参数，`item: T` 和 `inArray: [T]`, 必须是类型 `T`, 而类型 `T` 必须遵守协议 `Equatable` 协议，为什么是这样的呢?
 
-所有的 Swift 内置类型已经被构建支持 `Equatable` 协议。来自 [Apple docs](https://developer.apple.com/documentation/ Swift / Equatable):  “遵守  Equatable  协议的类型进行相等比较，使用等于运算符(==)判断相等，或者使用不等运算符(!=)判断不等”。这就是为什么我的泛型函数 ”exists“ 能够在 Swift 的类型(如 `String`, `Integer`, `Float` 和 `Double`) 上正常工作。所有这些类型都定义了 `==` 和 `!=`运算符。 
+所有的 Swift 内置类型已经被构建支持 `Equatable` 协议。来自 [Apple docs](https://developer.apple.com/documentation/ Swift / Equatable):  “遵守  Equatable  协议的类型进行相等比较，使用等于运算符(==)判断相等，或者使用不等运算符(!=)判断不等”。这就是为什么我的泛型函数 “exists” 能够在 Swift 的类型(如 `String`, `Integer`, `Float` 和 `Double`) 上正常工作。所有这些类型都定义了 `==` 和 `!=`运算符。 
 
 
 
@@ -298,7 +298,7 @@ let isSamABasicPerson = exists(item: Sam, inArray: basicPersons)
 * 让类遵守 `Equatable` 协议
 * 重载类实例的 `==` 操作符
 
-注意[这个](https://developer.apple.com/documentation/ Swift / Equatable )"Swift 标准库为所有遵循 `Euqatable` 协议的类型提供了不等于(!=) 操作符的实现。通过调用自定义的 `==` 函数获取它的取反结果。
+注意[这个](https://developer.apple.com/documentation/ Swift / Equatable )“Swift 标准库为所有遵循 `Euqatable` 协议的类型提供了不等于(!=) 操作符的实现。通过调用自定义的 `==` 函数获取它的取反结果”。
 
 如果你对操作符重载不熟悉，我建议你阅读这些主题，链接在[这里](https://developer.apple.com/library/content/documentation/Swift/Conceptual/SwiftProgrammingLanguage/AdvancedOperators.html)和[这里的](https://www.appcoda.com/operator-overloading-Swift).相信我，你会想知道操作符重载的。
 
