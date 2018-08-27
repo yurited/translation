@@ -37,7 +37,7 @@ while true {
 }
 
 ```
-我所期望是每秒都会创建并销毁一个线程。不幸的是在大约启动 230 个线程之后，系统资源已经耗尽，不再有新的线程被创建。 解决的方式正如 [SR-1908](https://bugs.swift.org/browse/SR-1908) 所提到的, 初始化具有系统范围的分离状态的线程
+我所期望是每2秒都会创建并销毁一个线程。不幸的是在大约启动 230 个线程之后，系统资源已经耗尽，不再有新的线程被创建。 解决的方式正如 [SR-1908](https://bugs.swift.org/browse/SR-1908) 所提到的, 初始化具有系统范围的分离状态的线程
 
 
 ```swift
@@ -51,7 +51,7 @@ public init(_ main: (Void) -> Void) {
 }
 
 ```
-[Philippe Hausler](https://github.com/phausler) 在 SR-1908 中提出了解决方案。 正巧我有一个树莓派3， 我因此主动承担了实施并测试它的任务。
+[Philippe Hausler](https://github.com/phausler) 在 SR-1908 中提出了解决方案。 正巧我有个树莓派 3 可以实现和测试该方案。
 
 ## 针对 Foundation 的构建
 
@@ -67,7 +67,7 @@ public init(_ main: (Void) -> Void) {
 
 我希望提供各种已经编译过的“工具链”，但是现在你必须首先构建自己的工具链。然后你就可以自己构建 Foundation 了。
 
-现在，让我们来看看如何使用它来测试Foundation上的内容。 请注意，我们克隆的是我们自己 fork 的 swift-corelibs-foundation 的分支。 如果你打算给上游开源库(即 Apple 开源库)提交PR, 这一点非常的重要。
+现在，让我们来看看如何使用它来测试 Foundation 上的内容。 请注意，我们克隆的是我们自己 fork 的 swift-corelibs-foundation 的分支。 如果你打算给上游开源库(即 Apple 开源库)提交PR, 这一点非常的重要。
 
 ```shell
 # git clone https://github.com/iachievedit/swift-corelibs-foundation
@@ -87,8 +87,8 @@ BUILD_DIR=build ./configure Debug
 
 注意：我不得不指出有时你会对评论中留下的内容感到惊讶。 你的 `PREBUILT_ROOT` 是你预工具链的位置。不要期望在`/root/workspace/Swift-3.0-Pi3-ARM-Incremental` 上找到你系统上的任何内容！
 
-最后，`/usr/bin/ninja` 运行我们的构建。一旦构建结束后，在 `build/Foundation/` 目录中会有一个 `libFoundation.so` 共享库 
-要使用现有的 Swift 安装来测试它，只需将` libFoundation.so` 复制到 `$YOUR_SWIFT_ROOT/usr/lib/swift/linux/ libFoundation.so`。
+最后，`/usr/bin/ninja` 运行我们的构建。一旦构建结束后，在 `build/Foundation/` 目录中会有一个 `libFoundation.so` 共享库。
+要使用已安装的 Swift 来测试它，只需将` libFoundation.so` 复制到 `$YOUR_SWIFT_ROOT/usr/lib/swift/linux/ libFoundation.so`。
 
 ## 运行测试用例
 
@@ -127,6 +127,6 @@ Test Suite 'All tests' passed at 03:16:45.315
 
 ### 结束语
 
-需要强调的是使用这种技术，你需要一个 “构建工具链”，它包含 Swift，clang 和 llvm。 此外，你的工具链最后一次构建到您尝试自行构建 Foundation 的时间间隔越长，Foundation 的语言特性在构建工具链不存在的风险就越高。 但如果您决定开始使用 Foundation，请首先构建完整的 Swift 工具链并保存构建目录以使用上述技术。
+需要强调的是使用这种技术，你需要一个 “构建工具链”，它包含 Swift，clang 和 llvm。 此外，您的工具链最后一次构建到您尝试自行构建 Foundation 的时间间隔越长，Foundation 所依赖的语言特性在构建工具链时不存在的风险就越高。 但如果您决定开始使用 Foundation，请首先构建完整的 Swift 工具链并保存构建目录以使用上述技术。
 
 祝你好运！
