@@ -283,7 +283,7 @@ error: in argument type '[BasicPerson]', 'BasicPerson' does not conform to expec
 let isSamABasicPerson = exists(item: Sam, inArray: basicPersons)
 ```
 
-![image-20180813173212026](image-20180813173212026.png)
+![image-20180813173212026](https://appcoda.com/wp-content/uploads/2018/02/swift-4-generics-1.png)
 
 这很糟糕了， 在 "BasicPerson" 类型的数组里面，你不能使用 Swift 数组的内建函数 `index` 和 `contains`。(你必须定义一个闭包，每当你想使用那两个方法 blah,blah,blah… 这个我就不提了。)
 
