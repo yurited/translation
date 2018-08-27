@@ -123,8 +123,6 @@ alwaysSucceeds { (result) in
 }
 ```
 
-You can see this effect played out to its logical extreme in the implementation conforming `Never` to `Comparable`:
-
 在 `Never` 实现 `Comparable` 协议的代码中，你可以看到这个效果的极限：
 
 ```swift
@@ -156,7 +154,7 @@ let array: [Int]
 let firstIem = array.first!
 ```
 
-为了避免强制解包，你可以使用 `guard` 和 有条件赋值语句：
+为了避免强制解包，你可以使用带条件赋值的 `guard` 语句：
 
 ```swift
 let array: [Int]
@@ -165,7 +163,7 @@ guard let firstItem = array.first else {
 }
 ```
 
-未来，如果 `Never` 被实现成了兜底类型，它就可以用在 `??` 表达式的右边。
+未来，如果 `Never` 被实现成了兜底类型，它就可以用在 `nil-coalescing operator` 表达式的右边。
 
 ```swift
 // Future Swift? 🔮
