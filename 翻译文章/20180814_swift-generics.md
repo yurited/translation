@@ -244,7 +244,7 @@ let findIndexOfFriend2 = find(item: "Guinevere", inArray: myFriends)
 
 "exists" 函数中 `<T: Equatable >` 标注是什么呢？它叫做类型约束，它规定了那个类型参数必须继承自一个具体的类，或者遵守一个特定的协议或是协议组合。我指定了 "exists" 函数参数，`item: T` 和 `inArray: [T]`, 必须是类型 `T`, 而类型 `T` 必须遵守协议 `Equatable` 协议，为什么是这样的呢?
 
-所有的 Swift 内置类型已经被构建支持 `Equatable` 协议。来自 [Apple docs](https://developer.apple.com/documentation/ Swift / Equatable):  “遵守  Equatable  协议的类型进行相等比较，使用等于运算符(==)判断相等，或者使用不等运算符(!=)判断不等”。这就是为什么我的泛型函数 “exists” 能够在 Swift 的类型(如 `String`, `Integer`, `Float` 和 `Double`) 上正常工作。所有这些类型都定义了 `==` 和 `!=`运算符。 
+所有的 Swift 内置类型已经被构建支持 `Equatable` 协议。来自 [Apple docs](https://developer.apple.com/documentation/Swift/Equatable):  “遵守  Equatable  协议的类型进行相等比较，使用等于运算符(==)判断相等，或者使用不等运算符(!=)判断不等”。这就是为什么我的泛型函数 “exists” 能够在 Swift 的类型(如 `String`, `Integer`, `Float` 和 `Double`) 上正常工作。所有这些类型都定义了 `==` 和 `!=`运算符。 
 
 
 
@@ -298,7 +298,7 @@ let isSamABasicPerson = exists(item: Sam, inArray: basicPersons)
 * 让类遵守 `Equatable` 协议
 * 重载类实例的 `==` 操作符
 
-注意[这个](https://developer.apple.com/documentation/ Swift / Equatable )“Swift 标准库为所有遵循 `Euqatable` 协议的类型提供了不等于(!=) 操作符的实现。通过调用自定义的 `==` 函数获取它的取反结果”。
+注意[这个](https://developer.apple.com/documentation/Swift/Equatable) “Swift 标准库为所有遵循 `Euqatable` 协议的类型提供了不等于(!=) 操作符的实现。通过调用自定义的 `==` 函数获取它的取反结果”。
 
 如果你对操作符重载不熟悉，我建议你阅读这些主题，链接在[这里](https://developer.apple.com/library/content/documentation/Swift/Conceptual/SwiftProgrammingLanguage/AdvancedOperators.html)和[这里的](https://www.appcoda.com/operator-overloading-Swift).相信我，你会想知道操作符重载的。
 
