@@ -27,13 +27,9 @@
 - 需要添加custom_title 
 - 需要添加description
 
-具体格式如下：
+具体说明参考[这个内容](https://raw.githubusercontent.com/SwiftGGTeam/translation/master/%E4%B9%A6%E5%86%99%E8%A7%84%E8%8C%83%E5%8F%8ADemo/SwiftGG%E5%8D%9A%E6%96%87%E4%B9%A6%E5%86%99%E8%A7%84%E8%8C%83.md)。
 
-![rules](http://pb48jwobd.bkt.clouddn.com/Screen%20Shot%202018-07-21%20at%2012.21.55.png)
-
-效果如下：
-
-![display](http://pb48jwobd.bkt.clouddn.com/Screen%20Shot%202018-07-21%20at%2012.21.55.png)
+完整示例参考[这个文件](https://raw.githubusercontent.com/SwiftGGTeam/translation/master/%E4%B9%A6%E5%86%99%E8%A7%84%E8%8C%83%E5%8F%8ADemo/20160726_simple-barcode-reader-app-swift.md)。
 
 **pull request**：
 1.GitHub 的功能之一。这里我们将其定义成为一次翻译+校对的抽象。
@@ -45,15 +41,16 @@
 
 3.校对同学在翻译的 PR 中进行 comment，并在上面指出问题和修改方案，由 commit 提交者(即翻译者)继续修改。
 校对规则如下：
-- 校对分两个两个步骤进行，翻译者选择比较信任或合作较好的成员进行初次校对，Owner进行二次校对
-- 第一个校对的assignee由翻译者选取，Owner为每一篇文章的默认assignee
-- 一交 和 二交 都给予可OK则定稿的同学可以Merge该分支
-- 所有的校对过程中校对者只是提供意见翻译的同学进行具体的修改，每个部分的修改一交和二交都应该知晓并被通过 
+- 校对分两个两个步骤进行，翻译者选择比较信任或合作较好的成员进行初次校对，Owner 进行二次校对
+- 第一个校对的 assignee 由翻译者选取，Owner 为每一篇文章的默认 assignee
+- 一校和二校都通过（Approve）则定稿的同学可以 Merge 该分支
+- 所有的校对过程中校对者只是提供意见翻译的同学进行具体的修改，每个部分的修改一校和二校都应该知晓并被通过
+- **校对完成后，需要在页面右上角点击绿色按钮“Review changes”，在下拉菜单中根据情况选择对应的项并“Submit review”。具体来说，如果内容需要修改，选择”Request changes“；如果内容没问题，选择”Approve“**
 
-**repository**：master分支仅存储已经发布的文章列表。
+**repository**：master 分支仅存储已经发布的文章列表。
 定稿规则：
 - 确定发布后可将该分支删掉
-- 后期文章发布后发现质量很低可以revert PR 相当于打回重新做一遍
+- 后期文章发布后发现质量很低可以 revert PR 相当于打回重新做一遍
 
 ## 整体流程梳理
 
@@ -65,6 +62,19 @@
 4. 确认校对完成：当校对者完成校对工作后，在 comment 中回复 OK。每当一个 PR 获得两个 OK 后，方可由发布者 Merge。
 5. 发布流程：当发布者需要当日更新文章，则从 PR 列表中对要发布的文章 PR 进行 merge，并进行主站发布工作。
 6. 若上线文章出现问题，可从之前 merge 的 PR 中直接进行 Revert 操作，将该次翻译判为无效并对整个 flow 的经手人进行追责。若想再次上线该文章，需要重新发起 PR。
+
+
+## Fork 工作流简单操作步骤
+
+Fork 工作流与上述流程不一样，大家操作的并不是 GG 代码仓库。每个人都有一个属于自己的仓库，可以进行任意修改并且对 GG 仓库不会造成影响。Fork 工作流的主要优点在于贡献可以轻易地整合进项目，而不需要每个人都推送到单一的中央仓库。开发者推送到他们自己的服务端仓库，只有项目管理者可以推送到官方仓库。这使得管理者可以接受任何开发者的提交，却不需要给他们中央仓库的权限。
+
+1. Fork 该仓库到自己的 GitHub 账号。得到一个自己的私有仓库可以任意修改并不会影响 GG 的仓库。
+2. Clone 自己的的仓库到本地，例如：*git clone git@github.com:BigNerdCoding/translation.git*。
+3. 添加 GG 仓库为另一个远程实现与 GG 仓库的同步，*git remote add upstream https://github.com/SwiftGGTeam/translation.git* 。
+4. 在本地仓库新建分支完成自己的文章翻译并提交到自己的仓库。
+5. 在自己的仓库中点击 *New pull request* 给 GG 仓库发 PR。
+6. 如果需要根据校对意见进行修改，则修改后再走一遍上述 Commit -> PR 就行了。
+7. 因为翻译是个协作流程，所以需要定期同步 GG 仓库的更改，此时依次运行：*git fetch upstream*、*git checkout master* 、*git merge upstream/master* 即可。最好是在自己准备翻译之前同步一次。
 
 ## Q & A
 
