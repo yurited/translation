@@ -18,26 +18,26 @@ description: 本文介绍了基于 iOS12 和 XCode10 创建 NSUserActivity 将�
 在美国圣何塞举办的 2018 开发者大会上，苹果公布了 `Siri Shortcuts`，这是一个令人期待已久的功能，这使得开发人员能够在自己的应用程序中扩展和增强 `Siri` 的功能。在这之前，`SiriKit SDK` 的功能非常有限。随着 `Siri Shortcuts` 的出现，开发人员可以扩展 `Siri` 的功能并通过构建自定义语音操作来唤起应用程序。
 
 # Siri Shortcuts 简史
-`Siri Shortcuts` 的核心是自动化。`Siri Shortcuts` 是由前 WWDC 学者构建的 iOS 自动化应用程序 `Workflow` 演变而来的。苹果在2017年收购了 `Workflow`，正由于这不寻常的举动，在收购之后，该应用就一直在 App Store 上线。
+`Siri Shortcuts` 的核心是自动化。`Siri Shortcuts` 是由前 WWDC 奖学金获得者开发的 iOS 自动化应用程序 Workflow 演变而来的。苹果在2017年收购了 Workflow，但出乎意料的是，即便在收购之后，该应用依然独立的在 App Store 上线。
 
 ![](https://appcoda.com/wp-content/uploads/2018/07/workflow-app.jpg)
 
-> Shortcuts 让你可以将你应用程序的功能暴露给 Siri。
+> Shortcuts 让你可以将应用程序的功能暴露给 Siri。
 
-今天，Apple 的新 `Siri Shortcuts` 应用程序大量借鉴了 `Workflow` 应用程序。但是，区分 `Siri Shortcuts` 与 `Shortcuts 应用程序`非常重要。虽然 `Shortcuts 应用程序`允许用户为常见的日常任务创建基于语音的短语，但 `Siri Shortcuts` 使开发人员能够在自己的原生应用程序中扩展 `Siri` 的功能。
+Apple 全新的 `Siri Shortcuts` 大量借鉴了 `Workflow`。但是区分语音 Shortcuts 短句与 Shortcuts 应用本身还是很重要的。Shortcuts 应用允许用户基于语音短句创建常见的日常任务，`Siri Shortcuts` 使开发人员能够在自己的原生应用程序中扩展 Siri 的功能。
 
 在撰写本文时，`Shortcuts 应用程序`无法在 iOS 12 Beta 2 Build 中进行测试。那么，我们将在自己构建的自定义应用程序中探索 `Siri Shortcuts` 的实用功能。
 
 # 我们的示例工程
 > 注意：本教程假定你基本熟悉 `NSUserActivity API`。如果你不熟悉，请参阅我们关于此主题的[优秀教程](https://www.appcoda.com/core-spotlight-framework/)。
 
-在本教程中，我们将探讨如何在一个简单的基本项目中利用 `Siri Shortcuts`，让用户说出 “Say Hi” 之类的短语时启动我们的应用程序并呈现出一个 `UIAlertView`。
+在本教程中，我们将探究如何在一个简单的项目中利用 `Siri Shortcuts`，在用户说出 “Say Hi” 之类的短语时启动我们的应用程序并展示出一个 `UIAlertView`。。
 
-此应用程序的目的是提供如何在应用程序中集成 `Siri Shortcuts` 的简单概述，而不会增加大型项目的复杂代码。在本教程结束时，你应该扎实掌握 `Siri Shortcuts` 背后的用例和技术，并了解如何将它们与你的应用程序集成！
+此应用程序简单概述了如何在一个大型项目中不增加复杂代码的前提下集成 `Siri Shortcuts`。在本教程结束时，你应该扎实掌握 `Siri Shortcuts` 背后的用例和技术，并了解如何将它们与你的应用程序集成！
 
 # 在新项目中定义你的 Shortcuts
 
-创建任意新项目时，首先花一点时间来建立基本的项目结构是很重要的。首先，请确保你拥有 `iOS 12`，`macOS Mojave`  和 `Xcode 10` 的最新开发人员预览版。如果你没有这些工具，则无法运行本教程中的代码，因为 `Siri Shortcuts` 是 `Xcode 10` 和 `iOS 12 beta` 中引入的新 API。如果你是注册的苹果开发者，你可以从[开发者网站](https://developer.apple.com/)下载这些内容。
+创建任意新项目时，花一些时间来建立基本的项目结构是很重要的。首先，请确保你拥有 `iOS 12`，`macOS Mojave`  和 `Xcode 10` 的最新开发人员预览版。如果你没有这些工具，则无法运行本教程中的代码，因为 `Siri Shortcuts` 是 `Xcode 10` 和 `iOS 12 beta` 中引入的新 API。如果你是注册的苹果开发者，你可以从[开发者网站](https://developer.apple.com/)下载这些内容。
 
 启动 Xcode 并创建一个新的单一视图应用程序，键入名称 SiriShortcuts（或你想要的任何名称）。我们将 `com.appcoda` 作为组织标识符，你也可以随意将其更改为你自己的组织标识符。完成后，单击“创建”以加载 Xcode 项目。
 
