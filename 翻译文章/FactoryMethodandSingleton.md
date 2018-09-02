@@ -1,8 +1,8 @@
 
 
-# Swift 中的设计模式 #1 工厂方法与单例方法
+# Swift 中的设计模式 \#1 工厂方法与单例方法
 
-title: [Design Patterns] in Swift #1: Factory Method and Singleton”
+title: "[Design Patterns] in Swift \#1: Factory Method and Singleton"
 date: 2018-07-24
 tags: [Design Patterns]
 categories: Swift
@@ -18,25 +18,25 @@ permalink: design-pattern-creational
 
 大概有23种经典的设计模式被 “Gang of Four” (“GOF”) Erich Gamma,Richard Helm,Ralph Johonson，和 John Vlissides 整理在他们“[设计模式：面向对象软件设计复用的基本原理](https://smile.amazon.com/Design-Patterns-Object-Oriented-Addison-Wesley-Professional-ebook/dp/B000SEIBB8/)” 的重要著作里。本教程主要讨论被 GOF 称为创建型模式中的工厂方法和单例方法。
 
-软件开发一直在努力的模拟真实世界的场景，希望通过创建工具的方式来加强人类的场景体验。财富管理工具，例如：像亚马逊或者 eBay 这样的银行 App 和购物辅助工具，确实相比十年前来说给消费者带来了更大的生活便利。回顾我们的开发路程。当应用变得更加强大易用时，应用的开发也已变得更加复杂。
+软件开发一直在努力的模拟真实世界的场景，希望通过创建工具的方式来加强人类的场景体验。财富管理工具，例如：像亚马逊或者 eBay 这样的银行 App 和购物辅助工具，相比十年前确实给消费者带来了更大的生活便利。回顾我们的发展路程。当应用变的更加强大易用时，应用的开发也已变的更加复杂。
 
-所以开发者也创造出了一系列最佳实践，像面[向对象编程](http://iosbrain.com/blog/2017/02/26/intro-to-object-oriented-principles-in-swift-3-via-a-message-box-class-hierarchy/)，[面向协议编程](https://www.appcoda.com/pop-vs-oop/)，值语义 （[value semantics](http://iosbrain.com/blog/2018/03/28/protocol-oriented-programming-in-swift-is-it-better-than-object-oriented-programming/#value_semantics)），局部推断（[local reasoning](http://iosbrain.com/blog/2018/03/28/protocol-oriented-programming-in-swift-is-it-better-than-object-oriented-programming/#local_reasoning)）来处理这些复杂问题。比如通过定义接口（像 Swift 的扩展）、语法糖的方式将大块代码分割变小。还有我没提及的确是最重要的值得重视的实践之一，设计模式的使用。
+所以开发者也创造出了一系列最佳实践。一些很流行的名字，像面[向对象编程](http://iosbrain.com/blog/2017/02/26/intro-to-object-oriented-principles-in-swift-3-via-a-message-box-class-hierarchy/)，[面向协议编程](https://www.appcoda.com/pop-vs-oop/)，值语义 （[value semantics](http://iosbrain.com/blog/2018/03/28/protocol-oriented-programming-in-swift-is-it-better-than-object-oriented-programming/#value_semantics)），局部推断（[local reasoning](http://iosbrain.com/blog/2018/03/28/protocol-oriented-programming-in-swift-is-it-better-than-object-oriented-programming/#local_reasoning)）将大块的代码分解成具有良好接口定义，语法糖的小块代码。还有我没提及，但却是最重要的、值得重视的实践之一，设计模式的使用。
 
 ## 设计模式
 
-设计模式是开发者管理软件复杂性的重要工具。作为一般的模板技术，它很好的对软件中类似的、复现的、容易识别的问题进行了概念化。将它当作一个最佳实践应用到那些你日常会遇到的编程场景中，例如，在不了解类簇实现细节的情况下创建一个类簇相关的对象。设计模式主要是用在那些经常发生的问题场景中。他们被多次使用是因为这些问题很普遍，用一个具体的例子应该能带来理解上的帮助。
+设计模式是开发者管理软件复杂性的重要工具。作为常见的模板技术，它很好的对软件中类似的、复现的、容易识别的问题进行了概念化抽象。将它当作一个最佳实践应用到那些你日常会遇到的编程场景中，例如，在不了解类簇实现细节的情况下创建一个类簇相关的对象。设计模式主要是用在那些经常发生的问题场景中。他们被多次被使用是因为这些问题很普遍，我用一个具体的例子应该能在理解上的给你们带来帮助。
 
-设计模式在某些案例中没有得到明显的体现，比如像一个含有 11 个 整数（`Int`）的 Swift array 的迭代。例如，GoF 定义了迭代器模式来为那些细节繁琐的集合对象提供共有的接口。设计模式不是语言编码。它是用于解决相同软件场景问题的一套实用的指导规则。
+设计模式在某些案例中得不到明显的体现，比如像一个含有 11 个 整数（`Int`）的 Swift array 的迭代中。比如，GoF 定义了迭代器模式来为那些细节繁琐的集合对象提供共有的接口。设计模式不是语言编码。它是用于解决相同软件场景问题的一套实用的指导规则。
 
 记住我在 AppCoda 讨论的 [“Model-View-ViewModel” or “MVVM”](https://www.appcoda.com/mvvm-vs-mvc/) 与非常著名的 [“Model-View-Controller” or “MVC”](https://www.appcoda.com/mvvm-vs-mvc/) 设计模式，它们一直受到 Apple 和苹果开发者的支持。
 
-这两种模式一般用在整个应用中。MVVM 和 MVC 是架构设计模式，用于将 UI 从 app 数据代码和展示层逻辑中分离出来，以及将应用的数据从核心数据流程或者业务逻辑中分离。 GoF 设计模式本质上更具体，旨在解决基于程序代码中的具体问题。在一个 app 里面你也许会用到 3 种、7 种或者12 种 GOF 设计模式。除了迭代器例子，代理模式是设计模式中另一个很好的例子，尽管它在 GoF 的 23 种设计模式的名单中没有被介绍的很具体。
+这两种模式一般用在整个应用中。MVVM 和 MVC 是架构设计模式，用于将 UI 从 app 数据代码和展示逻辑中分离出来，以及将应用的数据从核心数据流程或者业务逻辑中分离。 GoF 设计模式本质上更具体，旨在解决基于程序代码中的具体问题。在一个 app 里面你也许会用到 3 种、7 种或者 12 种 GOF 设计模式。除了迭代器例子，代理模式是设计模式中另一个很好的例子，尽管它在 GoF 的 23 种设计模式的名单中没有被介绍的很具体。
 
 当 GoF 的这本书作为大量的开发者的圣经而存在时，也不乏有它的诋毁者，我们会在文章的结尾处讨论这个话题。
 
 ## 设计模式的类别
 
-GoF 将 23 种设计模式整理分为了 3 类，“创建型”、“结构型”和“行为型”。这个教程讨论创建型类别里面的两种模式。像实例对象和类的实现，模式的作用是让复杂对象的创建变得简单、易于理解，易于维护，隐藏细节。
+GoF 将 23 种设计模式整理分为了 3 类，“创建型”、“结构型”和“行为型”。这个教程讨论创建型模式类别里面的两种。好比实例对象和类的实现，模式的作用是让复杂对象的创建变得简单、易于理解，易于维护，隐藏细节。
 
 隐藏复杂度（封装）是聪明的程序员最高目标之一。例如，面向对象（OOP）类可以提供非常复杂的，成熟的和强大的函数而不需要知道任何关于类内部间的工作方式。在创建型模式中，开发者甚至不需要知道类的的属性和方法，但如果需要，程序员可以看到接口 - 在 Swift 中的协议中 - 也可以对那些感兴趣的类进行扩展。你会在我的第一个“工厂方法”设计模式的例子中明白我的意思。
 
