@@ -199,9 +199,9 @@ func getShape(_ shape: Shapes, on view: UIView) -> HelperViewFactoryProtocol {
     
 }
 ```
-注意到：我已经写了一个类工厂和两个工厂方法来让你思考。严格说，一个工厂方法应该返回对应类的对象，这些类有着相同的基类或者协议。因为这里的目的是在视图上绘制一个形状，我个人更喜欢 `createShape(_:view:)` 这个方法。这是一个可供选择的点子，有时用于试验和探索新的可能性。
+注意到：我已经写了一个类工厂和两个工厂方法来让你思考。严格说，一个工厂方法应该返回对应类的对象，这些类有着相同的基类或者协议。因为我这里的目的是在视图上绘制一个形状，所以我更倾心使用 `createShape(_:view:)` 这个方法。提供这种可选方式（该方法），在需要时可用于试验和探索新的可能性。
 
-最后，我展示了两个工厂方法绘制形状的使用方式。UI 开发者不必必需知道形状类是如何被编码出来的。尤其是他/她不必为形状类如何被初始化而担忧。在 `ViewController.swift` 文件中的代码很容易阅读。
+最后，我展示了两个工厂方法绘制形状的使用方式。UI 开发者不用知道形状类是如何被编码出来的。尤其是他/她不必为形状类如何被初始化而担忧。在 `ViewController.swift` 文件中的代码很容易阅读。
 
 ```swift
 import UIKit
@@ -245,7 +245,7 @@ class ViewController: UIViewController {
 ```
 ## 单例设计模式
 
-大部分 iOS 开发者熟悉单例模式。回想一下 `UNUserNotificationCenter.current()`，`UIApplication.shared`，或 `FileManager.default` 如果你想要发送通知，或者在 Safari 里面打开一个 URL，或者操作 iOS 文件，你必须分别使用它们的单例。单例可以很好的用于保护共享资源，提供有且仅有一个对象实例进入一些系统，并且支持对象执行一些应用级类型的协作。正如我们将要看到的，单例也可以用来封装 iOS 内建的其它单例，添加一些值操作功能。
+大部分 iOS 开发者熟悉单例模式。回想一下 `UNUserNotificationCenter.current()`，`UIApplication.shared`，或 `FileManager.default` 如果你想要发送通知，或者在 Safari 里面打开一个 URL，或者操作 iOS 文件，你必须分别使用它们各自的单例。单例可以很好的用于保护共享资源，提供有且仅有一个对象实例进入一些系统，并且支持对象执行一些应用级类型的协作。正如我们将要看到的，单例也可以用来封装 iOS 内建的其它单例，添加一些值操作功能。
 
 作为一个单例，我们需要确保这个类：
 
@@ -312,7 +312,7 @@ class UserPreferences {
  
     } // end enum Preferences
 ```
-我们从单例模式的定义开始，我想向你介绍清楚在我的应用中，为什么使用一个单例来封装 `UserDefaults`。我们可以通过添加值的方式来增添新的功能，但通过简单的对 `UserDefaults` 的包装却增加强代码的健壮性。当在获取和设置用户偏好时，你的头脑中应该马上要想到提供错误校验。我想实现一个关于用户偏好的功能，设置密码的可见性。看到下面的代码。所有的内容都在 `PreferencesSingleton.swift` 文件：
+我们从单例模式的定义开始，我想向你介绍清楚在我的应用中，为什么使用一个单例来封装 `UserDefaults`。我们可以通过添加值的方式来增添新的功能，但通过简单的对 `UserDefaults` 的包装却增加强代码的健壮性。当在获取和设置用户偏好时，你的头脑中应该马上要想到进行错误校验。我想实现一个关于用户偏好的功能，设置密码的可见性。看到下面的代码。所有的内容都在 `PreferencesSingleton.swift` 文件：
 
 ```swift
 import Foundation
