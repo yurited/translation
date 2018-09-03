@@ -16,21 +16,21 @@ permalink: design-pattern-creational
 校对=
 定稿=
 
-大概有23种经典的设计模式被 “Gang of Four” (“GoF”) Erich Gamma，Richard Helm，Ralph Johonson，和 John Vlissides 整理在他们“[设计模式：面向对象软件设计复用的基本原理](https://smile.amazon.com/Design-Patterns-Object-Oriented-Addison-Wesley-Professional-ebook/dp/B000SEIBB8/)” 的重要著作里。本文会介绍 GoF 总结的两种创建模式：*工厂方法和单例方法*。
+大概有23种经典的设计模式被 “Gang of Four” (“GoF”) Erich Gamma，Richard Helm，Ralph Johonson，和 John Vlissides 整理在他们“[设计模式：面向对象软件设计复用的基本原理](https://smile.amazon.com/Design-Patterns-Object-Oriented-Addison-Wesley-Professional-ebook/dp/B000SEIBB8/)” 的重要著作里。本文会介绍 GoF 总结的两种创建型（creational）模式：*工厂方法和单例方法*。
 
 软件开发一直在努力的模拟真实世界的场景，希望通过创建工具的方式来加强人类的场景体验。财富管理工具，例如：像亚马逊或者 eBay 这样的银行 App 和购物辅助工具，相比十年前确实给消费者带来了更大的生活便利。回顾我们的发展路程。当应用变的更加强大易用时，应用的开发也已变的**[更加复杂](http://iosbrain.com/blog/2018/04/29/controlling-chaos-why-you-should-care-about-adding-error-checking-to-your-ios-apps/#chaos)**。
 
-所以开发者也创造出了一系列最佳实践。一些很流行的名字，像[**面向对象编程**](http://iosbrain.com/blog/2017/02/26/intro-to-object-oriented-principles-in-swift-3-via-a-message-box-class-hierarchy/)，[**面向协议编程**](https://www.appcoda.com/pop-vs-oop/)，（[**值语义 value semantics**](http://iosbrain.com/blog/2018/03/28/protocol-oriented-programming-in-swift-is-it-better-than-object-oriented-programming/#value_semantics)），（[**局部推断 local reasoning**](http://iosbrain.com/blog/2018/03/28/protocol-oriented-programming-in-swift-is-it-better-than-object-oriented-programming/#local_reasoning)）将大块代码分解成具有良好接口定义的小段代码（比如使用 [**Swift 的扩展**](http://iosbrain.com/blog/2017/01/28/swift-extensions-managing-complexity-improving-readability-extensibility-protocols-delegates-uicollectionview/)），以及 [**语法糖**](http://iosbrain.com/blog/2018/01/27/writing-expressive-meaningful-and-readable-code-in-swift-4/)。还有我没提及，但却是最重要的、值得重视的实践之一，设计模式的使用。
+所以开发者也开创出了一系列最佳实践。一些很流行的名字，像[**面向对象编程**](http://iosbrain.com/blog/2017/02/26/intro-to-object-oriented-principles-in-swift-3-via-a-message-box-class-hierarchy/)，[**面向协议编程**](https://www.appcoda.com/pop-vs-oop/)，（[**值语义 value semantics**](http://iosbrain.com/blog/2018/03/28/protocol-oriented-programming-in-swift-is-it-better-than-object-oriented-programming/#value_semantics)），（[**局部推断 local reasoning**](http://iosbrain.com/blog/2018/03/28/protocol-oriented-programming-in-swift-is-it-better-than-object-oriented-programming/#local_reasoning)）将大块代码分解成具有良好接口定义的小段代码（比如使用 [**Swift 的扩展**](http://iosbrain.com/blog/2017/01/28/swift-extensions-managing-complexity-improving-readability-extensibility-protocols-delegates-uicollectionview/)），以及 [**语法糖**](http://iosbrain.com/blog/2018/01/27/writing-expressive-meaningful-and-readable-code-in-swift-4/)。还有我没提及，但却是最重要的、值得重视的实践之一，设计模式的使用。
 
 ## 设计模式
 
-设计模式是开发者管理软件复杂性的重要工具。作为常见的模板技术，它很好的对软件中类似的、复现的、容易识别的问题进行了概念化抽象。将它当作一个最佳实践应用到那些你日常会遇到的编程场景中，例如，在不了解类簇实现细节的情况下创建一个类簇相关的对象。设计模式主要是用在那些经常发生的问题场景中。他们被多次被使用是因为这些问题很普遍，我用一个具体的例子应该能在理解上的给你们带来帮助。
+设计模式是开发者管理软件复杂性的重要工具。作为常见的模板技术，它很好的对软件中类似的、复现的、容易识别的问题进行了概念化抽象。将它当作一个最佳实践应用到你日常会遇到的那些编程场景中，例如，在不了解类簇实现细节的情况下创建一个类簇相关的对象。设计模式主要是用于经常发生的那些问题场景中。他们被频繁被使用是因为这些问题很普遍，让我用一个具体的例子来帮助你们理解吧。
 
-设计模式在某些案例中得不到明显的体现，比如像一个含有 11 个 整数（`Int`）的 Swift array 的迭代中。比如，GoF 定义了*迭代器模式*来为那些细节繁琐的集合对象提供共有的接口。设计模式不是语言编码。它是用于解决相同软件场景问题的一套实用的指导规则。
+设计模式在某些案例中没有体现的很明显，比如像一个含有 11 个 整数（`Int`）的 Swift array 的迭代中。比如，GoF 定义了*迭代器模式*来为那些细节繁琐的集合对象提供共有的接口。设计模式不是语言编码。它是用于解决相同软件场景问题的一套实用的指导规则。
 
-记住我在 AppCoda 讨论的 [“Model-View-ViewModel” or “MVVM”](https://www.appcoda.com/mvvm-vs-mvc/) 与非常著名的 [“Model-View-Controller” or “MVC”](https://www.appcoda.com/mvvm-vs-mvc/) 设计模式，它们一直受到 Apple 和苹果开发者的支持。
+请记住我在 AppCoda 讨论的 [“Model-View-ViewModel” or “MVVM”](https://www.appcoda.com/mvvm-vs-mvc/) 与非常著名的 [“Model-View-Controller” or “MVC”](https://www.appcoda.com/mvvm-vs-mvc/) 设计模式，它们一直受到 Apple 公司和苹果开发者们的支持。
 
-这两种模式一般用在*整个应用*中。MVVM 和 MVC 是*架构（architectural）*设计模式，用于将 UI 从应用数据代码和展示逻辑中分离出来，以及将应用的数据从核心数据流程或者业务逻辑中分离。 GoF 设计模式本质上更具体，旨在解决基于程序代码中的具体问题。在一个应用里面你也许会用到 3 种、7 种或者 12 种 GoF 设计模式。除了*迭代器*例子，代理模式是设计模式中另一个很好的例子，尽管它在 GoF 的 23 种设计模式的名单中没有被介绍的很具体。
+这两种模式一般用在*整个应用*中。MVVM 和 MVC 是*架构（architectural）*设计模式，用于将 UI 从应用数据代码和展示逻辑中分离出来（如：MVC），以及将应用的数据从核心数据流程或者业务逻辑中分离（如：MVVM）。 GoF 设计模式本质上更具体，旨在解决基于程序代码中的具体问题。在一个应用里面你也许会用到 3 种、7 种或者 12 种 GoF 设计模式。除了*迭代器*例子，代理模式也是设计模式中另一个很好的例子，尽管它在 GoF 的 23 种设计模式的名单中没有被具体介绍。
 
 当 GoF 的这本书作为大量的开发者的圣经而存在时，也不乏有它的诋毁者，我们会在文章的结尾处讨论这个话题。
 
@@ -42,14 +42,14 @@ GoF 将 23 种设计模式整理分为了 3 类，“创建型”、“结构型
 
 ## 工厂方法设计模式
 
-如果你已经探索过 GoF 设计模式或在 OOP 的世界里花费了很多时间，你大概至少听说过“抽象工厂”、“工厂”，或者“工厂方法”模式。当我们为他们的“具体”命名抱怨时，我将给你展示一个最切合“工厂方法”的例子。
+如果你已经探索过 GoF 设计模式或在 OOP 的世界里花费了很多时间，你大概至少听说过“抽象工厂”、“工厂”，或者“工厂方法”模式。当我们为他们的“具体”命名方式抱怨时，我将给你展示一个最切合“工厂方法”的例子。
 
-在这个范例中，你通过工厂方法创建对象，而*不需要*知道类的构造器和关于类和类层次结构的任何信息。这样来了很大的方便。用少量的代码创建 UI 与相关功能。我的工厂方法项目例子，在 [**GitHub**](https://github.com/appcoda/FactoryMethodInSwift) 可下载，展示了在复杂类层次结构中，如何轻松的使用对象。拿一个团队中的 UI 开发者来说：
+在这个范例中，你通过工厂方法创建对象，而*不需要*知道类的构造器和关于类和类层次结构的任何信息。这样来了很大的方便。用少量的代码创建 UI 和它的相关功能。我的工厂方法项目案例，在 [**GitHub**](https://github.com/appcoda/FactoryMethodInSwift) 可下载，展示了在复杂类层次结构中，如何轻松的使用对象。拿一个团队中的 UI 开发者来说：
 ![](https://www.appcoda.com/wp-content/uploads/2018/07/Factory_Method.gif)
 
 大多数成功的应用有一个风格一致的主题 。为保证应用主题风格统一，我们假设所有的形状在应用中有着相同的颜色和尺寸。在应用的自定义按钮和登录背景图中，这些形状也许会很有用。
 
-假设设计团队同意使用我的代码作为应用的主题背景图片。来看到假定UI 开发者无须担心的这些代码，首先是一个协议，接着是类继承这个协议，和工厂方法。
+假设设计团队同意使用我的代码作为应用的主题背景图片。我们来看到假定 UI 开发者无须担心的这些代码，首先这是一个协议，接着是类继承这个协议，和工厂方法。
 
  `ShapeFactory.swift` 文件是一个用于在视图控制器内绘制形状的协议。因为可用于各种目的，所以他的访问级别是 public：
 
@@ -112,7 +112,7 @@ fileprivate class Square: HelperViewFactoryProtocol {
     
 } // end class Square
 ```
-注意到我利用 OOP 来重用我的代码，这样能让我的 shape 层级更加简化和可维护。`Circle` 和 `Rectangle` 类是 `Square` 类的特化 （记住通过一个完美的正方形来绘制一个圆是多么的简单）
+注意到我根据 OOP 的设计思想来构建重用我的代码，这样能让我的 shape 层级更加简化和可维护。`Circle` 和 `Rectangle` 类是 `Square` 类的特化 （记住通过一个完美的正方形来绘制一个圆是多么的简单）
 ```swift
 fileprivate class Circle : Square {
     
@@ -206,7 +206,7 @@ func getShape(_ shape: Shapes, on view: UIView) -> HelperViewFactoryProtocol {
     
 }
 ```
-注意到：我已经写了一个类工厂和两个工厂方法来让你思考。严格的说，一个工厂方法应该返回一些类中的一个，这些类有着相同的基类或者协议。因为这里的目的是在视图上绘制一个形状，我个人更喜欢 `createShape(_:view:)` 这个方法。这是一个可供选择的点子，有时用于试验和探索新的可能性。
+注意到：我已经写了一个类工厂和两个工厂方法来让你思考。严格的说，一个工厂方法应该返回对应类的对象，这些类有着相同的基类或者协议。因为这里的目的是在视图上绘制一个形状，我个人更喜欢 `createShape(_:view:)` 这个方法。这是一个可供选择的点子，有时用于试验和探索新的可能性。
 
 最后，我展示了两个工厂方法绘制形状的使用方式。UI 开发者不必必需知道形状类是如何被编码出来的。尤其是他/她不必为形状类如何被初始化而担忧。在 `ViewController.swift` 文件中的代码很容易阅读。
 
@@ -258,7 +258,7 @@ class ViewController: UIViewController {
 ```
 ## 单例设计模式
 
-大部分 iOS 开发者熟悉单例模式。回想一下 `UNUserNotificationCenter.current()`，`UIApplication.shared`，或 `FileManager.default` 如果你想要发送通知，或者在 Safari 里面打开一个 URL，或者操作 iOS 文件，你必须使用它们各自的单例。单例可以很好的用于保护共享资源，提供有且仅有一个对象实例进入一些系统，并且支持对象执行一些应用层面的协作类型。正如我们将要看到的，对于通过封装内建的 iOS 单例来提供一个值的添加是有好处的。
+大部分 iOS 开发者熟悉单例模式。回想一下 `UNUserNotificationCenter.current()`，`UIApplication.shared`，或 `FileManager.default` 如果你想要发送通知，或者在 Safari 里面打开一个 URL，或者操作 iOS 文件，你必须分别使用它们的单例。单例可以很好的用于保护共享资源，提供有且仅有一个对象实例进入一些系统，并且支持对象执行一些应用级类型的协作。正如我们将要看到的，对于通过封装内建的 iOS 单例来提供一个值添加功能，这是有益的做法。
 
 作为一个单例，我们需要确保这个类：
 
@@ -268,7 +268,7 @@ class ViewController: UIViewController {
 
 通过定义一个 `shared` 静态常量来创建一个类的 `private` 初始化方法。我们要确保这个类只有一个实例，该类只能初始化一次，并且共享的实例在应用的任何地方都能获取。就这样我们创建了一个*单例*！
 
-我的单例案例的项目，在 [**GitHub**](https://github.com/appcoda/SingletonInSwift) 可下载，展示了一个开发团队如何安全的、连贯的，最少错误的存储用户的偏好。这是我的应用样品，能够记忆用户的密码文本，它们偏好设置是可见或隐藏的，事后发现，这并不是最好的想法，但我需要一个例子来向你展示我代码的工作机制。这段代码*完全是*出于教学的目的。我建议你**永远不要**让你的密码暴露。你可以看到用户可以设置他们的的密码偏好 — 且密码偏好被存储在 `UserDefaults`:
+我的单例案例的项目，在 [**GitHub**](https://github.com/appcoda/SingletonInSwift) 可下载，展示了一个开发者如何安全的、高效的存储用户的偏好。这是一个简单的 Demo，这个 Demo 能够记录用户的密码文本，偏好设置可设置为可见或隐藏。不过事后发现，这个功能并不是个很好的想法，我需要一个例子来向你展示我代码的工作机制。这段代码*完全是*出于教学的目的。我建议你**永远不要**让你的密码暴露。你可以看到用户可以设置他们的的密码偏好 — 且密码偏好被存储在 `UserDefaults`:
 
 ![](https://www.appcoda.com/wp-content/uploads/2018/07/Show_Pwd.gif)
 
@@ -299,9 +299,9 @@ class UserPreferences {
 ```
 应用启动的时候需要初始化静态属性，但是全局变量默认是懒加载。你可能会担心上面这段代码在执行的时候出错，不过就我对 Swift 的了解来说，这段代码完全没问题。
 
-你也许会问，“为什么他通过包装另一个`UserDefaults`单例的方式来创建一个单例？” 首先，我主要的目的是在这向你展示在 Swift 中最佳的用于创建和使用单例的做法。 用户偏好是一个资源类型，应该有一个单一的入口。所以 `UserDefaults` 服务于一个非常明显的例子。其次，想一下你曾多少次看到 `UserDefaults` 在应用的代码中被滥用。
+你也许会问，“为什么要通过包装另一个`UserDefaults`单例的方式来创建一个单例？” 首先，我主要目的是要向你展示在 Swift 中创建和使用单例的最佳做法。 用户偏好是一个资源类型，应该有一个单一的入口。所以在这个例子中，很明显我们应该使用 `UserDefaults`。其次，想一下你曾多少次看到在应用中 `UserDefaults` 被滥用。
 
-我看到的 `UserDefaults` (或者之前的 `NSUserDefaults`) 在一些应用项目代码中使用起来没有任何的条理和原由。对于在用户偏好的每个键都是写成了一个单引用。我刚刚在我的代码中发现了一个 bug 我把 “Switch” 拼写成了 “swithc” ，由于我使用了复制和粘贴，在我发现问题之前，我已经创建了不少以 “swithc” 的实例。 如果其他团队在这个应用开始或者继续使用 “switch” 作为一个键来存储对应的值呢？这个应用不能保存之前的那种状态。 我们希望维持应用的部分状态，通过使 `UserDefaults`  保存的 strings 键来映射对应的值。这是描述值的好方式。因为这样让值的意思明确、简单易懂，和容易记忆。但这也不是说通过 strings 来描述是没有风险的。
+我在一些应用项目代码中看到 `UserDefaults` (或者之前的 `NSUserDefaults`) 使用起来没有任何的条理和原由。对于在用户偏好的每个键都写成了一个单引用。刚好我在代码中发现了一个 bug 我把 “Switch” 拼写成了 “swithc” ，由于我使用了复制和粘贴，在我发现问题之前，我已经创建了不少以 “swithc” 的实例。 如果其他团队在这个应用开始或者继续使用 “switch” 作为一个键来存储对应的值呢？应用是无法正确保存当前的状态。 我们希望通过使用 `UserDefaults`  的 strings 键来映射对应的值的方式来保存应用的状态。这是描述值的一个好方式。因为这样让值的意思明确、简单易懂，和容易记忆。但这也不是说通过 strings 来描述是没有风险的。
 
 在我讨论的 “swithc” 与 “switch”中。你们大多数人可能了解到了被称为 “stringly-typed” 代码, 当用 strings 作为唯一的标识符会带来细微的变化，最终会因为拼写错误带来灾难性的错误。Swift 编译器不能帮助我们避免 “stringly-typed” 错误。
 
@@ -325,7 +325,7 @@ class UserPreferences {
  
     } // end enum Preferences
 ```
-我们从单例模式的定义开始，但我确实想介绍清楚在大多数我的应用中，为什么我自己使用一个单例来包装 `UserDefaults` 。这里有很多以值的方式来增加新功能，通过简单的对 `UserDefaults` 的包装来加强代码的健壮性。当在获取和设置偏好进入大脑的时就应该要想到提供错误校验。我想加入的另一个特性是为相同的用户偏好的使用提供便捷方法，像是如何处理密码。你将会看到我下面的代码。所有的内容都在 `PreferencesSingleton.swift` 文件：
+我们从单例模式的定义开始，我想向你介绍清楚在我的应用中，为什么使用一个单例来封装 `UserDefaults` 。我们可以通过添加值的方式来增添新的功能，但通过简单的对 `UserDefaults` 的包装却增加强代码的健壮性。当在获取和设置用户偏好时，你的头脑中应该马上要想到提供错误校验。我想实现一个关于用户偏好的功能，设置密码的可见性。看到下面我的代码。所有的内容都在 `PreferencesSingleton.swift` 文件：
 
 ```swift
 import Foundation
@@ -449,6 +449,6 @@ class ViewController: UIViewController {
 
 ## 结论
 
-一些评论家声称设计模式在一些编程语言中的使用缺乏证明，在代码中看到反复出现的设计模式是很槽糕的一件事情。我不同意这个说法。期望一个编程语言对*每件事情*的处理都有对应的特性是很愚蠢的。这很可能会导致一个臃肿的语言，像 C++ 一样正在变得更大、更复杂，以致很难被学习、使用和维护。认识并解决反复出现的问题是人的一种积极性格并且这确实值得我们强化。设计模式是从历史中学习到的一个成功案例，有一些事情，人类做了很多次都失败了。对一些相同的问题进行抽象和标准化，让这些好的解决方案散播出去。
+一些评论家声称设计模式在一些编程语言中的使用缺乏证明，在代码中看到反复出现的设计模式是很槽糕的一件事情。我不同意这个说法。期望一个编程语言对*每件事情*的处理都有对应的特性是很愚蠢的。这很可能会导致一个臃肿的语言，像 C++ 一样正在变得更大、更复杂，以致很难被学习、使用和维护。认识并解决反复出现的问题是人的一种积极性格并且这确实值得我们强化。有一些事情，人们尝试并失败了很多次，通过学习总结前人的经验，设计模式成为了一个成功案例。在对一些相同的问题进行抽象和标准化，并且让这些好的解决方案散播出去。
 
-像 Swift 这样的简单紧凑的语言和设计模式这样一系列最佳实践的组合是一个理想中的令人愉快的媒介。风格统一的代码一般来说都具有较好的可读性和易维护性。不过也要记住，在数以百万的开发者不断地讨论和分享下，设计模式也在不断的发展变化，这些美好事物被万维网联系在一起，这种开发人员的讨论持续的引领着自我调节的集体智慧。
+像 Swift 这样的简单紧凑的语言和设计模式这样一系列最佳实践的组合是一个理想中的、令人开心的方法。风格统一的代码一般来说都具有较好的可读性和易维护性。不过也要记住，在数以百万的开发者不断地讨论和分享下，设计模式也在不断的发展变化，这些美好事物被万维网联系在一起，这种开发人员的讨论持续的引领着集体智慧的自我调节。
