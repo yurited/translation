@@ -44,19 +44,17 @@ GoF 将 23 种设计模式整理分为了 3 类，“创建型”、“结构型
 
 如果你已经探索过 GoF 设计模式或在 OOP 的世界里花费了很多时间，你大概至少听说过“抽象工厂”、“工厂”，或者“工厂方法”模式。“确切”的命名可能有很多争议，不过下面我要介绍的这个例子最接近的命名是工厂模式。
 
-在这个范例中，你通过工厂方法创建对象，而*不需要*知道类的构造器和关于类和类层次结构的任何信息。这样来了很大的方便。用少量的代码创建 UI 和它的相关功能。我的工厂方法项目案例，在 [**GitHub**](https://github.com/appcoda/FactoryMethodInSwift) 可下载，展示了在复杂类层次结构中，如何轻松的使用对象。
+在这个范例中，你通过工厂方法创建对象，而*不需要*知道类的构造器和关于类和类层次结构的任何信息。这带来了很大的方便。可以用少量的代码创建 UI 和它的相关功能。我的工厂方法项目案例，在 [**GitHub**](https://github.com/appcoda/FactoryMethodInSwift) 可下载，展示了在复杂类层次结构中，如何轻松的使用对象。
 ![](https://www.appcoda.com/wp-content/uploads/2018/07/Factory_Method.gif)
 
-大多数成功的应用都有风格一致的主题 。为保证应用主题风格统一，假设应用中所有的 `shapes` 有着相同的颜色和尺寸。这些图形用在应用的自定义按钮和登录背景图中，也许会好用。
+大多数成功的应用都有风格一致的主题 。为保证应用主题风格统一，假设应用中所有的 shapes 有着相同的颜色和尺寸，这样就可以和主题保持一致——也就是塑造品牌。这些图形可以用在自定义按钮上，或者作为其它界面的背景图都还不错。
 
-假设设计团队同意使用我的代码作为应用的主题背景图片。我们来看到假定 UI 开发者无须担心的这些代码，首先这是一个协议，接着是类继承这个协议，和工厂方法。
+假设设计团队同意使用我的代码作为应用的主题背景图片。下面来看看我的具体代码，包括协议、类结构和（UI 开发人员不需要关心的）工厂方法。
 
- `ShapeFactory.swift` 文件是一个用于在视图控制器内绘制形状的协议。因为可用于各种目的，所以他的访问级别是 public：
+ `ShapeFactory.swift` 文件是一个用于在视图控制器内绘制形状的协议。因为可用于各种目的，所以它的访问级别是 public：
 
 ```swift
 // 这些值被图形设计团队预先选定
-// these values have been pre-selected by
-// the graphics and design teams
 let defaultHeight = 200
 let defaultColor = UIColor.blue
  
@@ -110,9 +108,9 @@ fileprivate class Square: HelperViewFactoryProtocol {
         
     }
     
-} // end class Square
+} 
 ```
-注意到我根据 OOP 的设计思想来构建复用代码，这样能让 shape 层级更加简化和可维护。`Circle` 和 `Rectangle` 类是 `Square` 类的特化 （记住通过一个完美的正方形来绘制一个圆是多么的简单）
+注意到我根据 OOP 的设计思想来构建复用代码，这样能让 shape 层级更加简化和可维护。`Circle` 和 `Rectangle` 类是 `Square` 类的特化 （另外你可以看到，从正方形出发绘制圆形是多么简单。）
 ```swift
 fileprivate class Circle : Square {
     
@@ -125,7 +123,7 @@ fileprivate class Circle : Square {
         
     }
     
-} // end class Circle
+} 
  
 fileprivate class Rectangle : Square {
     
@@ -137,9 +135,9 @@ fileprivate class Rectangle : Square {
         
     }
     
-} // end class Rectangle
+} 
 ```
-我使用 `fileprivate` 来强调工厂方法模式背后的一个目的：*封装*。你可以看到不用改变下面的工厂方法的前提下，对 `shape` 类的层级结构进行修改和扩展是很容易的。这是工厂方法的代码，它们让对象的创建如此的抽象和简单
+我使用 `fileprivate` 来强调工厂方法模式背后的一个目的：*封装*。你可以看到不用改变下面的工厂方法的前提下，对 `shape` 类的层级结构进行修改和扩展是很容易的。这是工厂方法的代码，它们让对象的创建如此简单且抽象。
 ```swift
 enum Shapes {
     
@@ -180,12 +178,11 @@ class ShapeFactory {
             
         }
         
-    } // end func display
+    } 
     
-} // end class ShapeFactory
+} 
 
 // 公共的工厂方法来展示形状
-// Public factory method to display shapes.
 func createShape(_ shape: Shapes, on view: UIView) {
     
     let shapeFactory = ShapeFactory(parentView: view)
@@ -194,11 +191,7 @@ func createShape(_ shape: Shapes, on view: UIView) {
 }
 
 // 选择公共的工厂方法来展示形状
-// Alternative public factory method to display shapes.
-
-// 严格地来说，工厂方法应该返回相关类中的一个。
-// Technically, the factory method should return one of
-// a number of related classes.
+// 严格来说，工厂方法应该返回相关类中的一个。
 func getShape(_ shape: Shapes, on view: UIView) -> HelperViewFactoryProtocol {
     
     let shapeFactory = ShapeFactory(parentView: view)
@@ -218,57 +211,51 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //在加载视图后进行添加设置，一般是从nib
-        // Do any additional setup after loading the view, typically from a nib.
         
     }
  
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // 废弃掉那些可以被重新创建的资源
-        // Dispose of any resources that can be recreated.
     }
  
     @IBAction func drawCircle(_ sender: Any) {
         
-		// 仅仅用于绘制形状
-        // just draw the shape
+	// 仅仅用于绘制形状
         createShape(.circle, on: view)
         
     }
     
     @IBAction func drawSquare(_ sender: Any) {
 
-		// 绘制图形
-        // just draw the shape
+	// 绘制图形
         createShape(.square, on: view)
         
     }
     
     @IBAction func drawRectangle(_ sender: Any) {
 
-		// 从工厂获取一个对象并使用他来绘制一个形状
-        // actually get an object from the factory
-        // and use it to draw the shape
+	// 从工厂获取一个对象并使用它来绘制一个形状
         let rectangle = getShape(.rectangle, on: view)
         rectangle.display()
         
     }
     
-} // end class ViewController  //结束 ViewController 这个类。
+} 
 ```
 ## 单例设计模式
 
-大部分 iOS 开发者熟悉单例模式。回想一下 `UNUserNotificationCenter.current()`，`UIApplication.shared`，或 `FileManager.default` 如果你想要发送通知，或者在 Safari 里面打开一个 URL，或者操作 iOS 文件，你必须分别使用它们的单例。单例可以很好的用于保护共享资源，提供有且仅有一个对象实例进入一些系统，并且支持对象执行一些应用级类型的协作。正如我们将要看到的，对于通过封装内建的 iOS 单例来提供一个值添加功能，这是有益的做法。
+大部分 iOS 开发者熟悉单例模式。回想一下 `UNUserNotificationCenter.current()`，`UIApplication.shared`，或 `FileManager.default` 如果你想要发送通知，或者在 Safari 里面打开一个 URL，或者操作 iOS 文件，你必须分别使用它们的单例。单例可以很好的用于保护共享资源，提供有且仅有一个对象实例进入一些系统，并且支持对象执行一些应用级类型的协作。正如我们将要看到的，单例也可以用来封装 iOS 内建的其它单例，添加一些值操作功能。
 
 作为一个单例，我们需要确保这个类：
 
 * 声明和初始化一个 static 的类的常量属性，然后命名那个属性为 `shared` 来表明这个类的实例是一个单例（默认是共有的）；
-* 为我们想要控制和保护的一些资源声明一个*私有的*属性。且只能通过 `shared` 共享。
-* 声明一个私有初始化方法，只有我们的单例类能够初始化它，在 `init` 的内部，我们初始化我们想要用于控制的共享资源。
+* 为我们想要控制和保护的一些资源声明一个*私有的*属性。且只能通过 `shared` 共享；
+* 声明一个私有初始化方法，只有我们的单例类能够初始化它，在 `init` 的内部，初始化我们想要用于控制的共享资源；
 
 通过定义一个 `shared` 静态常量来创建一个类的 `private` 初始化方法。我们要确保这个类只有一个实例，该类只能初始化一次，并且共享的实例在应用的任何地方都能获取。就这样我们创建了一个*单例*！
 
-我的单例案例的项目，在 [**GitHub**](https://github.com/appcoda/SingletonInSwift) 可下载，展示了一个开发者如何安全的、高效的存储用户的偏好。这是一个简单的 Demo，这个 Demo 能够记录用户的密码文本，偏好设置可设置为可见或隐藏。不过事后发现，这个功能并不是个很好的想法，我需要一个例子来向你展示我代码的工作机制。这段代码*完全是*出于教学的目的。我建议你**永远不要**让你的密码暴露。你可以看到用户可以设置他们的的密码偏好 — 且密码偏好被存储在 `UserDefaults`:
+这个单例项目的代码，在 [**GitHub**](https://github.com/appcoda/SingletonInSwift) 可下载，展示了一个开发者如何安全的、高效的存储用户的偏好。这是一个简单的 Demo，这个 Demo 能够记录用户的密码文本，偏好设置可设置为可见或隐藏。不过事后发现，这个功能并不是个很好的想法，我需要一个例子来向你展示我代码的工作机制。这段代码*完全是*出于教学的目的。我建议你**永远不要**让你的密码暴露。你可以看到用户可以设置他们的的密码偏好 — 且密码偏好被存储在 `UserDefaults`:
 
 ![](https://www.appcoda.com/wp-content/uploads/2018/07/Show_Pwd.gif)
 
@@ -301,11 +288,11 @@ class UserPreferences {
 
 你也许会问，“为什么要通过包装另一个`UserDefaults`单例的方式来创建一个单例？” 首先，我主要目的是要向你展示在 Swift 中创建和使用单例的最佳做法。 用户偏好是一个资源类型，应该有一个单一的入口。所以在这个例子中，很明显我们应该使用 `UserDefaults`。其次，想一下你曾多少次看到在应用中 `UserDefaults` 被滥用。
 
-我在一些应用项目代码中看到 `UserDefaults` (或者之前的 `NSUserDefaults`) 使用起来没有任何的条理和原由。对于在用户偏好的每个键都写成了一个单引用。刚好我在代码中发现了一个 bug 我把 “Switch” 拼写成了 “swithc” ，由于我使用了复制和粘贴，在我发现问题之前，我已经创建了不少以 “swithc” 的实例。 如果其他团队在这个应用开始或者继续使用 “switch” 作为一个键来存储对应的值呢？应用是无法正确保存当前的状态。 我们希望通过使用 `UserDefaults`  的 strings 键来映射对应的值的方式来保存应用的状态。这是描述值的一个好方式。因为这样让值的意思明确、简单易懂，和容易记忆。但这也不是说通过 strings 来描述是没有风险的。
+我在一些应用项目代码中看到 `UserDefaults` (或者之前的 `NSUserDefaults`) 使用起来没有任何的条理和原由。对于在用户偏好的每个键都写成了一个单引用。刚好我在代码中发现了一个 bug 我把“switch”拼写成了“swithc”，由于我使用了复制和粘贴，在我发现问题之前，我已经创建了不少“swithc”的实例。 如果其它团队在这个应用开始或者继续使用“switch”作为一个键来存储对应的值呢？应用是无法正确保存当前的状态。 我们希望通过使用 `UserDefaults` 的 strings 键来映射对应的值的方式来保存应用的状态。这是一个描述值的好方式。这样可以让值的意思明确、简单易懂，和容易记忆。但这也不是说通过 strings 来描述是没有任何风险。
 
-在我讨论的 “swithc” 与 “switch”中。你们大多数人可能了解到了被称为 “stringly-typed” 代码, 当用 strings 作为唯一的标识符会带来细微的变化，最终会因为拼写错误带来灾难性的错误。Swift 编译器不能帮助我们避免 “stringly-typed” 错误。
+在我讨论的“swithc”与“switch”中。你们大多数人可能了解到了被称为 “stringly-typed” 代码, 当用 strings 作为唯一的标识符会带来细微的变化，最终会因为拼写错误带来灾难性的错误。Swift 编译器不能帮助我们避免 “stringly-typed” 错误。
 
-解决 “stringly-typed” 错误方式是在 Swift `enum`  格式中使用 string 常量。不仅可以让我们来标准化字符串的使用，而且可以让我们以分类的方式组织他们。让我们再次看到 `PreferencesSingleton.swift`:
+解决 “stringly-typed” 错误方式是在 Swift `enum`  格式中使用 string 常量。不仅可以让我们来标准化字符串的使用，而且可以让我们以分类的方式组织它们。让我们再次回到 `PreferencesSingleton.swift`:
 ```swift
 class UserPreferences {
     
@@ -325,7 +312,7 @@ class UserPreferences {
  
     } // end enum Preferences
 ```
-我们从单例模式的定义开始，我想向你介绍清楚在我的应用中，为什么使用一个单例来封装 `UserDefaults` 。我们可以通过添加值的方式来增添新的功能，但通过简单的对 `UserDefaults` 的包装却增加强代码的健壮性。当在获取和设置用户偏好时，你的头脑中应该马上要想到提供错误校验。我想实现一个关于用户偏好的功能，设置密码的可见性。看到下面我的代码。所有的内容都在 `PreferencesSingleton.swift` 文件：
+我们从单例模式的定义开始，我想向你介绍清楚在我的应用中，为什么使用一个单例来封装 `UserDefaults`。我们可以通过添加值的方式来增添新的功能，但通过简单的对 `UserDefaults` 的包装却增加强代码的健壮性。当在获取和设置用户偏好时，你的头脑中应该马上要想到提供错误校验。我想实现一个关于用户偏好的功能，设置密码的可见性。看到下面的代码。所有的内容都在 `PreferencesSingleton.swift` 文件：
 
 ```swift
 import Foundation
@@ -349,21 +336,14 @@ class UserPreferences {
     } // end enum Preferences
     	
     // 创建一个静态、常量实例并初始化
-    // Create a static, constant instance of
-    // the enclosing class (itself) and initialize.
     static let shared = UserPreferences()
     
-    // 这是我们保护的一个私有的、共享资源
-    // This is the private, shared resource we're protecting.
+    // 这是一个私有的，被保护的共享资源
     private let userPreferences: UserDefaults
     
-    // 一个只能蓓蕾本身调用的私有的初始化方法
-    // A private initializer can only be called by
-    // this class itself.
+    // 只有类本身能调用的一个私有初始化方法
     private init() {
         // 获取 iOS 共享单例。我们在这里包装它
-        // Get the iOS shared singleton. We're
-        // wrapping it here.
         userPreferences = UserDefaults.standard
  
     }
@@ -402,7 +382,7 @@ class UserPreferences {
         
     }
 ```
-如果你看到我的 `ViewController.swift` 文件，你将会看到访问并使用结构良好单例是多么的容易：
+来到 `ViewController.swift` 文件，你将会看到，访问并使用结构良好的单例是多么的容易：
 ```swift
 import UIKit
  
@@ -414,6 +394,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+	// 在加载视图后（一般通过 nib 来进行）进行其它的额外设置。
         
         if UserPreferences.shared.isPasswordVisible() {
             passwordVisibleSwitch.isOn = true
@@ -424,11 +405,11 @@ class ViewController: UIViewController {
             passwordTextField.isSecureTextEntry = true
         }
         
-    } // end func viewDidLoad
+    } 
  
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+	// 可以销毁那些能被重新创建的资源
     }
     
     @IBAction func passwordVisibleSwitched(_ sender: Any) {
@@ -444,11 +425,11 @@ class ViewController: UIViewController {
             UserPreferences.shared.setPasswordVisibity(false)
         }
         
-    } // end func passwordVisibleSwitched
+    } 
 ```
 
 ## 结论
 
-一些评论家声称设计模式在一些编程语言中的使用缺乏证明，在代码中看到反复出现的设计模式是很槽糕的一件事情。我不同意这个说法。期望一个编程语言对*每件事情*的处理都有对应的特性是很愚蠢的。这很可能会导致一个臃肿的语言，像 C++ 一样正在变得更大、更复杂，以致很难被学习、使用和维护。认识并解决反复出现的问题是人的一种积极性格并且这确实值得我们强化。有一些事情，人们尝试并失败了很多次，通过学习总结前人的经验，在对一些相同的问题进行抽象和标准化，并且让这些好的解决方案散播出去方面，设计模式成为了一个成功案例。
+一些评论家声称设计模式在一些编程语言中的使用缺乏证明，在代码中看到反复出现的设计模式是很槽糕的一件事情。我不同意这个说法。期望一个编程语言对*每件事情*的处理都有其对应的特性是很愚蠢的。这很可能会导致一个臃肿的语言，像 C++ 一样正在变得更大、更复杂，以致很难被学习、使用与维护。认识并解决反复出现的问题是人的一种积极性格并且这确实值得我们强化。有一些事情，人们尝试并失败了很多次，通过学习总结前人的经验，在对一些相同的问题进行抽象和标准化，并且让这些好的解决方案散播出去方面，设计模式成为了一个成功案例。
 
 像 Swift 这样的简单紧凑的语言和设计模式这样一系列最佳实践的组合是一个理想中的、令人开心的方法。风格统一的代码一般来说都具有较好的可读性和易维护性。不过也要记住，在数以百万的开发者不断地讨论和分享下，设计模式也在不断的发展变化，这些美好事物被万维网联系在一起，这种开发人员的讨论持续的引领着集体智慧的自我调节。
