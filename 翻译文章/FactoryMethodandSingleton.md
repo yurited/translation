@@ -30,7 +30,7 @@ permalink: design-pattern-creational
 
 还记得吗，之前我在 AppCoda 介绍过 [“Model-View-ViewModel” or “MVVM”](https://www.appcoda.com/mvvm-vs-mvc/) 与非常著名的 [“Model-View-Controller” or “MVC”](https://www.appcoda.com/mvvm-vs-mvc/) 设计模式，这两个模式深受 Apple 和 iOS 开发者喜爱。
 
-这两种模式一般用在*整个应用*中。MVVM 和 MVC 是*架构（architectural）*设计模式，用于将 UI 从应用数据代码和展示逻辑中分离出来（如：MVC），以及将应用的数据从核心数据流程或者业务逻辑中分离（如：MVVM）。 GoF 设计模式本质上更具体，旨在解决基于程序代码中的具体问题。在一个应用里面你也许会用到 3 种、7 种或者 12 种 GoF 设计模式。除了*迭代器*例子，代理模式也是设计模式中另一个很好的例子， 尽管它不在 GoF 列出的 23 种设计模式中。
+这两种模式一般用在*整个应用*中。MVVM 和 MVC 是*架构（architectural）*设计模式，用于将 UI 从应用数据代码和展示逻辑中分离出来（如：MVC），以及将应用的数据从核心数据流程或者业务逻辑中分离（如：MVVM）。 GoF 设计模式本质上更具体，旨在解决基于程序代码中的具体问题。在一个应用里面你也许会用到 3 种、7 种或者 12 种 GoF 设计模式。除了*迭代器*例子，代理模式也是设计模式中另一个很好的例子， 尽管它在 GoF 列出的 23 种设计模式中并未被具体介绍。
 
 当 GoF 的这本书作为大量开发者的圣经而存在时，也不乏有它的诋毁者，我们在文章的结尾处讨论这个话题。
 
