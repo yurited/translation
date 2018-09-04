@@ -20,7 +20,7 @@ permalink: design-pattern-creational
 
 软件开发一直在努力的模拟真实世界的场景，希望通过创建工具的方式来加强人类的场景体验。财富管理工具，例如：像亚马逊或者 eBay 这样的银行 App 和购物辅助工具，相比十年前确实给消费者带来了更大的生活便利。回顾我们的发展路程。当应用变的更加强大易用时，应用的开发也已变的[**更加复杂**](http://iosbrain.com/blog/2018/04/29/controlling-chaos-why-you-should-care-about-adding-error-checking-to-your-ios-apps/#chaos)。
 
-所以开发者也开创出了一系列最佳实践。一些很流行的名字，像[**面向对象编程**](http://iosbrain.com/blog/2017/02/26/intro-to-object-oriented-principles-in-swift-3-via-a-message-box-class-hierarchy/)，[**面向协议编程**](https://www.appcoda.com/pop-vs-oop/)，（[**值语义 value semantics**](http://iosbrain.com/blog/2018/03/28/protocol-oriented-programming-in-swift-is-it-better-than-object-oriented-programming/#value_semantics)），（[**局部推断 local reasoning**](http://iosbrain.com/blog/2018/03/28/protocol-oriented-programming-in-swift-is-it-better-than-object-oriented-programming/#local_reasoning)）将大块代码分解成具有良好接口定义的小段代码（比如使用 [**Swift 的扩展**](http://iosbrain.com/blog/2017/01/28/swift-extensions-managing-complexity-improving-readability-extensibility-protocols-delegates-uicollectionview/)），以及 [**语法糖**](http://iosbrain.com/blog/2018/01/27/writing-expressive-meaningful-and-readable-code-in-swift-4/)。还有我没提及，但却是最重要的、值得重视的实践之一，设计模式的使用。
+所以开发者也开创出了一系列最佳实践。一些很流行的名字，像[**面向对象编程**](http://iosbrain.com/blog/2017/02/26/intro-to-object-oriented-principles-in-swift-3-via-a-message-box-class-hierarchy/)，[**面向协议编程**](https://www.appcoda.com/pop-vs-oop/)，[**值语义 （value semantics）**](http://iosbrain.com/blog/2018/03/28/protocol-oriented-programming-in-swift-is-it-better-than-object-oriented-programming/#value_semantics)，[**局部推断 （local reasoning）**](http://iosbrain.com/blog/2018/03/28/protocol-oriented-programming-in-swift-is-it-better-than-object-oriented-programming/#local_reasoning)将大块代码分解成具有良好接口定义的小段代码（比如使用 [**Swift 的扩展**](http://iosbrain.com/blog/2017/01/28/swift-extensions-managing-complexity-improving-readability-extensibility-protocols-delegates-uicollectionview/)），以及 [**语法糖**](http://iosbrain.com/blog/2018/01/27/writing-expressive-meaningful-and-readable-code-in-swift-4/)。还有我没提及，但却是最重要的、值得重视的实践之一，设计模式的使用。
 
 ## 设计模式
 
@@ -290,9 +290,9 @@ class UserPreferences {
 
 我在一些应用项目代码中看到 `UserDefaults` (或者之前的 `NSUserDefaults`) 使用起来没有任何的条理和原由。对于在用户偏好的每个键都写成了一个单引用。刚好我在代码中发现了一个 bug 我把“switch”拼写成了“swithc”，由于我使用了复制和粘贴，在我发现问题之前，我已经创建了不少“swithc”的实例。 如果其它团队在这个应用开始或者继续使用“switch”作为一个键来存储对应的值呢？应用是无法正确保存当前的状态。 我们希望通过使用 `UserDefaults` 的 strings 键来映射对应的值的方式来保存应用的状态。这是一个描述值的好方式。这样可以让值的意思明确、简单易懂，和容易记忆。但这也不是说通过 strings 来描述是没有任何风险。
 
-在我讨论的“swithc”与“switch”中。你们大多数人可能了解到了被称为 “stringly-typed” 代码, 当用 strings 作为唯一的标识符会带来细微的变化，最终会因为拼写错误带来灾难性的错误。Swift 编译器不能帮助我们避免 “stringly-typed” 错误。
+在我讨论的“swithc”与“switch”中。你们大多数人可能了解到了被称为“stringly-typed”代码, 当用 strings 作为唯一的标识符会带来细微的变化，最终会因为拼写错误带来灾难性的错误。Swift 编译器不能帮助我们避免“stringly-typed”错误。
 
-解决 “stringly-typed” 错误方式是在 Swift `enum`  格式中使用 string 常量。不仅可以让我们来标准化字符串的使用，而且可以让我们以分类的方式组织它们。让我们再次回到 `PreferencesSingleton.swift`:
+解决“stringly-typed”错误方式是在 Swift `enum`  格式中使用 string 常量。不仅可以让我们来标准化字符串的使用，而且可以让我们以分类的方式组织它们。让我们再次回到 `PreferencesSingleton.swift`:
 ```swift
 class UserPreferences {
     
