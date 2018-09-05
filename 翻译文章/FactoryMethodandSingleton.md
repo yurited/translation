@@ -18,7 +18,7 @@ permalink: design-pattern-creational
 
 大概有23种经典的设计模式被 “Gang of Four” (“GoF”) Erich Gamma，Richard Helm，Ralph Johonson，和 John Vlissides 整理在他们“[设计模式：面向对象软件设计复用的基本原理](https://smile.amazon.com/Design-Patterns-Object-Oriented-Addison-Wesley-Professional-ebook/dp/B000SEIBB8/)” 的重要著作里。本文会介绍 GoF 总结的两种创建型（creational）模式：*工厂方法和单例方法*。
 
-软件开发一直在努力的模拟真实世界的场景，希望通过创建工具的方式来加强人类的场景体验。财富管理工具，例如：像亚马逊或者 eBay 这样的银行 App 和购物辅助工具，相比十年前确实给消费者带来了更大的生活便利。回顾我们的发展路程。当应用变的更加强大易用时，应用的开发也已变的[**更加复杂**](http://iosbrain.com/blog/2018/04/29/controlling-chaos-why-you-should-care-about-adding-error-checking-to-your-ios-apps/#chaos)。
+软件开发一直在努力地模拟真实世界的场景，希望通过创建工具的方式来加强人类的场景体验。财富管理工具，例如：像亚马逊或者 eBay 这样的银行 App 和购物辅助工具，相比十年前确实给消费者带来了更大的生活便利。回顾我们的发展路程。当应用变的更加强大易用时，应用的开发也已变的[**更加复杂**](http://iosbrain.com/blog/2018/04/29/controlling-chaos-why-you-should-care-about-adding-error-checking-to-your-ios-apps/#chaos)。
 
 所以开发者也开创出了一系列最佳实践。一些很流行的名字，像[**面向对象编程**](http://iosbrain.com/blog/2017/02/26/intro-to-object-oriented-principles-in-swift-3-via-a-message-box-class-hierarchy/)，[**面向协议编程**](https://www.appcoda.com/pop-vs-oop/)，[**值语义 （value semantics）**](http://iosbrain.com/blog/2018/03/28/protocol-oriented-programming-in-swift-is-it-better-than-object-oriented-programming/#value_semantics)，[**局部推断 （local reasoning）**](http://iosbrain.com/blog/2018/03/28/protocol-oriented-programming-in-swift-is-it-better-than-object-oriented-programming/#local_reasoning)将大块代码分解成具有良好接口定义的小段代码（比如使用 [**Swift 的扩展**](http://iosbrain.com/blog/2017/01/28/swift-extensions-managing-complexity-improving-readability-extensibility-protocols-delegates-uicollectionview/)），以及 [**语法糖**](http://iosbrain.com/blog/2018/01/27/writing-expressive-meaningful-and-readable-code-in-swift-4/)。还有我没提及，但却是最重要的、值得重视的实践之一，设计模式的使用。
 
