@@ -16,7 +16,7 @@ permalink: design-pattern-creational
 校对=
 定稿=
 
-大概有23种经典的设计模式被 “Gang of Four” (“GoF”) Erich Gamma，Richard Helm，Ralph Johonson，和 John Vlissides 整理在他们“[设计模式：面向对象软件设计复用的基本原理](https://smile.amazon.com/Design-Patterns-Object-Oriented-Addison-Wesley-Professional-ebook/dp/B000SEIBB8/)” 的重要著作里。本文会介绍 GoF 总结的两种创建型（creational）模式：*工厂方法和单例方法*。
+“Gang of Four” (“GoF”) Erich Gamma，Richard Helm，Ralph Johonson，和 John Vlissides 在他们“[设计模式：面向对象软件设计复用的基本原理](https://smile.amazon.com/Design-Patterns-Object-Oriented-Addison-Wesley-Professional-ebook/dp/B000SEIBB8/)” 的重要著作里整理了大概 23 种经典的设计模式 。本文会介绍 GoF 总结的两种创建型（creational）模式：*工厂方法*和*单例方法*。
 
 软件开发一直在努力地模拟真实世界的场景，希望通过创建工具的方式来加强人类的场景体验。财富管理工具，例如：像亚马逊或者 eBay 这样的银行 App 和购物辅助工具，相比十年前确实给消费者带来了更大的生活便利。回顾我们的发展路程。当应用变的更加强大易用时，应用的开发也已变的[**更加复杂**](http://iosbrain.com/blog/2018/04/29/controlling-chaos-why-you-should-care-about-adding-error-checking-to-your-ios-apps/#chaos)。
 
@@ -36,7 +36,7 @@ permalink: design-pattern-creational
 
 ## 设计模式的类别
 
-GoF 将 23 种设计模式整理分为 3 类，“创建型”、“结构型”和“行为型”。本教程讨论创建型模式类别中的两种（工厂模式与单例）。如同实例对象和类的实现，模式的作用是让复杂对象的创建变得简单、易于理解，易于维护，隐藏细节。
+GoF 将 23 种设计模式整理分为 3 类，“创建型”、“结构型”和“行为型”。本教程讨论创建型模式类别中的两种（工厂模式与单例）。如同实例对象和类的实现，模式的作用是让复杂对象的创建变得简单、易于理解、易于维护，隐藏细节。
 
 **隐藏复杂度（封装）**是聪明的程序员最主要的目标之一。例如，面向对象（OOP）类能提供非常复杂的，强大且成熟的函数而不需要知道任何关于类内部间的工作方式。在创建型模式中，开发者甚至不需要知道类的属性和方法，但如果需要，程序员可以看到其接口 - 在 Swift 中的协议中 - 或对那些感兴趣的类进行扩展。你会在我的第一个“工厂方法”的例子中明白我的意思。
 
