@@ -288,11 +288,11 @@ class UserPreferences {
 
 你也许会问，“为什么要通过包装另一个`UserDefaults` 单例的方式来创建一个单例？” 首先，我主要目的是要向你展示在 Swift 中创建和使用单例的最佳做法。 用户偏好是一个资源类型，应该有一个单一的入口。所以在这个例子中，很明显我们应该使用 `UserDefaults`。其次，想一下你曾多少次看到在应用中 `UserDefaults` 被滥用。
 
-我在一些应用项目代码中看到 `UserDefaults`(或者之前的 `NSUserDefaults`)使用起来没有任何的条理和原由。对于在用户偏好的每个键都写成了一个单引用。刚好我在代码中发现了一个 bug 我把“switch”拼写成了“swithc”，由于我使用了复制和粘贴，在我发现问题之前，我已经创建了不少“swithc”的实例。 如果其它团队在这个应用开始或者继续使用“switch”作为一个键来存储对应的值呢？应用是无法正确保存当前的状态。 我们希望通过使用 `UserDefaults` 的 strings 键来映射对应的值的方式来保存应用的状态。这是一个描述值的好方式。这样可以让值的意思明确、简单易懂，和容易记忆。但这也不是说通过 strings 来描述是没有任何风险。
+在一些项目应用代码中，我看到 `UserDefaults`(或者之前的 `NSUserDefaults`)的使用缺乏条理和原由。用户偏好对应的每个键都写成了一个单引用。刚才，我在代码中发现了一个 bug。我把“switch”拼写成了“swithc”，由于我对代码进行了复制和粘贴，在发现问题前，我已经创建了不少“swithc”的实例。 如果其他人在这个应用开始或者继续使用“switch”作为一个键来存储对应的值呢？应用的当前状态是无法被正确保存的。 通常我们希望通过使用 `UserDefaults` 的 strings 键来映射值的方式保存应用的状态。这是一个好的书写方式。这样可以让值的意思清晰明确、简单易懂，还便于记忆。但也不是说通过 strings 来描述是没有任何安全风险。
 
-在我讨论的“swithc”与“switch”中。你们大多数人可能了解到了被称为“stringly-typed”代码, 当用 strings 作为唯一的标识符会带来细微的变化，最终会因为拼写错误带来灾难性的错误。Swift 编译器不能帮助我们避免“stringly-typed”错误。
+在我讨论的“swithc”与“switch”中。大多数人可能已经明白了被称为“stringly-typed”的那些代码, 当用 strings 作为唯一的标识符会产生细微的不同，最终会因为拼写错误带来灾难性的错误。Swift 编译器不能帮助我们避免“stringly-typed”这类的错误。
 
-解决“stringly-typed”错误方式是在 Swift `enum` 格式中使用 string 常量。不仅可以让我们来标准化字符串的使用，而且可以让我们以分类的方式组织它们。让我们再次回到 `PreferencesSingleton.swift`:
+解决“stringly-typed”错误的方式在于把 Swift `enum` 设置成 string 类型。这么做不仅可以让我们标准化字符串的使用，而且可让我们对其进行分类管理。让我们再次回到 `PreferencesSingleton.swift`:
 ```swift
 class UserPreferences {
     
@@ -312,7 +312,7 @@ class UserPreferences {
  
     } // end enum Preferences
 ```
-我们从单例模式的定义开始，我想向你介绍清楚在我的应用中，为什么使用一个单例来封装 `UserDefaults`。我们可以通过添加值的方式来增添新的功能，但通过简单的对 `UserDefaults` 的包装却增加强代码的健壮性。当在获取和设置用户偏好时，你的头脑中应该马上要想到进行错误校验。我想实现一个关于用户偏好的功能，设置密码的可见性。看到下面的代码。所有的内容都在 `PreferencesSingleton.swift` 文件：
+我们从单例模式的定义开始，向你介绍清楚在我的应用中，为什么使用一个单例来封装 `UserDefaults`。我们可以通过添加值的方式来增添新的功能，但通过简单的对 `UserDefaults` 的包装却能增强代码的健壮性。在获取和设置用户偏好时，你脑中应该要马上想到进行错误校验。在这里，我想实现一个关于用户偏好的功能，设置密码的可见性。看到下面的代码。内容都在 `PreferencesSingleton.swift` 文件：
 
 ```swift
 import Foundation
@@ -382,7 +382,7 @@ class UserPreferences {
         
     }
 ```
-来到 `ViewController.swift` 文件，你将会看到，访问并使用结构良好的单例是多么的容易：
+来到 `ViewController.swift` 文件，你将看到，访问并使用结构良好的单例是多么的容易：
 ```swift
 import UIKit
  
