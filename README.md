@@ -1,28 +1,13 @@
 
-# 流程
+# 不同角色操作流程
 
-### 文章录入流程
+#### [文章收集](https://github.com/SwiftGGTeam/translation/blob/master/%E7%BF%BB%E8%AF%91%E6%B5%81%E7%A8%8B%E8%AF%A6%E7%BB%86%E8%AF%B4%E6%98%8E.md#%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86)
 
-1. 新建 issue，标题中最好带上【短】【中】【长】标签。
-2. 附上原文章链接（最好原文内容也附上）。
+#### [翻译](https://github.com/SwiftGGTeam/translation/blob/master/%E7%BF%BB%E8%AF%91%E6%B5%81%E7%A8%8B%E8%AF%A6%E7%BB%86%E8%AF%B4%E6%98%8E.md#%E7%BF%BB%E8%AF%91)
 
-### 译者翻译流程
+#### [校对](https://github.com/SwiftGGTeam/translation/blob/master/%E7%BF%BB%E8%AF%91%E6%B5%81%E7%A8%8B%E8%AF%A6%E7%BB%86%E8%AF%B4%E6%98%8E.md#%E6%A0%A1%E5%AF%B9)
 
-1. 选择 issue，将右边的 Assignees 修改为自己，Labels 修改为 『翻译中』。
-2. 翻译完成后将译文直接 Comment 在 issue 中，将右边的 Labels 修改为『待校对』。
-
-### 校对者流程
-
-
-1. 进入相关 issue，在 comment 中加入校对评论。
-2. 第一人校对后将 Labels 改为『已初步校对』
-3. 超过两人评论后，视为校对完成，最后一个校对者将 Labels 改为『待发布』。
-
-### 发布者流程
-
-1. 进入相关 issue，整理下最新的文章内容。
-2. 发布文章并 close issue。
-
+#### [发布](https://github.com/SwiftGGTeam/translation/blob/master/%E7%BF%BB%E8%AF%91%E6%B5%81%E7%A8%8B%E8%AF%A6%E7%BB%86%E8%AF%B4%E6%98%8E.md#%E5%8F%91%E5%B8%83)
 
 # 分工
 
@@ -44,6 +29,7 @@ BigNerdCoding
 
 ### 相关文档
 
+- [翻译流程说明](https://github.com/SwiftGGTeam/translation/blob/master/%E7%BF%BB%E8%AF%91%E6%B5%81%E7%A8%8B%E8%AF%A6%E7%BB%86%E8%AF%B4%E6%98%8E.md#%E7%BF%BB%E8%AF%91)
 - 书写规范及Demo：https://github.com/SwiftGGTeam/GGHexo/tree/master/
 - Cee 翻译指南（需要翻墙）：https://speakerdeck.com/cee/guan-yu-pai-ban
 
@@ -85,8 +71,9 @@ BigNerdCoding
 
 ### 原则
 
-- 非常明确的在原 comment 直接 update
-- 不明确的增加一个 comment
+- 确保翻译内容正确
+- 确保排版格式正确
+- 翻译内容通顺、易读
 
 ### owner
 
@@ -133,7 +120,7 @@ BigNerdCoding
 - swift evolution
 - 斯坦福 iOS 教程翻译
 
-## 定稿发布
+## 发布
 
 ### 名单
 
