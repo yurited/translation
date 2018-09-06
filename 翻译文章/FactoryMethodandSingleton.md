@@ -8,7 +8,7 @@ tags: [Design Patterns]
 categories: [Swift]
 permalink: design-pattern-creational
 
-- - -
+---
 原文链接=https://www.appcoda.com/design-pattern-creational/
 作者=Andrew Jaffee
 原文日期=2018-07-24
