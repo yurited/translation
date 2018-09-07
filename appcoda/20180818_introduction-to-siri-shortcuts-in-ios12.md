@@ -22,7 +22,7 @@ description: 本文介绍了基于 iOS12 和 XCode10 创建 NSUserActivity 将�
 
 ![](https://appcoda.com/wp-content/uploads/2018/07/workflow-app.jpg)
 
-> Shortcuts 让你可以将应用程序的功能暴露给 Siri。
+> `Shortcuts` 让你可以将应用程序的功能暴露给 `Siri`。
 
 Apple 全新的 `Siri Shortcuts` 大量借鉴了 `Workflow`。但是区分语音 Shortcuts 短句与 Shortcuts 应用本身还是很重要的。Shortcuts 应用允许用户基于语音短句创建常见的日常任务，`Siri Shortcuts` 使开发人员能够在自己的原生应用程序中扩展 Siri 的功能。
 
@@ -37,38 +37,36 @@ Apple 全新的 `Siri Shortcuts` 大量借鉴了 `Workflow`。但是区分语音
 
 # 在新项目中定义你的 Shortcuts
 
-创建任意新项目时，花一些时间来建立基本的项目结构是很重要的。首先，请确保你拥有 `iOS 12`，`macOS Mojave`  和 `Xcode 10` 的最新开发人员预览版。如果你没有这些工具，则无法运行本教程中的代码，因为 `Siri Shortcuts` 是 `Xcode 10` 和 `iOS 12 beta` 中引入的新 API。如果你是注册的苹果开发者，你可以从[开发者网站](https://developer.apple.com/)下载这些内容。
+当我们在创建任意新项目时，花一些时间来建立基本的项目结构是很重要的。首先我们需要有 `iOS 12`，`macOS Mojave`  和 `Xcode 10` 的最新开发人员预览版。如果你还没有安装这些，你可以从[开发者网站](https://developer.apple.com/)下载安装。
 
-启动 Xcode 并创建一个新的单一视图应用程序，键入名称 SiriShortcuts（或你想要的任何名称）。我们将 `com.appcoda` 作为组织标识符，你也可以随意将其更改为你自己的组织标识符。完成后，单击“创建”以加载 Xcode 项目。
+在 `Xcode` 创建一个名为 SiriShortcuts 的应用程序。将组织 ID 设置为 com.appcoda，这些后期可以按需修改。
 
 ![](https://appcoda.com/wp-content/uploads/2018/07/2-1240x793.png)
 
-首先，导航到 Xcode 项目的 `Project Settings` 部分，选择 `Capabilities`，并向下滚动，确保启用 Siri，如下所示。这将允许我们在应用程序中使用 Siri SDK，并将 `.entitlements` 文件添加到项目中。
+如下所示，在项目的 `Project Settings` 中选择 `Capabilities`，启用 `Siri`。接下来我们就可以在应用程序中使用 `Siri SDK`，并将 `.entitlements` 文件添加到项目中。。
 
 ![](https://appcoda.com/wp-content/uploads/2018/07/4-1240x793.png)
 
-启用 `S​​iri` 后，Xcode 会将 `.entitlements` 文件添加到你的项目中。接下来，我们将导航到项目构建设置的 General 选项卡，滚动到底部，然后选择 `Linked Frameworks` 和 `Libraries`。确保单击此处的 + 按钮添加框架。搜索 `Intents.framework`，选择后，按“添加”按钮。这将允许我们在应用程序中使用新的 `Intents` 框架。
+启用 `S​​iri` 后，`Xcode` 会将 `.entitlements` 文件添加到项目里。然后将 `Intents.framework` 这个全新的框架加入到项目中。
 
 ![](https://appcoda.com/wp-content/uploads/2018/07/7-1240x793.png)
 
-最后，导航到 `Info.plist` 文件并添加带有键值对的 `NSUserActivityTypes` 字典。该项的首选值应包括你的包标识符以及 “sayHi” 之类的附加值。
+最后，在 `Info.plist` 中添加 `NSUserActivityTypes`。该项的值应该包含你的 `Bundle ID` 以及唤醒 `Siri` 的行为 ，例如 “sayHi” 。
 
 ![](https://appcoda.com/wp-content/uploads/2018/07/8-1240x775.png)
 
-# 捐献 Shortcut
-> 要创建 `Shortcut`，首先要定义 `Shortcut` 然后再捐献 `Shortcut`
+# 集成 Shortcut
+> 要创建一个 `Shortcut` 应用，我们首先配置 `Shortcut`，然后将 `Shortcut` 集成到项目中
 
-现在我们的项目都已经定义了 `Shortcut`，现在是时候开始编码了！为了通过 `Siri` 向我们的用户提供我们的 `Shortcut`，我们利用了一个名为`“捐献 Shortcut”`的流程。
+现在我们的项目已经完成了所有 `Shortcut` 的配置工作，是时候将 `Shortcut` 集成到项目中了。
 
-根据 Apple 官方开发者文档，
+根据 Apple 开发者文档，
 
-> 每次用户在你的应用中执行操作时，你都应该捐献一个 `Shortcut`。例如，如果用户可以使用你的应用从餐厅订购汤，请在用户下订单后为订单汤操作捐献 `Shortcut`。不要为用户未在你的应用中完成的操作捐献；如果用户从未下过汤的订单，则不应该为订单汤操作捐献 `Shortcut`。
+> 每次用户在你的应用中执行操作时，你都应该进行一次 `Shortcut` 集成。例如，用户可以使用你的应用从餐厅订购汤，请在用户下订单后为支付操作进行 `Shortcut` 集成。如果用户未在你的应用中执行操作，则不需要进行集成操作。
 
-显然，捐赠只应在提供有意义的用例时使用，并且可以增强应用程序的整体功能。
+显然，只有在提供有意义的用例时我们才需要集成 `Shortcut`，从而增强应用程序的整体功能。
 
-好的，回到编码！
-
-前往 `ViewController.swift` 文件。在 `viewDidLoad` 方法之后，创建一个名为 `setupIntents` 的新方法。在此方法中，我们将包含我们的 `Siri Shortcuts` 代码。
+回到代码中，首先我们前往 `ViewController.swift` 文件。在 `viewDidLoad` 方法之后，创建一个名为 `setupIntents` 的新方法。在此方法中，实现我们的 `Siri Shortcuts` 代码。
 
 ```
 func setupIntents() {
@@ -83,22 +81,22 @@ func setupIntents() {
     }
 ```
 
-好的，让我们来看看这段代码中发生了什么。
+让我们来看看这段代码做了什么。
 
-* 在第一行，我们创建了 `NSUserActivity` 实例并将 `activityType` 参数分配给我们在 `Info.plist` 文件中定义的标识符。
+* 第一行，我们创建了 `NSUserActivity` 实例并将我们在 `Info.plist` 文件中定义的标识符赋值给  `activityType`。
 
-* 在第二行，我们定义了 `Activity` 的标题（会显示在设置和 `Spotlight` 搜索中。如果你对 `NSUserActivity` 以及 `spotlight` 搜索索引的工作方式不是很熟悉，我建议你阅读我们关于这个主题的其他教程。）
+* 第二行，我们定义了 `Activity` 的标题（会应用在设置中心和 `Spotlight` 的搜索中。如果你对 `NSUserActivity` 以及 `spotlight 搜索`索引的工作方式不是很熟悉，我建议你阅读我们关于这个主题的其他教程。）
 
-* 在第三行，我们添加了一个 `userInfo` 字典。根据 Apple 的说法， userInfo 字典包含了在另一台设备上继续活动所需的特定于应用程序的状态信息。
+* 第三行，我们添加了一个 `userInfo` 字典。根据 Apple 的说法， `userInfo` 字典包含了在另一台设备上继续活动所需的与应用程序相关的状态信息。
 
-* 下一步，我们设置 `.isEligibleForSearch` 参数为 `true` 然后在下一行启用 `isEligibleForPrediction`。这两个属性允许 iOS 在设备上搜索和建议我们的 `NSUserActivity`。
+* 下一步，我们设置 `.isEligibleForSearch` 参数为 `true` 然后在下一行启用 `isEligibleForPrediction`。这两个属性允许 `iOS` 在设备上为我们的 `NSUserActivity` 提供搜索和建议。
 
-* 接下来，我们将 `persistentIdentifier` 属性设置为 `NSUserActivityPersistentIdentifier` 的实例，并将`rawValue` 属性分配给之前的标识符。
+* 接下来，我们将 `persistentIdentifier` 属性设置为 `NSUserActivityPersistentIdentifier` 的实例，此实例用与第一行相同的标识符进行构造。
 
-* 最后，我们将此视图的 `userActivity` 属性分配给我们刚刚创建的 `Activity`，并调用 `becomeCurrent()` 方法来激活我们的 `Activity`。
+* 最后，我们将上面创建的 `activity` 实例赋值给视图的 `userActivity` 属性，并调用 `becomeCurrent()` 方法来激活我们的 `Activity`。
 
 
-创建另一个名为 `sayHi()` 的方法并粘贴以下代码。此代码设置一个 `UIAlertController` 以显示消息。
+我们再创建另一个名为 `sayHi()` 的方法并粘贴以下代码。此代码创建一个 `UIAlertController` 以显示消息。
 
 ```
 public func sayHi() {
@@ -108,11 +106,11 @@ public func sayHi() {
     }
 ```
 
-虽然上述方法非常基础，但它足以说明 `Siri Shortcuts` 的使用方法。重要的是要注意这是一个公共函数，因为我们需要在视图控制器的范围之外使用它。
+上述方法很简单，主要用于说明 `Siri Shortcuts` 是如何工作的。另外需要注意这是一个 `public`函数 ，因为我们需要在视图控制器的作用域之外使用它。
 
 # 公开 Activity
 
-现在你已经在 `ViewController.swift` 设置了基本功能，切换到 `AppDelegate.swift` 文件并添加 `application(_:continueUserActivity:restorationHandler) ` 方法，如下所示。
+现在，你已经在 `ViewController.swift` 设置了基本功能，切换到 `AppDelegate.swift` 文件并添加 `application(_:continueUserActivity:restorationHandler) ` 方法，如下所示。
 
 ```
 func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
@@ -122,11 +120,11 @@ func application(_ application: UIApplication, continue userActivity: NSUserActi
 }
 ```
 
-上述代码将我们新创建的 `Activity` 公开在应用委托方法中并允许 `Siri` 对此 `Activity` 进行操作以启动应用（如果未启动）。 
+上述代码将我们新创建的 `Activity` 公开在应用委托方法中并允许 `Siri` 对此 `Activity` 进行操作唤起应用。
 
-好的，现在让我们试试看！导航到“设置”应用并选择 `Siri`。你应该看到一个名为“Say Hi”的新快捷方式。单击 + 按钮添加它，然后按照屏幕上的提示创建自定义语音短语以调用此快捷方式。
+现在让我们试试看！导航到“设置”应用并选择 `Siri`。你应该看到一个名为”Say Hi”的新快捷方式。单击 + 按钮添加它，然后按照屏幕上的提示创建自定义语音短语以创建此快捷方式。
 
-一旦你完成，唤起 `Siri` 并说出你的短语！
+现在你可以唤起 `Siri` 并说出你的短语，体验 `Shortcut`！
 
 ![](https://appcoda.com/wp-content/uploads/2018/07/i-1.png)
 
@@ -140,5 +138,5 @@ func application(_ application: UIApplication, continue userActivity: NSUserActi
 
 # 完结
 
-正如你所见，在项目中使用 `NSUserActivity` 可以很容易地发挥 `Siri Shortcuts` 的强大功能。在本教程中,我创建了一个基础的应用你可以将这些技术应用到你自己的应用中。正如你所见，这里的可能性是无穷无尽的，之后开发者们会不断以创造性和独特的方式利用这项新技术。
+正如你所见，在项目中使用 `NSUserActivity` 可以很容易地实现 `Siri Shortcuts` 的强大功能。在本教程中,我创建了一个基础的应用，同样的你也可以将这些技术应用到你自己的应用中。`Siri Shortcuts` 的使用场景还有很多，相信开发者们会以更创新和独特的方式来使用这项新技术。
 
