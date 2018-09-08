@@ -37,35 +37,21 @@ BigNerdCoding
 
 |群ID|微博|个站|Github|
 |---- |---- |---- |---- |
-| BigNerdCoding |[BigNerdCoding](https://weibo.com/1314ddml)|[BigNerdCoding](https://bignerdcoding.com)|[BigNerdCoding](https://github.com/BigNerdCoding)|
-|森尼羊|[Sunnyyoung咩](https://weibo.com/34992577)|[Sunnyyoung](https://www.sunnyyoung.net)|[Sunnyyoung](https://github.com/Sunnyyoung)|
-|Darren||||
-|jojo|[Jojotov](https://weibo.com/dingtongzhou/profile?rightmod=1&wvr=6&mod=personinfo)|[JOJOTOV](https://dingtz.com)|[jojotov](https://github.com/jojotov)|
-|imiem|[imiem](https://weibo.com/u/3822885844?is_all=1)|[imiem](https://imiem.github.io/)|[imiem](https://github.com/imiem)|
-|\_ixxichai\_||||
-|Tuccuay||||
-| ennisk ||||
-| focus |[叫我丁丁就好](https://weibo.com/u/2510419843/home)|暂时没有，是真的懒...|[Pancf](https://github.com/Pancf)|
-| ennisk |[ennisk](https://weibo.com/u/1771329710)|||
-| focus ||||
+| BigNerdCoding | [BigNerdCoding](https://weibo.com/1314ddml) | [BigNerdCoding](https://bignerdcoding.com)|[BigNerdCoding](https://github.com/BigNerdCoding) |
+|森尼羊|[Sunnyyoung咩](https://weibo.com/34992577) | [Sunnyyoung](https://www.sunnyyoung.net)|[Sunnyyoung](https://github.com/Sunnyyoung) |
+|Darren ||| [DarrenChen123](https://github.com/DarrenChen123) |
+|jojo | [Jojotov](https://weibo.com/dingtongzhou/profile?rightmod=1&wvr=6&mod=personinfo)|[JOJOTOV](https://dingtz.com)|[jojotov](https://github.com/jojotov) |
 | Hale |[Hale0101](https://weibo.com/p/1005053233770040)|[Hale's Blog](http://wuqiuhao.github.io/)|[Hale](https://github.com/wuqiuhao)|
-| 灰s |[灰s](https://weibo.com/u/2159669295)|[灰s](https://juejin.im/user/5862fa678d6d810065fe0efd)|[灰s](https://github.com/dzyding)|
-| Lefe_x |[Lefe_x](https://weibo.com/u/5953150140)|[LefeWork](https://github.com/lefex/LefexWork)|[Lefex](https://github.com/lefex)|
-| MaxXD |[MaxXD不能使用](https://weibo.com/u/5029986118)|[认知即事实](http://robin4han.github.io/)|[dearbojack](https://github.com/dearbojack)|
-| muhlenXi ||||
-| √3 ||||
-| 微信的“龙” ||||
-| 木瓜先森 |[p_pizzy](https://weibo.com/u/2705025465) | 暂时没有, 我马上去建...简书我就不传了, 大家懂| [chuckern](https://github.com/chuckern)|
-| LE ||||
-| 李凯 ||||
-| Damonwong ||||
-| 阳仔 |[一只羊的北京](https://weibo.com/u/1967612625/home?wvr=5&lf=reg)|[Sheep's Blog](https://yanggao1991.github.io)|[shift_sheep](https://github.com/YangGao1991)|
-| Khala-wan||[Khala-Wan`](http://khala-wan.com)|[Khala-wan](https://github.com/Khala-wan)|
-| 小袋子   | [小袋子](https://weibo.com/chunai520/home?wvr=5&lf=reg) | [Daizi](https://www.daizi.me/)    | [小袋子](https://github.com/lin493369)  |
-| muhlenXi | [muhlenXi](https://weibo.com/523545319)                 | [muhlenXi](http:www.muhlenxi.com) | [muhlenXi](https://github.com/muhlenXi) |
-|  大罗  ||||
-
-
+| 灰s | [灰s](https://weibo.com/u/2159669295)|[灰s](https://juejin.im/user/5862fa678d6d810065fe0efd)|[灰s](https://github.com/dzyding) |
+| MaxXD | [MaxXD不能使用](https://weibo.com/u/5029986118)|[认知即事实](http://robin4han.github.io/)|[dearbojack](https://github.com/dearbojack) |
+| Damonwong ||| [Damonvvong](https://github.com/Damonvvong) |
+| 阳仔 | [一只羊的北京](https://weibo.com/u/1967612625/home?wvr=5&lf=reg)|[Sheep's Blog](https://yanggao1991.github.io)|[shift_sheep](https://github.com/YangGao1991) |
+| Khala-wan||[Khala-Wan`](http://khala-wan.com)|[Khala-wan](https://github.com/Khala-wan) |
+| 小袋子 | [小袋子](https://weibo.com/chunai520/home?wvr=5&lf=reg) | [Daizi](https://www.daizi.me/) | [小袋子](https://github.com/lin493369)  |
+| muhlenXi | [muhlenXi](https://weibo.com/523545319) | [muhlenXi](http:www.muhlenxi.com) | [muhlenXi](https://github.com/muhlenXi) |
+|  大罗  ||| [Adolf-L](https://github.com/Adolf-L) |
+|mobilefellow | || [mobilefellow](https://github.com/mobilefellow) |
+| rsenjoyer | | | [rsenjoyer](https://github.com/rsenjoyer) |
 
 ## 校对
 
