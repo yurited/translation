@@ -1,5 +1,5 @@
 title: "Swift 中的属性"
-date: 2018-03-15
+date: 
 tags: [Swift]
 categories: [Thomas Hanning]
 permalink: properties-in-swift
@@ -88,14 +88,14 @@ class Circle {
  
 let circle = Circle()
  
-circle.radius = 10 //About to assign the new value 10.0
+circle.radius = 10 //设置新值 10.0
 ```
 
 在 `willSet` 中，你可以通过变量 `newValue` 来访问属性的新值。
 
 ## 计算属性
 
-与存储属性相反，计算属性没有存储值。因此在每次调用计算属性时，都要计算该值。在 `Circle` 类中，你可以将属性 `area` 定义为计算属性：
+与存储属性不同的是，计算属性并不会存储属性的值。因此在每次调用计算属性时，都要计算该值。在 `Circle` 类中，你可以将属性 `area` 定义为计算属性：
 
 ```swift
 class Circle {
@@ -121,6 +121,7 @@ circle.radius = 5
 
 print("area: \(circle.area)") //area: 78.5398163397448
 ```
+
 计算属性总是需要一个 `getter`。如果缺少 `setter`，则该属性称为只读属性。以下是一个很好的例子来说明 `setter`：
 
 ```swift
@@ -154,7 +155,7 @@ circle.area = 25
 print("radius: \(circle.radius)") //radius: 2.82094791773878
 ```
 
-现在在为 `area` 分配新值之后，`radius` 将会被计算出来。
+至此，每次对 area 设置了新的值之后，radius 都会被重新计算。
 
 ## 存储属性的初始化
 
@@ -230,7 +231,7 @@ TestString
 
 ## 类型属性
 
-类型属性是类的的一部分，但不是实例的一部分，也称为静态属性。存储属性和计算属性都可以使类型属性。为此你需要使用关键字 `static`：
+类型属性是类的一部分，但不是实例的一部分，也称为静态属性。存储属性和计算属性都可以是类型属性。为此你需要使用关键字 `static`：
 
 ```swift
 class TestClass {
@@ -242,11 +243,11 @@ class TestClass {
 print("\(TestClass.testString)") //TestString
 ```
 
-如你所见，它们使用类名而不是实例对象来访问它们。此外类型属性始终需要默认值，因为没有初始化方法。
+如你所见，它们使用类名而不是实例对象来访问它们。此外，由于类型属性没有初始化方法，它总是需要一个默认值。
 
 ## 具有私有 Setter 的公共属性
 
-正如我在[本文](http://www.thomashanning.com/public-properties-with-private-setters/)中更详细说明的那样，这是一种常见的情况，你不想提供一个公共的 getter，而是提供一个私有的 setter。这是封装的基本原则。通过这样只有类本身可以操作该属性，但仍可从类外部访问读取。
+正如我在[另一篇文章](http://www.thomashanning.com/public-properties-with-private-setters/)中更详细说明的那样，这是一种常见的情况，你不想提供一个公共的 setter，而是提供一个私有的 setter。这是封装的基本原则。通过这样，只有类本身可以操作该属性，但仍可从类外部访问读取它。
 
 来看看下面的例子：
 
@@ -278,7 +279,7 @@ let circle = Circle(radius: 5)
 print("area: \(circle.area)") //area: 78.5398163397448
 print("diameter: \(circle.diameter)") //diameter: 31.4159265358979
 
-circle.area = 10 //Compiler Error: cannot assign to property: 'area' setter is inaccessible
+circle.area = 10 //编译错误：无法对 'area' 属性进行赋值，因为 setter 方法不可访问
 ```
 
-这里的属性 `area` 和 `diameter` 可以从类的外部访问，但只能在类内部赋值。为此你必须使用 `public private(set)` 的组合。根据我的经验，这个特性在 iOS 开发中很少使用，但它对代码编写非常有用，能够避免更多 bugs 的情况。
+这里的属性 `area` 和 `diameter` 可以从类的外部访问，但只能在类内部赋值。为此你必须使用 `public private(set)` 的组合。根据本人的经验，这个特性在 iOS 开发中很少使用，但它对写出更少 bug 的代码很有帮助。
