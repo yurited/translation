@@ -245,7 +245,7 @@ print("\(TestClass.testString)") //TestString
 
 如你所见，它们使用类名而不是实例对象来访问它们。此外，由于类型属性没有初始化方法，它总是需要一个默认值。
 
-## 具有私有 Setter 的公共属性
+## 拥有私有 Setter 的公共属性
 
 正如我在 [另一篇文章](http://www.thomashanning.com/public-properties-with-private-setters/) 中介绍的那样，这是一种常见的情况，你不想提供一个公共的 setter，而是提供一个私有的 setter。这是封装的基本原则。这样只有类本身可以操作该属性，但仍可从类外部访问读取它。
 
