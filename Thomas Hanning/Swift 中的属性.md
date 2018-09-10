@@ -122,7 +122,7 @@ circle.radius = 5
 print("area: \(circle.area)") //area: 78.5398163397448
 ```
 
-计算属性总是需要一个 `getter`。如果缺少 `setter`，则该属性称为只读属性。以下是一个很好的例子来说明 `setter`：
+计算属性总是需要一个 `getter`。如果缺少 `setter`，则该属性被称为只读属性。下面这个例子很好地说明了 `setter` 的作用：
 
 ```swift
 import Foundation
