@@ -6,7 +6,7 @@ permalink: expanding-swifts-reach
 
 ---
 
-原文链接=<http://appventure.me/2018/05/03/expanding-swifts-reach/>
+原文链接=http://appventure.me/2018/05/03/expanding-swifts-reach/
 作者=terhechte
 原文日期=2018-05-03
 译者=
@@ -17,23 +17,23 @@ permalink: expanding-swifts-reach
 
 Swift 是一门优秀的语言，很好的处理了那些简单与复杂的问题。未来，它将会成为重要的编程语言之一。目前，Swift 或多或少受限在苹果开发领域（外加少量服务端 Swift 以及近期宣布的 [Swift 版本的 Tensorflow](https://www.tensorflow.org/community/swift)）。
 
->“ My goal for Swift has always been and still is total world domination. It’s a modest goal ”
+>“My goal for Swift has always been and still is total world domination. It’s a modest goal”
 >
->“ 我一直期待着 Swift 统治世界，这是一个谦虚的目标 ”
+>“我一直期待着 Swift 统治世界，这是一个谦虚的目标”
 >
 >- Chris Lattner
 
-随着 Swift 4.1 新的泛型特性和在[Swift 5 中即将稳定下来的 ABI](https://swift.org/abi-stability/) ，似乎 Swift 慢慢具备了跨出苹果开发领域的条件。我在本文会讨论一些问题，它们阻止了 Swift 广泛的应用，准确的讲，就像其它正在被解决的问题一样，社区开发者也可以解决这些问题。
+随着 Swift 4.1 新的泛型特性和在 [Swift 5 中即将稳定下来的 ABI](https://swift.org/abi-stability/) ，似乎 Swift 慢慢具备了跨出苹果开发领域的条件。我在本文会讨论一些问题，它们阻止了 Swift 广泛的应用，准确的讲，就像其它正在被解决的问题一样，社区开发者也可以解决这些问题。
 
 我会简单介绍 Swift 在这个领域的竞争力。就像 C++ 一样，其它编程语言也渴望成为一个扩平台的通用的语言。我们可以通过比较 Swift 和其他语言处理相同问题上的方式，来明白我们该如何改进 Swift。
 
 ### 系统包管理
 
-Swift 拥有一个非常健康的开源社区、拥有大量精彩，精心编写且实用的开发框架。但是，这些开发框架多为 iOS（macOS 相对少些）UI 库，这让 Swift 受限在这个开发领域。这里有很多 UI 动画库，UI 布局库、含有 UI 元素的框架、UI 协作库和 JSON 解析库。因为缺少 UIKit / AppKit，它们无法在 Linux 上运行。不过这里也有几个 Web 框架，像 [Vapor](https://vapor.codes/) 和 [Kitura](http://kitura.io/)，使 Swift 扩展到 Web 开发领域方面它们贡献卓越。
+Swift 拥有一个非常健康的开源社区，拥有大量精彩、精心编写且实用的开发框架。但是，这些开发框架多为 iOS（macOS 相对少些）UI 库，这让 Swift 受限在这个开发领域。这里有很多 UI 动画库，UI 布局库、含有 UI 元素的框架、UI 协作库和 JSON 解析库。因为缺少 UIKit / AppKit，它们无法在 Linux 上运行。不过这里也有几个 Web 框架，像 [Vapor](https://vapor.codes/) 和 [Kitura](http://kitura.io/)，使 Swift 扩展到 Web 开发领域方面它们贡献卓越。
 
-然而，与大众观点不同，在 Linux 平台上，很多公司不仅在 Web 服务端，也在的 Linux 的其它方面也做了大量的工作。 正如我们所见，有些编程语言提供了很多系统管理，管理员权限、以及开发工具和相关包。他们虽然对 iOS 或 macOS 应用开发没有意义，但是却对系统本身、Web 开发十分重要。比如，数据库权限、系统文件管理、进程管理、日志分析与收集、容器管理、部署工具、甚至区块链工具。
+然而，与大众观点不同，在 Linux 平台上，很多公司不仅在 Web 服务端，也在 Linux 的其它方面做了大量的工作。 正如我们所见，有些编程语言提供了很多系统管理，管理员权限、以及开发工具和相关包。他们虽然对 iOS 或 macOS 应用开发没有意义，但是却对系统本身、Web 开发十分重要。比如，数据库权限、系统文件管理、进程管理、日志分析与收集、容器管理、部署工具、甚至区块链工具。
 
-根据 Swift 4.1 的发布版本，在[Hacker News 有一个帖子讨论这门语言](https://news.ycombinator.com/item?id=16710895)。我完整通读多次后，觉得回复很有趣。让我感触最深的是下面的评论：
+根据 Swift 4.1 的发布版本，在 [Hacker News 有一个帖子讨论这门语言](https://news.ycombinator.com/item?id=16710895)。我完整通读多次后，觉得回复很有趣。让我感触最深的是下面的评论：
 
 >“ 相比 Go 和 Rust 在系统方面的支持，Swift 的系列库只有一小点儿。如果我们列出其它编程语言在应用、数据库、后台方面库的贡献，Swift 的数量基本可以忽略不计。”
 
@@ -47,15 +47,15 @@ Swift 拥有一个非常健康的开源社区、拥有大量精彩，精心编�
 
 ### Go
 
-Go 的发布比 Swift 早很多，它高度用于系统领域的工具开发，几乎很难用于 GUI 应用，Go 不支持现代语言特性，如 `tagged unions` 、泛型，或函数式编程。但它易上手，速度快，并使用了垃圾回收器，二进制式的结果输出使得其内存方面消耗发面是轻量级的。当然，垃圾回收器也使得 Go 在嵌入式开发和 Web 开发变得有点棘手。
+Go 的发布比 Swift 早很多，它高度用于系统领域的工具开发，几乎很难用于 GUI 应用，Go 不支持现代语言特性，如 `tagged unions`、泛型，或函数式编程。但它易上手，速度快，并使用了垃圾回收器，二进制式的结果输出使得其内存方面消耗发面是轻量级的。当然，垃圾回收器也使得 Go 在嵌入式开发和 Web 开发变得有点棘手。
 
-Go 良好的性能，语言的简单性和低内存占用率催生出了大量的系统工具和库。如：Grafana，Kubernetes，CoreOS-etcd，Go-Ethereum，CockroachDB，Hub，Terraform 等等。[这里列出了处理一个问题你能想象到的可供选择库有多少]()。
+Go 良好的性能，语言的简单性和低内存占用率催生出了大量的系统工具和库。如：Grafana，Kubernetes，CoreOS-etcd，Go-Ethereum，CockroachDB，Hub，Terraform 等等。[这里列出了处理一个问题你能想象到的可供选择库有多少](https://github.com/avelino/awesome-go)。
 
 简言之，如果你想做基于系统层面的开发，你能找到几乎所有你想要的依赖包。
 
-###Kotlin
+### Kotlin
 
-Kotlin 像是 Android 版本下的 Swift，但其底层却完全不同。基于 JVM 的 Kotlin 使得它必须大量使用引用类型。就像 Go 的垃圾回收器一样使得其在嵌入式系统的开发成为一个挑战。然而，[ Kotlin-Native 的出现让它在未来有了更多的可能性](https://kotlinlang.org/docs/reference/native-overview.html)。Kotlin-Native 是基于 LLVM 构建的，支持嵌入式平台开发，Webassembly 等。它使得 Kotlin 能被编译成 Javascript，Kotlin-Native 甚至可用于构建 iOS 应用的框架。
+Kotlin 像是 Android 版本下的 Swift，但其底层却完全不同。基于 JVM 的 Kotlin 使得它必须大量使用引用类型。就像 Go 的垃圾回收器一样使得其在嵌入式系统的开发成为一个挑战。然而，[Kotlin-Native 的出现让它在未来有了更多的可能性](https://kotlinlang.org/docs/reference/native-overview.html)。Kotlin-Native 是基于 LLVM 构建的，支持嵌入式平台开发，Webassembly 等。它使得 Kotlin 能被编译成 Javascript，Kotlin-Native 甚至可用于构建 iOS 应用的框架。
 
 Kotlin 也可能会成为未来的一个主流语言，但和有着相同机制的 Swift 一样，其发展遇到了类似的阻碍。几乎所有可用的开源库集中在 Android 开发领域。而 Kotlin-Native 解决的是一个纯粹 JVM 语言所面临的问题。我不知道一个轻量级的 Kotlin-Native 要如何实现（不同于 C++ 或 Swift，尤其是在嵌入式开发、复杂系统开发、或 Webassembly）。
 
@@ -118,7 +118,7 @@ Rust 是一个有趣的语言。实际上它特别有趣，以至于我花了几
 
 我最近用 Vapor 写了一个小应用，需要为它添加几个依赖库（比如：时间计数器）但大部分的现有的库只支持 iOS/macOS。 假如你有处理跨平台（由于没有 UIKit/AppKit 的依赖）的经验，可以尝试到 Swift 的 Linux 版本上去测试它。
 
-这比听上去还要简单。这里有一个可用的 [Swift 4.1版本的 docker 镜像](https://hub.docker.com/r/ibmcom/swift-ubuntu/tags/) ，你可以直接运行它来测试你的代码，或者选择通过 [Virtualbox](https://www.virtualbox.org/) 虚拟机来运行它。
+这比听上去还要简单。这里有一个可用的 [Swift 4.1版本的 docker 镜像](https://hub.docker.com/r/ibmcom/swift-ubuntu/tags/)，你可以直接运行它来测试你的代码，或者选择通过 [Virtualbox](https://www.virtualbox.org/) 虚拟机来运行它。
 
 ### Swift 包管理的支持
 
@@ -126,7 +126,7 @@ Rust 是一个有趣的语言。实际上它特别有趣，以至于我花了几
 
 ### 运行在 Foundation 库上
 
-另一件也很困难的事情是 Swift 在 Linux 的 [Foundation 库](https://github.com/apple/swift-corelibs-foundation)是基于 iOS/macOS Foundation 库的二次实现，因此依旧还有些没有实现的特性和（特别棘手）bugs 。这意味着也许你写在 Mac 上面的代码在 Xcode 中跑的很好，但由于 Linux Foundation 库的 bug ，它运行在 Linux 上时可能会崩溃。为了拓展 Swift's 应用领域，让 Linux 上面的 Fundation 库代码变得更加健壮是一个很好的目标。
+另一件也很困难的事情是 Swift 在 Linux 的 [Foundation 库](https://github.com/apple/swift-corelibs-foundation) 是基于 iOS/macOS Foundation 库的二次实现，因此依旧还有些没有实现的特性和（特别棘手）bugs 。这意味着也许你写在 Mac 上面的代码在 Xcode 中跑的很好，但由于 Linux Foundation 库的 bug ，它运行在 Linux 上时可能会崩溃。为了拓展 Swift's 应用领域，让 Linux 上面的 Fundation 库代码变得更加健壮是一个很好的目标。
 
 最简单的开始方式是去 [Swift Jira](https://bugs.swift.org/secure/Dashboard.jspa) 的首页搜索 Foundation bugs。
 
@@ -142,10 +142,10 @@ Linux 用户没有 Xcode，所以他们使用 Atom 、Emacs、Vim 或 VSCode。�
 
 如果你恰好在 San Jose 参加今年的 WWDC。这是一个很好的学习机会。 你会遇见一些有趣的人，[尝试在 San Jose Swift](https://www.tryswift.co/events/2018/sanjose/) 帮助 Swift。
 
->“......你有机会为 Swift 做出贡献。加入一个 Swift 开源贡献者小组，讨论有关 Swift 开源项目的最新消息，然后在社区导师的帮助下自己为 Swift Evolution 做出贡献！ ”
+>“......你有机会为 Swift 做出贡献。加入一个 Swift 开源贡献者小组，讨论有关 Swift 开源项目的最新消息，然后在社区导师的帮助下自己为 Swift Evolution 做出贡献！”
 
 [检查一下](https://www.tryswift.co/events/2018/sanjose/)
 
 ### 我应该这样做
 
-在过去的 1.5 年里，我没有太多时间做任何关于开源的工作，因为我一直忙于自己的（闭源）项目，但我真想再次为 Swift 开源代码贡献。我真的很喜欢 Swift，这是一个很棒的语言，帮助它成功那些日子，是我曾感到最美妙的时光，如果你有同样的感觉，请分享这篇文章。
+在过去的一年半里，我没有太多时间做任何关于开源的工作，因为我一直忙于自己的（闭源）项目，但我真想再次为 Swift 开源代码贡献。我真的很喜欢 Swift，这是一个很棒的语言，帮助它成功那些日子，是我曾感到最美妙的时光，如果你有同样的感觉，请分享这篇文章。
