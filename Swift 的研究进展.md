@@ -23,7 +23,7 @@ Swift 是一门优秀的语言，很好的处理了那些简单与复杂的问�
 >
 >- Chris Lattner
 
-随着 Swift 4.1 新的泛型特性和在 [Swift 5 中即将稳定下来的 ABI](https://swift.org/abi-stability/) ，似乎 Swift 慢慢具备了跨出苹果开发领域的条件。我在本文会讨论一些问题，它们阻止了 Swift 广泛的应用，准确的讲，就像其它正在被解决的问题一样，社区开发者也可以解决这些问题。
+随着 Swift 4.1 新的泛型特性和在 [Swift 5 中即将稳定下来的 ABI](https://swift.org/abi-stability/)，似乎 Swift 慢慢具备了跨出苹果开发领域的条件。我在本文会讨论一些问题，它们阻止了 Swift 广泛的应用，准确的讲，就像其它正在被解决的问题一样，社区开发者也可以解决这些问题。
 
 我会简单介绍 Swift 在这个领域的竞争力。就像 C++ 一样，其它编程语言也渴望成为一个扩平台的通用的语言。我们可以通过比较 Swift 和其他语言处理相同问题上的方式，来明白我们该如何改进 Swift。
 
@@ -35,7 +35,7 @@ Swift 拥有一个非常健康的开源社区，拥有大量精彩、精心编�
 
 根据 Swift 4.1 的发布版本，在 [Hacker News 有一个帖子讨论这门语言](https://news.ycombinator.com/item?id=16710895)。我完整通读多次后，觉得回复很有趣。让我感触最深的是下面的评论：
 
->“ 相比 Go 和 Rust 在系统方面的支持，Swift 的系列库只有一小点儿。如果我们列出其它编程语言在应用、数据库、后台方面库的贡献，Swift 的数量基本可以忽略不计。”
+>“相比 Go 和 Rust 在系统方面的支持，Swift 的系列库只有一小点儿。如果我们列出其它编程语言在应用、数据库、后台方面库的贡献，Swift 的数量基本可以忽略不计”
 
 让我们来看到这些竞争对手。
 
@@ -63,7 +63,7 @@ Kotlin 也可能会成为未来的一个主流语言，但和有着相同机制�
 
 Rust 是一个有趣的语言。实际上它特别有趣，以至于我花了几个月的时间慢慢的学习了解它。这门语言的很多方面与 Swift 相似，但有一些部分更难学（这部分讨论会发布在未来的博文主题中）。似乎这两种语言一开始就是采用完全相反的设计思路；Swift 是由简到难的一个过程，Rust 则反之。它们语法类似这点，我到不惊讶，直到在未来的某一时刻，我意识到两门语言在处理复杂性和简单性问题方面的惊人相似性。不过就目前而言，使用 Rust 的那些诱人的特性，需要建立在足够的经验基础之上。
 
-一个更好的跨平台的故事，一个难于处理却有高效内存管理作为回报的故事，[幸运的是，它们都将伴着 Swift 到来](https://github.com/apple/swift/blob/master/docs/OwnershipManifesto.md)，支持 [Webassembly](https://rust-lang-nursery.github.io/rust-wasm/)（你可以用 Rust 写一个前端 App）好的初始框架可以让开发者快速的构建新项目，虽然它没有像 Go 一样提供相同数量级的高端项目，但也提供了一些有潜力的项目（CoreUtils，RedoxOS，TikV，Vagga，Servo，Parity）更重要的，大量的 Rust 库与第三方依赖有所交互。[看下这个表单](https://github.com/rust-unofficial/awesome-rust)。
+一个更好的跨平台的故事，一个难于处理却有高效内存管理作为回报的故事，[幸运的是，它们都将伴着 Swift 到来](https://github.com/apple/swift/blob/master/docs/OwnershipManifesto.md)，支持 [Webassembly](https://rust-lang-nursery.github.io/rust-wasm/)（你可以用 Rust 写一个前端 App）好的初始框架可以让开发者快速的构建新项目，虽然它没有像 Go 一样提供相同数量级的高端项目，但也提供了一些有潜力的项目（CoreUtils，RedoxOS，TikV，Vagga，Servo，Parity）更重要的，大量的 Rust 库与第三方依赖有所交互。[看下这个列表](https://github.com/rust-unofficial/awesome-rust)。
 
 ### 其他语言
 
@@ -138,14 +138,14 @@ Rust 是一个有趣的语言。实际上它特别有趣，以至于我花了几
 
 Linux 用户没有 Xcode，所以他们使用 Atom 、Emacs、Vim 或 VSCode。这里已经有多个项目来让这些编辑器支持 Swift 语言编辑。但我们也许能够改进它们。如果你有空闲时间，用你喜欢的编辑器参与到这些项目中来，进行测试提交问题或解决这些问题。
 
-### 尝试在 San Jose Swift
+### 参加在 San Jose 举办的 Try Swift 大会
 
-如果你恰好在 San Jose 参加今年的 WWDC。这是一个很好的学习机会。 你会遇见一些有趣的人，[尝试在 San Jose Swift](https://www.tryswift.co/events/2018/sanjose/) 帮助 Swift。
+如果你恰好在 San Jose 参加今年的 WWDC。这是一个很好的学习机会。 你会遇见一些有趣的人，[尝试参加在 San Jose 举办的 Try Swift 大会](https://www.tryswift.co/events/2018/sanjose/)。 
 
 >“......你有机会为 Swift 做出贡献。加入一个 Swift 开源贡献者小组，讨论有关 Swift 开源项目的最新消息，然后在社区导师的帮助下自己为 Swift Evolution 做出贡献！”
 
-[检查一下](https://www.tryswift.co/events/2018/sanjose/)
+[你可以查阅这个链接](https://www.tryswift.co/events/2018/sanjose/)
 
-### 我应该这样做
+### 举手之劳
 
 在过去的一年半里，我没有太多时间做任何关于开源的工作，因为我一直忙于自己的（闭源）项目，但我真想再次为 Swift 开源代码贡献。我真的很喜欢 Swift，这是一个很棒的语言，帮助它成功那些日子，是我曾感到最美妙的时光，如果你有同样的感觉，请分享这篇文章。
