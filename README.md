@@ -78,7 +78,7 @@ BigNerdCoding
 | MM |画喵程序猿mmoaay||mmoaay|
 | shanksyang ||||
 | 冬瓜 | [冬瓜争做全栈瓜](https://weibo.com/desgard/profile?rightmod=1&wvr=6&mod=personinfo) | [Guardia · 瓜地](http://www.desgard.com/) | [Desgard](https://github.com/desgard) |
-|小铁匠||||
+|小铁匠|[小铁匠Linus](https://weibo.com/linusling)|[小铁匠Linus](http://linusling.com/)|[小铁匠Linus](https://github.com/linusling)|
 | littledogboy ||||
 | Forelax |[ForelaxMe](https://weibo.com/3889029090/profile)|[Forelax's Blog](http://forelax.space/)|[ForelaxX](https://github.com/ForelaxX)|
 | pmst ||||
