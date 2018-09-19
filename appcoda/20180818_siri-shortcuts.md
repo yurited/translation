@@ -21,8 +21,6 @@ description: 本文介绍了基于 iOS12 和 XCode10 创建 NSUserActivity 将�
 
 <!--more-->
 
-在美国圣何塞举办的 2018 开发者大会上，苹果公布了 `Siri Shortcuts`，这是一个令人期待已久的功能，开发人员能够在自己的应用程序中扩展和增强 `Siri` 的功能。在这之前，`SiriKit SDK` 的功能非常有限。随着 `Siri Shortcuts` 的出现，开发人员可以扩展 `Siri` 的功能并通过构建自定义语音操作来唤起应用程序。
-
 ## Siri Shortcuts 简史
 `Siri Shortcuts` 的核心是自动化。`Siri Shortcuts` 是由前 WWDC 奖学金获得者开发的 iOS 自动化应用程序 Workflow 演变而来的。苹果在2017年收购了 Workflow，但出乎意料的是，即便在收购之后，该应用依然独立的在 App Store 上线。
 
@@ -32,7 +30,7 @@ description: 本文介绍了基于 iOS12 和 XCode10 创建 NSUserActivity 将�
 
 Apple 全新的 `Siri Shortcuts` 大量借鉴了 `Workflow`。但是区分语音 Shortcuts 短句与 Shortcuts 应用本身还是很重要的。Shortcuts 应用允许用户基于语音短句创建常见的日常任务，`Siri Shortcuts` 使开发人员能够在自己的原生应用程序中扩展 Siri 的功能。
 
-在撰写本文时，`Shortcuts 应用程序`无法在 iOS 12 Beta 2 Build 中进行测试。那么，我们将在自己构建的自定义应用程序中探索 `Siri Shortcuts` 的实用功能。
+在撰写本文时，`Shortcuts 应用程序` 无法在 iOS 12 Beta 2 Build 中进行测试。那么，我们将在自己构建的自定义应用程序中探索 `Siri Shortcuts` 的实用功能。
 
 ## 我们的示例工程
 > 注意：本教程假定你基本熟悉 `NSUserActivity API`。如果你不熟悉，请参阅我们关于此主题的 [优秀教程](https://www.appcoda.com/core-spotlight-framework/)。
@@ -43,7 +41,7 @@ Apple 全新的 `Siri Shortcuts` 大量借鉴了 `Workflow`。但是区分语音
 
 ## 在新项目中定义你的 Shortcuts
 
-当我们在创建任意新项目时，花一些时间来建立基本的项目结构是很重要的。首先我们需要有 `iOS 12`，`macOS Mojave`  和 `Xcode 10` 的最新开发人员预览版。如果你还没有安装这些，你可以从 [开发者网站](https://developer.apple.com/)下载安装。
+当我们在创建任意新项目时，花一些时间来建立基本的项目结构是很重要的。首先我们需要有 `iOS 12`，`macOS Mojave` 和 `Xcode 10` 的最新开发人员预览版。如果你还没有安装这些，你可以从 [开发者网站](https://developer.apple.com/) 下载安装。
 
 在 `Xcode` 创建一个名为 SiriShortcuts 的应用程序。将组织 ID 设置为 com.appcoda，这些后期可以按需修改。
 
@@ -128,7 +126,7 @@ func application(_ application: UIApplication, continue userActivity: NSUserActi
 
 上述代码将我们新创建的 `Activity` 公开在应用委托方法中并允许 `Siri` 对此 `Activity` 进行操作唤起应用。
 
-现在让我们试试看！导航到“设置”应用并选择 `Siri`。你应该看到一个名为”Say Hi”的新快捷方式。单击 + 按钮添加它，然后按照屏幕上的提示创建自定义语音短语以创建此快捷方式。
+现在让我们试试看！导航到“设置”应用并选择 `Siri`。你应该看到一个名为 ”Say Hi” 的新快捷方式。单击 + 按钮添加它，然后按照屏幕上的提示创建自定义语音短语以创建此快捷方式。
 
 现在你可以唤起 `Siri` 并说出你的短语，体验 `Shortcut`！
 
