@@ -15,6 +15,12 @@ description: 本文介绍了基于 iOS12 和 XCode10 创建 NSUserActivity 将�
 校对=liberalisman,numbbbbb
 定稿=
 
+<!--此处开始正文-->
+
+在美国圣何塞举办的 2018 开发者大会上，苹果公布了 `Siri Shortcuts`，这是一个令人期待已久的功能，开发人员能够在自己的应用程序中扩展和增强 `Siri` 的功能。在这之前，`SiriKit SDK` 的功能非常有限。随着 `Siri Shortcuts` 的出现，开发人员可以扩展 `Siri` 的功能并通过构建自定义语音操作来唤起应用程序。
+
+<!--more-->
+
 在美国圣何塞举办的 2018 开发者大会上，苹果公布了 `Siri Shortcuts`，这是一个令人期待已久的功能，开发人员能够在自己的应用程序中扩展和增强 `Siri` 的功能。在这之前，`SiriKit SDK` 的功能非常有限。随着 `Siri Shortcuts` 的出现，开发人员可以扩展 `Siri` 的功能并通过构建自定义语音操作来唤起应用程序。
 
 ## Siri Shortcuts 简史
@@ -43,7 +49,7 @@ Apple 全新的 `Siri Shortcuts` 大量借鉴了 `Workflow`。但是区分语音
 
 ![](https://appcoda.com/wp-content/uploads/2018/07/2-1240x793.png)
 
-如下所示，在项目的 `Project Settings` 中选择 `Capabilities`，启用 `Siri`。接下来我们就可以在应用程序中使用 `Siri SDK`，并将 `.entitlements` 文件添加到项目中。。
+如下所示，在项目的 `Project Settings` 中选择 `Capabilities`，启用 `Siri`。接下来我们就可以在应用程序中使用 `Siri SDK`，并将 `.entitlements` 文件添加到项目中。
 
 ![](https://appcoda.com/wp-content/uploads/2018/07/4-1240x793.png)
 
