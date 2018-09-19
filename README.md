@@ -89,7 +89,7 @@ BigNerdCoding
 | 智多芯 |[智多芯](https://weibo.com/hulz)|[智多芯的博客](http://blog.hulizhen.me/)|[智多芯](https://github.com/hulizhen)|
 |numbbbbb | [梁杰_numbbbbb](https://weibo.com/numbbbbb) | [numbbbbb](http://numbbbbb.com/) | [numbbbbb](https://github.com/numbbbbb/) |
 |MaxXD |[MaxXD不能使用](https://weibo.com/u/5029986118)|[认知即事实](http://robin4han.github.io/)|[dearbojack](https://github.com/dearbojack)|
-|muhlenXi |---- |---- |---- |
+|muhlenXi |[muhlenXi](https://weibo.com/523545319) |[muhlenXi的博客](http:www.muhlenxi.com) |[muhlenXi](https://github.com/muhlenXi)  |
 
 ## 文章更新
 
