@@ -1,4 +1,4 @@
-title: “Swift 的研究进展”
+title: “拓展 Swift 应用领域”
 date: 
 tags: [Swift]
 categories: [Swift]
@@ -33,7 +33,7 @@ Swift 拥有一个非常健康的开源社区，拥有大量杰出、精心编�
 
 然而，与大众观点不同，在 Linux 平台上，很多公司不仅在 Web 服务端，也在 Linux 的其它方面做了大量的工作。先简单举个例子，有些编程语言可以管理系统，掌控系统权限，并且提供相应的开发工具和库。这些内容虽然和 iOS 或者 macOS 应用开发没有相关联，但是对于系统或者 Web 开发来说极其重要。比如，数据库权限、系统文件管理、进程管理、日志分析与收集、容器管理、部署工具、甚至区块链工具。
 
-随着 Swift 4.1 的发布，在 [Hacker News 有一个讨论这门语言的帖子](https://news.ycombinator.com/item?id=16710895)。我完整通读多次后，觉得回复很有趣。让我感触最深的是下面的评论：
+随着 Swift 4.1 的发布，在 [Hacker News 上有一个讨论这门语言的帖子](https://news.ycombinator.com/item?id=16710895)。我完整通读多次后，觉得回复很有趣。让我感触最深的是下面的评论：
 
 >“相比 Go 和 Rust 在系统支持和库的量级方面，Swift 的系列库只有一小点儿......。如果我们列出其它编程语言在已发布的应用、数据库后端方面库的贡献，Swift 的数量基本可以忽略不计”
 
@@ -55,37 +55,36 @@ Go 良好的性能，语言的简单性和低内存占用率催生出了大量�
 
 ### Kotlin
 
-Kotlin 像是 Android 版本下的 Swift，但其底层却完全不同。基于 JVM 的 Kotlin 使得它必须大量使用引用类型。就像 Go 的垃圾回收器一样使得其在嵌入式系统的开发成为一个挑战。然而，[Kotlin-Native 的出现让它在未来有了更多的可能性](https://kotlinlang.org/docs/reference/native-overview.html)。Kotlin-Native 是基于 LLVM 构建的，支持嵌入式平台开发，Webassembly 等。它使得 Kotlin 能被编译成 Javascript，Kotlin-Native 甚至可用于构建 iOS 应用的框架。
+Kotlin 像是 Android 版本下的 Swift，但其底层却完全不同。基于 JVM 的 Kotlin 使得它必须大量使用引用类型，就像 Go 的垃圾回收器使其在嵌入式系统的开发成为一个挑战。然而，[Kotlin-Native 的出现让它在未来有了更多的可能性](https://kotlinlang.org/docs/reference/native-overview.html)。Kotlin-Native 是基于 LLVM 构建的，支持嵌入式平台开发、Webassembly 等。Kotlin 也能被编译成 Javascript，Kotlin-Native 甚至可用于构建 iOS 应用的框架。
 
-Kotlin 也可能会成为未来的一个主流语言，但和有着相同机制的 Swift 一样，其发展遇到了类似的阻碍。几乎所有可用的开源库集中在 Android 开发领域。而 Kotlin-Native 解决的是一个纯粹 JVM 语言所面临的问题。我不知道一个轻量级的 Kotlin-Native 要如何实现（不同于 C++ 或 Swift，尤其是在嵌入式开发、复杂系统开发、或 Webassembly）。
+Kotlin 也可能会成为未来的一个主流语言，但和有着相同问题的 Swift 一样，其发展遇到了类似的阻碍。几乎所有可用的开源库集中在 Android 开发领域。而 Kotlin-Native 解决的是一个纯粹 JVM 语言所面临的问题。我不知道一个易于执行且轻量级的 Kotlin-Native 要如何实现（相比于 C++ 或 Swift，尤其是在嵌入式开发、复杂系统开发、或 Webassembly）。
 
 ### Rust
 
-Rust 是一个有趣的语言。实际上它特别有趣，以至于我花了几个月的时间慢慢的学习了解它。这门语言的很多方面与 Swift 相似，但有一些部分更难学（这部分讨论会发布在未来的博文主题中）。似乎这两种语言一开始就是采用完全相反的设计思路；Swift 是由简到难的一个过程，Rust 则反之。它们语法类似这点，我到不惊讶，直到在未来的某一时刻，我意识到两门语言在处理复杂性和简单性问题方面的惊人相似性。不过就目前而言，使用 Rust 的那些诱人的特性，需要建立在足够的经验基础之上。
-
-一个更好的跨平台的故事，一个难于处理却有高效内存管理作为回报的故事，[幸运的是，它们都将伴着 Swift 到来](https://github.com/apple/swift/blob/master/docs/OwnershipManifesto.md)，支持 [Webassembly](https://rust-lang-nursery.github.io/rust-wasm/)（你可以用 Rust 写一个前端 App）好的初始框架可以让开发者快速的构建新项目，虽然它没有像 Go 一样提供相同数量级的高端项目，但也提供了一些有潜力的项目（CoreUtils，RedoxOS，TikV，Vagga，Servo，Parity）更重要的，大量的 Rust 库与第三方依赖有所交互。[看下这个列表](https://github.com/rust-unofficial/awesome-rust)。
+Rust 是一个有趣的语言。事实上它是如此的有趣，我花了几个月的时间慢慢的学习它。这门语言的很多方面与 Swift 相似，但比 Swift 更难（这里我们暂不做讨论，该部分内容将以主题的形式发布在博客）。似乎这两种语言一开始就是采用完全相反的设计思路；Swift 作为一个易学的语言起初是一些容易上手的特性，慢慢的添加复杂的特性。Rust 起初作为一门复杂的语言，它正在慢慢的增添一些更简单的抽象对象或更好的错误调试信息来让初学者容易上手。两种语言语法类似，这点我并不惊讶，直到未来的突然某天，我意识到两门语言在某些简单和复杂特性上有着高度的相似性。然而，目前而言，在你经历一段复杂学习体验的背后，便会发现 Rust 背后提供了一些非常诱人的特性。
+ 一个更好的跨平台的故事，一个虽难于处理却有高效内存管理作为回报的故事，[幸运的是，它们都将伴着 Swift 到来](https://github.com/apple/swift/blob/master/docs/OwnershipManifesto.md)，支持 [Webassembly](https://rust-lang-nursery.github.io/rust-wasm/)（你可以用 Rust 写一个前端 App）好的初始框架可以让开发者快速的构建新项目，虽然它没有像 Go 一样提供相同数量级的高端项目，但也提供了一些有潜力的项目（CoreUtils，RedoxOS，TikV，Vagga，Servo，Parity）但更重要的，大量的 Rust 库与第三方依赖有所交互。[看下这个列表](https://github.com/rust-unofficial/awesome-rust)
 
 ### 其他语言
 
-这里还有像 D，Nim， Chrystal，Elixir，TypeScript 等语言，当然也包括 C++ 自身。
+这里还有像 D，Nim、Chrystal、Elixir、TypeScript 等语言，当然也包括 C++ 自身。
 
 ## 我们看到了什么
 
 目前 Swift 在系统包管理领域有短板，这也是一个先有鸡还有先有蛋的问题。
 
->“因为系统包不足，导致那些对 Swift 感兴趣的开发者在开发简单 Demo 应用时数据库处理不方便，从而对 Swift 失去兴趣，对 Swift 失去兴趣的开发者更不愿意去改善包管理了。”
+>“因为没有足够多的系统包，导致那些对 Swift 感兴趣的开发者在开发简单 Demo 应用时数据库处理不方便，从而对 Swift 失去兴趣，对 Swift 失去兴趣的开发者更不愿意去改善包管理了。”
 
-对我而言，我们需要改进我们的系统包/库。如果我们能用 Swift 写出 Kubernets 之类的东西一定很棒。为了实现这个项目，我们需要一套好的基础库用于一般性的系统开发。下面我列出了基础的功能库和相关三方服务（此外，下面列出的功能，已经存在部分，不需要我们重复造轮子）。
+对我而言，我们需要改进我们的系统包/库。如果我们能用 Swift 写出 Kubernets 之类的东西，那一定很棒。为了实现这个项目，我们需要一套好的基础库用于一般性的系统开发。下面我列出了基础的功能库和相关三方服务（此外，下面列出的功能，已经存在部分，不需要我们重复造轮子）。
 
 * 认证
-* 高速缓存
+* 缓存
 * 并发
-* 云提供商
+* 云服务
 * 命令行参数解析
 * 命令行 UI
 * 命令行编辑器
 * 压缩
-* 计算（BLAS）
+* 计算（例如：BLAS）
 * 加密
 * 数据库
 * 数据处理
@@ -94,7 +93,7 @@ Rust 是一个有趣的语言。实际上它特别有趣，以至于我花了几
 * 日期和时间
 * 分布式系统
 * 电子邮件
-* 编发和解码
+* 编码和解码
 * 文件系统
 * 图像处理
 * 机器学习
@@ -102,13 +101,13 @@ Rust 是一个有趣的语言。实际上它特别有趣，以至于我花了几
 * 文本处理
 * 虚拟化
 
-为了让 Swift 成为一个通用的语言而不仅仅只是用于苹果操作系统上。Swift 需要提供一个健壮的跨平台的包管理系统。
+我认为，让 Swift 成为一门通用的语言，能够在非苹果操作系统上运行，Swift 需要提供一个健壮的、跨平台的包管理系统。。
 
 ## 你能做些什么？
 
 ### 写库
 
-在你决定写 JSON 解析器，动画库，自定义的开关按钮，或者抽象的集合视图/表格视图的代码之前，考虑写一个跨平台的系统库。如果你不知道怎么做，你可以去看看 Go 和 Rust 提供的那些必要库。
+在你决定写 JSON 解析器，动画库、自定义的开关按钮，或者抽象的集合视图/表格视图的代码之前，考虑写一个跨平台的系统库。如果你不知道怎么做，你可以去看看 Go 和 Rust 提供的那些已有的库。
 
 ### 重写现有 C 库
 
@@ -116,9 +115,9 @@ Rust 是一个有趣的语言。实际上它特别有趣，以至于我花了几
 
 ### 关心 Linux
 
-我最近用 Vapor 写了一个小应用，需要为它添加几个依赖库（比如：时间计数器）但大部分的现有的库只支持 iOS/macOS。 假如你有处理跨平台（由于没有 UIKit/AppKit 的依赖）的经验，可以尝试到 Swift 的 Linux 版本上去测试它。
+我最近用 Vapor 写了一个小应用，需要为它添加几个依赖库（比如：时间计数器）但大部分的现有的库只支持 iOS/macOS。 假如你有处理跨平台（由于没有 UIKit/AppKit 的依赖）的经验，可以尝试在 Linux 上测试编译 Swift。
 
-这比听上去还要简单。这里有一个可用的 [Swift 4.1版本的 docker 镜像](https://hub.docker.com/r/ibmcom/swift-ubuntu/tags/)，你可以直接运行它来测试你的代码，或者选择通过 [Virtualbox](https://www.virtualbox.org/) 虚拟机来运行它。
+这比听上去更简单。这里有一个可用的 [Swift 4.1 版本的 docker 镜像](https://hub.docker.com/r/ibmcom/swift-ubuntu/tags/)，你可以直接运行它来测试你的代码，或者选择通过 [Virtualbox](https://www.virtualbox.org/) 虚拟机来运行它。
 
 ### Swift 包管理的支持
 
@@ -126,26 +125,28 @@ Rust 是一个有趣的语言。实际上它特别有趣，以至于我花了几
 
 ### 运行在 Foundation 库上
 
-另一件也很困难的事情是 Swift 在 Linux 的 [Foundation 库](https://github.com/apple/swift-corelibs-foundation) 是基于 iOS/macOS Foundation 库的二次实现，因此依旧还有些没有实现的特性和（特别棘手）bugs 。这意味着也许你写在 Mac 上面的代码在 Xcode 中跑的很好，但由于 Linux Foundation 库的 bug ，它运行在 Linux 上时可能会崩溃。为了拓展 Swift's 应用领域，让 Linux 上面的 Fundation 库代码变得更加健壮是一个很好的目标。
+另一件依旧困难的事情是 Swift 在 Linux 的 [Foundation 库](https://github.com/apple/swift-corelibs-foundation) 是基于 iOS/macOS Foundation 库的二次实现，因此依旧存在些没有实现的特性和（特别棘手）bugs。这意味着也许你写在 Mac 上面的代码在 Xcode 中跑的很好，但由于 Linux Foundation 库的 bug，它运行在 Linux 上时可能会崩溃。为了拓展 Swift 的应用领域，让 Linux 上面的 Fundation 库代码变得更加健壮是一个很好的目标。
 
 最简单的开始方式是去 [Swift Jira](https://bugs.swift.org/secure/Dashboard.jspa) 的首页搜索 Foundation bugs。
 
 ### 帮助改进 Foundation 库
 
-如果你没有时间或者对在 Swift Foundation 上的工作内容不感兴趣。你也可以在 Linux 上使用/测试 Foundation 库然后提交 bugs 报告。越多的人使用它，它也将变得更加稳定。
+如果你没有时间或者对在 Swift Foundation 上的工作内容不感兴趣。你也可以在 Linux 上使用或者测试 Foundation 库，并且提交 bug 报告。只要有越来越多的人使用它，它也将变得更加稳定。
 
 ### 帮助改善 Linux 编辑体验
 
-Linux 用户没有 Xcode，所以他们使用 Atom 、Emacs、Vim 或 VSCode。这里已经有多个项目来让这些编辑器支持 Swift 语言编辑。但我们也许能够改进它们。如果你有空闲时间，用你喜欢的编辑器参与到这些项目中来，进行测试提交问题或解决这些问题。
+Linux 用户没有 Xcode，所以他们使用 Atom、Emacs、Vim 或 VSCode。这里已经有多个项目来让这些编辑器支持 Swift 语言编辑。但我们也许能够改进它们。如果你有空闲时间，用你喜欢的编辑器参与到这些项目中来，进行测试提交问题或解决这些问题。
 
 ### 参加在 San Jose 举办的 Try Swift 大会
 
 如果你恰好在 San Jose 参加今年的 WWDC。这是一个很好的学习机会。 你会遇见一些有趣的人，[尝试参加在 San Jose 举办的 Try Swift 大会](https://www.tryswift.co/events/2018/sanjose/)。 
 
->“......你有机会为 Swift 做出贡献。加入一个 Swift 开源贡献者小组，讨论有关 Swift 开源项目的最新消息，然后在社区导师的帮助下自己为 Swift Evolution 做出贡献！”
+>“你有机会为 Swift 做出贡献。加入一个 Swift 开源贡献者小组，讨论有关 Swift 开源项目的最新消息，然后在社区导师的帮助下为 Swift Evolution 做出自己贡献！”
 
 [你可以查阅这个链接](https://www.tryswift.co/events/2018/sanjose/)
 
 ### 举手之劳
 
 在过去的一年半里，我没有太多时间做任何关于开源的工作，因为我一直忙于自己的（闭源）项目，但我真想再次为 Swift 开源代码贡献。我真的很喜欢 Swift，这是一个很棒的语言，帮助它成功的那些日子，是我曾感到最美妙的时光，如果你有同样的感觉，请分享这篇文章。
+
+[如果对文章内容有想法的话，欢迎来 Twitter 上一起讨论](https://twitter.com/terhechte)
