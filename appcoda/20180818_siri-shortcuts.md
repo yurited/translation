@@ -1,5 +1,5 @@
 title: "iOS 12 中的 Siri Shortcuts 简介"
-date: 2018-08-18
+date: 2018-09-20
 tags: [Swift]
 categories: [AppCoda]
 permalink: siri-shortcuts
@@ -13,7 +13,7 @@ description: 本文介绍了基于 iOS12 和 XCode10 创建 NSUserActivity 将�
 原文日期=2018-07-11
 译者=Hale
 校对=liberalisman,numbbbbb
-定稿=
+定稿=Forelax
 
 <!--此处开始正文-->
 
@@ -72,7 +72,7 @@ Apple 全新的 Siri Shortcuts 大量借鉴了 Workflow。但是区分语音 Sho
 
 回到代码中，首先我们前往 `ViewController.swift` 文件。在 `viewDidLoad` 方法之后，创建一个名为 `setupIntents` 的新方法。在此方法中，实现我们的 Siri Shortcuts 代码。
 
-```Swift
+```swift
 func setupIntents() {
         let activity = NSUserActivity(activityType: "com.AppCoda.SiriSortcuts.sayHi") // 1
         activity.title = "Say Hi" // 2
@@ -102,7 +102,7 @@ func setupIntents() {
 
 我们再创建另一个名为 `sayHi()` 的方法并粘贴以下代码。此代码创建一个 UIAlertController 以显示消息。
 
-```Swift
+```swift
 public func sayHi() {
         let alert = UIAlertController(title: "Hi There!", message: "Hey there! Glad to see you got this working!", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
@@ -116,7 +116,7 @@ public func sayHi() {
 
 现在，你已经在 `ViewController.swift` 设置了基本功能，切换到 `AppDelegate.swift` 文件并添加 `application(_:continueUserActivity:restorationHandler)` 方法，如下所示。
 
-```Swift
+```swift
 func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
     let viewController = window?.rootViewController as! ViewController
   viewController.sayHi()
@@ -143,4 +143,3 @@ func application(_ application: UIApplication, continue userActivity: NSUserActi
 ## 总结
 
 正如你所见，在项目中使用 NSUserActivity 可以很容易地实现 Siri Shortcuts 的强大功能。在本教程中,我创建了一个基础的应用，同样的你也可以将这些技术应用到你自己的应用中。Siri Shortcuts 的使用场景还有很多，相信开发者们会以更创新和独特的方式来使用这项新技术。
-
