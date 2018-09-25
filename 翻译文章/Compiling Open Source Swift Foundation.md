@@ -63,7 +63,7 @@ public init(_ main: (Void) -> Void) {
 
 ## 针对 Foundation 的构建
 
-如果你阅读 [开源库 Foundation](https://github.com/apple/swift-corelibs-foundation) 的 [新手入门文档](https://github.com/apple/swift-corelibs-foundation/blob/master/Docs/GettingStarted.md)，它建议你首先需要构建 Swift，clang 和 llvm。如果可以在一个有大量的 CPU 和快速磁盘的服务器上工作，我丝毫不介意按照文档一步步构建。然而树莓派3与其他老式的设备一样，性能提升有点慢。我也可以考虑交叉编译 Swift，但我还没有足够时间来解决交叉编译带来的问题（如果你曾经使用过交叉编译环境，你一定知道它需要很长时间来做相关的配置）。
+如果你阅读 [开源库 Foundation](https://github.com/apple/swift-corelibs-foundation) 的 [新手入门文档](https://github.com/apple/swift-corelibs-foundation/blob/master/Docs/GettingStarted.md)，它建议你首先需要构建 Swift，clang 和 llvm。如果可以在一个有大量的 CPU 和快速磁盘的服务器上工作，我丝毫不介意按照文档一步步构建。然而树莓派 3 与其他老式的设备一样，性能提升有点慢。我也可以考虑交叉编译 Swift，但我还没有足够时间来解决交叉编译带来的问题（如果你曾经使用过交叉编译环境，你一定知道它需要很长时间来做相关的配置）。
 
 我们所需要的是充分利用已有的构建环境并自行编译 Foundation。事实证明是可以做到的，不然的话，我们也不会有这篇博客了。
 
@@ -122,7 +122,7 @@ LD_LIBRARY_PATH= lldb build/TestFoundation/TestFoundation
 
 ```
 
-运行测试需要为 `LD_LIBRARY_PATH` 提供两个路径：连接到 `libXCTest.so` 共享库以及 “library under test” 的路径。
+运行测试需要为 `LD_LIBRARY_PATH` 提供两个路径：连接到 `libXCTest.so` 共享库以及“library under test”的路径。
 如果 `libFoundation.so` 位于 `./build/Foundation` 目录中，我们可按以下方式操作。如果我们按照上述步骤操作，那就一定在。
 
 ```shell
