@@ -2,7 +2,7 @@
 
 title: "编译开源 Swift Foundation 库"
 date: 2016-06-30
-tags: [Swift][iOS]
+tags: [Swift, iOS]
 categories: [iAchieved.it]
 permalink: compiling-open-source-swift-foundation
 keywords: Swift
