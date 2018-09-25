@@ -63,11 +63,11 @@ public init(_ main: (Void) -> Void) {
 
 ## 针对 Foundation 的构建
 
-如果你阅读 [开源库 Foundation](https://github.com/apple/swift-corelibs-foundation)  的 [新手入门文档](https://github.com/apple/swift-corelibs-foundation/blob/master/Docs/GettingStarted.md)，它建议你首先需要构建 Swift，clang 和 llvm 。如果可以在一个有大量的 CPU 和 快速磁盘的服务器上工作，我丝毫不介意按照文档一步步构建。然而树莓派3与其他老式的设备一样，性能提升有点慢。我也可以考虑交叉编译Swift，但我还没有足够时间来解决交叉编译带来的问题(如果你曾经使用过交叉编译环境，你一定知道它需要很长时间来做相关的配置)。
+如果你阅读 [开源库 Foundation](https://github.com/apple/swift-corelibs-foundation) 的 [新手入门文档](https://github.com/apple/swift-corelibs-foundation/blob/master/Docs/GettingStarted.md)，它建议你首先需要构建 Swift，clang 和 llvm。如果可以在一个有大量的 CPU 和快速磁盘的服务器上工作，我丝毫不介意按照文档一步步构建。然而树莓派3与其他老式的设备一样，性能提升有点慢。我也可以考虑交叉编译 Swift，但我还没有足够时间来解决交叉编译带来的问题（如果你曾经使用过交叉编译环境，你一定知道它需要很长时间来做相关的配置）。
 
-我们所需要的是充分利用已有的构建环境并自行编译 Foundation 。事实证明是可以做到的，不然的话，我们也不会有这篇博客了。
+我们所需要的是充分利用已有的构建环境并自行编译 Foundation。事实证明是可以做到的，不然的话，我们也不会有这篇博客了。
 
-下面是你所需要的准备操作(无论你是在 x86 服务器上还是在像 BeagleBone 或 树莓派的 ARM 的计算机上)：
+下面是你所需要的准备操作（无论你是在 x86 服务器上还是在像 BeagleBone 或树莓派的 ARM 的计算机上）：
 
 + 全量构建 `swiftc`，通常位于 `build/buildbot_linux/swift-linux-armv7/bin` 目录
 + 全量构建 `swift`，同样位于 `build/buildbot_linux/swift-linux-armv7/bin` 目录
@@ -75,7 +75,7 @@ public init(_ main: (Void) -> Void) {
 
 我希望提供各种已经编译过的“工具链”，但是现在你必须首先构建自己的工具链。然后你就可以自己构建 Foundation 了。
 
-现在，让我们来看看如何使用它来测试 Foundation 上的内容。请注意，我们克隆的是我们自己 fork 的 swift-corelibs-foundation 的分支。如果你打算给上游开源库(即 Apple 开源库)提交 PR ，这一点非常的重要。
+现在，让我们来看看如何使用它来测试 Foundation 上的内容。请注意，我们克隆的是我们自己 fork 的 swift-corelibs-foundation 的分支。如果你打算给上游开源库（即 Apple 开源库）提交 PR，这一点非常的重要。
 
 ```shell
 # git clone https://github.com/iachievedit/swift-corelibs-foundation
@@ -91,16 +91,16 @@ BUILD_DIR=build ./configure Debug
 
 ```
 
-首先，  我们将环境变量 `PREBUILT_ROOT` 设置到预构建 Swift 及相关工具所在的位置。如果你设置了环境变量 `./configure` 为 `Debug` （你也可以使用 `Release`)，这将在下一步中使用。我们还需要将环境变量 SWIFTC，CLANG，SWIFT 和 SDKROOT 配置脚本指向我们的“工具链”。最后，环境变量 BUILD_DIR 设置所有中间件和最终输出（libFoundation.so）的放置位置。
+首先，我们将环境变量 `PREBUILT_ROOT` 设置到预构建 Swift 及相关工具所在的位置。如果你设置了环境变量 `./configure` 为 `Debug`（你也可以使用 `Release`)，这将在下一步中使用。我们还需要将环境变量 SWIFTC，CLANG，SWIFT 和 SDKROOT 配置脚本指向我们的“工具链”。最后，环境变量 BUILD_DIR 设置所有中间件和最终输出（libFoundation.so）的放置位置。
 
-注意：我不得不指出有时你会对评论中留下的内容感到惊讶。你的 `PREBUILT_ROOT` 是你预工具链的位置。不要期望在`/root/workspace/Swift-3.0-Pi3-ARM-Incremental` 上找到你系统上的任何内容！
+注意：我不得不指出有时你会对评论中留下的内容感到惊讶。你的 `PREBUILT_ROOT` 是你预工具链的位置。不要期望在 `/root/workspace/Swift-3.0-Pi3-ARM-Incremental` 上找到你系统上的任何内容！
 
 最后，`/usr/bin/ninja` 运行我们的构建。一旦构建结束后，在 `build/Foundation/` 目录中会有一个 `libFoundation.so` 共享库。
-要使用已安装的 Swift 来测试它，只需将` libFoundation.so` 复制到 `$YOUR_SWIFT_ROOT/usr/lib/swift/linux/ libFoundation.so`。
+要使用已安装的 Swift 来测试它，只需将 `libFoundation.so` 复制到 `$YOUR_SWIFT_ROOT/usr/lib/swift/linux/ libFoundation.so`。
 
 ## 运行测试用例
 
-你可以通过向 `./configure` 添加 `-DXCTEST_BUILD_DIR` 参数来运行 Foundation 测试套件
+你可以通过向 `./configure` 添加 `-DXCTEST_BUILD_DIR` 参数来运行 Foundation 测试套件。
 
 ```shell
 
@@ -122,7 +122,7 @@ LD_LIBRARY_PATH= lldb build/TestFoundation/TestFoundation
 
 ```
 
-运行测试需要为 `LD_LIBRARY_PATH` 提供两个路径：连接到 `libXCTest.so` 共享库 以及 “library under test” 的路径。
+运行测试需要为 `LD_LIBRARY_PATH` 提供两个路径：连接到 `libXCTest.so` 共享库以及 “library under test” 的路径。
 如果 `libFoundation.so` 位于 `./build/Foundation` 目录中，我们可按以下方式操作。如果我们按照上述步骤操作，那就一定在。
 
 ```shell
@@ -135,6 +135,6 @@ Test Suite 'All tests' passed at 03:16:45.315
 
 ### 结束语
 
-需要强调的是使用这种技术，你需要一个 “构建工具链”，它包含 Swift，clang 和 llvm。此外，您的工具链最后一次构建到您尝试自行构建 Foundation 的时间间隔越长，Foundation 所依赖的语言特性在构建工具链时不存在的风险就越高。但如果您决定开始使用 Foundation，请首先构建完整的 Swift 工具链并保存构建目录以使用上述技术。
+需要强调的是使用这种技术，你需要一个“构建工具链”，它包含 Swift，clang 和 llvm。此外，您的工具链最后一次构建到您尝试自行构建 Foundation 的时间间隔越长，Foundation 所依赖的语言特性在构建工具链时不存在的风险就越高。但如果您决定开始使用 Foundation，请首先构建完整的 Swift 工具链并保存构建目录以使用上述技术。
 
 祝你好运！
