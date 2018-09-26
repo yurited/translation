@@ -30,7 +30,7 @@ C-Reduce 程序的依赖项非常多，安装也很复杂。好在有 Homebrew �
 
 `brew install creduce`
 
-如果你想手动安装的话，可以参照该安装[指南](https://github.com/csmith-project/creduce/blob/master/INSTALL)。
+如果你想手动安装的话，可以参照该安装 [指南](https://github.com/csmith-project/creduce/blob/master/INSTALL)。
 
 ## 简易示例
 
@@ -259,7 +259,7 @@ pass statistics:
 
 不过好在，这次我的直觉错了。C-Reduce 确实有一些与 C 相关的特定验证测试，但大部分还是和语言无关的。无论你使用何种语言只要你能写出相关的验证测试，C-Reduce 都能派上用场，虽然效率可能不是很理想。
 
-下面我们就来试一试。我在 *bugs.swift.org* 上面找到了一个很好的测试[用例](https://bugs.swift.org/browse/SR-7354)。不过该崩溃只出现在 Xcode9.3 版本上，而我正好就安装了该版本。下面是该 bug 示例的简易修改版：
+下面我们就来试一试。我在 *bugs.swift.org* 上面找到了一个很好的测试 [用例](https://bugs.swift.org/browse/SR-7354)。不过该崩溃只出现在 Xcode9.3 版本上，而我正好就安装了该版本。下面是该 bug 示例的简易修改版：
 
 ```
 import Foundation
@@ -345,4 +345,4 @@ class f{}
 
 测试示例的盲约精简并不是一种多复杂的调试技术，但是自动化让其变的更为有用高效。C-Reduce 可以作为你调试工具箱的一个很好补充。它并不适用所有场景，但是它在面对有些问题时能够带来不小的帮助。虽然在需要与多文件测试用例一起工作时可能存在一些困难，但检验脚本能够解决了该问题。另外，对于 Swift 这类其他语言来说 C-Reduce 也是开箱即用的，而不仅仅只能在 C 语言中发挥功效，所以不要因为你使用的语言不是 C 而放弃它。
 
-今天内容到此为止。下次我还会带来与编程和代码相关的新内容。当然你也可以将你感兴趣的话题[发送给我](mailto:mike@mikeash.com)。
+今天内容到此为止。下次我还会带来与编程和代码相关的新内容。当然你也可以将你感兴趣的话题 [发送给我](mailto:mike@mikeash.com)。
