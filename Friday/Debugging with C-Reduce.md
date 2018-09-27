@@ -30,7 +30,9 @@ C-Reduce 代码基于两个主要思想。
 
 C-Reduce 程序的依赖项非常多，安装也很复杂。好在有 Homebrew 的加持，我们只需输入以下命令即可：
 
-`brew install creduce`
+```bash
+brew install creduce
+```
 
 如果你想手动安装的话，可以参照该安装 [指南](https://github.com/csmith-project/creduce/blob/master/INSTALL)。
 
@@ -38,7 +40,7 @@ C-Reduce 程序的依赖项非常多，安装也很复杂。好在有 Homebrew �
 
 想出一个小的示例代码解释 C-Reduce 是很困难的，因为它的主要目的是从一个大的程序简化出一个小型示例。下面是我竭尽全力想出来的一个简单 C 程序代码，它会产生一些难以理解的编译警告。
 
-```
+```bash
 $ cat test.c
 #include <stdio.h>
 
@@ -65,11 +67,11 @@ test.c:10:1: warning: control reaches end of non-void function [-Wreturn-type]
 2 warnings generated.
 ```
 
-从警告中我们知道 *struct* 和 *main* 代码存在某种问题！至于具体问题是什么，我们可以在简化版本中仔细分析。
+从警告中我们知道 `struct` 和 `main` 代码存在某种问题！至于具体问题是什么，我们可以在简化版本中仔细分析。
 
-C-Reduce 能轻松的将程序精简到远超我们想象的程度。所以为了控制 C-Reduce 的精简行为确保简化操作符合特定预期，我们将编写一个小的 shell 脚本编译该段代码进行并检查警告信息。在该脚本这中我们需要匹配编译警告并拒绝任何形式编译错误，同时我们还需要确保输出文件包含 *struct Stuff*，详细脚本代码如下：
+C-Reduce 能轻松的将程序精简到远超我们想象的程度。所以为了控制 C-Reduce 的精简行为确保简化操作符合特定预期，我们将编写一个小的 shell 脚本，编译该段代码并检查警告信息。在该脚本中我们需要匹配编译警告并拒绝任何形式编译错误，同时我们还需要确保输出文件包含 `struct Stuff`，详细脚本代码如下：
 
-```
+```bash
 #!/bin/bash
 
 clang test.c &> output.txt
@@ -78,11 +80,11 @@ grep "warning: return type of 'main' is not 'int'" output.txt &&
 grep "struct Stuff" output.txt
 ```
 
-首先，我们对简化代码进行编译并将输出重定向到 *output.txt*。如果输出文件包含任何 **error** 字眼则立即退出并返回状态码 1。否则脚本将会继续检查输出文本是否包含特定警告信息和文本 *struct Stuff*。当 *grep* 同时成功匹配上述两个条件时会状态码 0 否则退出并返回状态码 1。状态码 0 表示符合预期而状态码 1 则表示简化的代码不符合预期需要重新简化。
+首先，我们对简化代码进行编译并将输出重定向到 `output.txt`。如果输出文件包含任何 "error" 字眼则立即退出并返回状态码 1。否则脚本将会继续检查输出文本是否包含特定警告信息和文本 `struct Stuff`。当 `grep` 同时成功匹配上述两个条件时，会返回状态码 0；否则就退出并返回状态码 1。状态码 0 表示符合预期而状态码 1 则表示简化的代码不符合预期需要重新简化。
 
 接下来我们运行 C-Reduce 看看效果：
 
-```	
+```bash
 $ creduce interestingness.sh test.c 
 ===< 4907 >===
 running 3 interestingness tests in parallel
@@ -122,17 +124,17 @@ struct Stuff {
 
 最终我们得到一个符合预期的简化版本，并且会覆盖原始代码文件。所以在使用 C-Reduce 时需要注意这一点！一定要在代码的副本中运行 C-Reduce 进行简化操作，否则可能对原始代码造成不可逆更改。
 
-该简化版本使代码问题成功暴露了出来：在 **struct Stuff** 类型声明末尾忘记加分号，另外 **main** 函数没有明确返回类型。这导致编译器将 **struct Stuff** 错误的当作了返回类型。而 *main* 函数必须返回 **int** 类型，所有编译器发出了警告。
+该简化版本使代码问题成功暴露了出来：在 `struct Stuff` 类型声明末尾忘记加分号，另外 `main` 函数没有明确返回类型。这导致编译器将 `struct Stuff` 错误的当作了返回类型。而 `main` 函数必须返回 `int` 类型，所以编译器发出了警告。
 
 ## Xcode 工程
 
 对于单个文件的简化来说 C-Reduce 非常棒，但是更复杂场景下效果如何呢？我们大多数人都有多个 Xcode 工程，那么如何简化某个 Xcode 工程呢？
 
-因为 C-Reduce 的工作方式，简化 Xcode 工程并不简单。它需要将工程拷贝到一个目录中然后再运行脚本。这样虽然能够同时运行多个简化任务，但如果需要其他依赖才能让它工作那么就可能无法简化。好在可以在脚本中运行各种命令，所以可以将项目的其余部分复制到临时目录来解决这个问题。
+考虑到 C-Reduce 的工作方式，简化 Xcode 工程并不简单。它会将需要简化的文件拷贝到一个目录中，然后运行脚本。这样虽然能够同时运行多个简化任务，但如果需要其他依赖才能让它工作，那么就可能无法简化。好在可以在脚本中运行各种命令，所以可以将项目的其余部分复制到临时目录来解决这个问题。
 
-我使用 Xcode 创建了一个标准的 Objective-C 语言的 Cocoa 应用，然后对 **AppDelegate.m** 进行如下修改：
+我使用 Xcode 创建了一个标准的 Objective-C 语言的 Cocoa 应用，然后对 `AppDelegate.m` 进行如下修改：
 
-```
+```objc
 #import "AppDelegate.h"
 
 @interface AppDelegate () {
@@ -166,40 +168,40 @@ struct Stuff {
 
 上面的内容并不是一个非常有用的调用栈信息。虽然我们可以通过调试追溯问题，但是这里我们尝试使用 C-Reduce 来进行问题定位。
 
-这里的 C-Reduce 预期定义将包含更多的内容。首先我们需要给应用设置运行的超时时间。我们会在运行时进行崩溃捕获操作，如果没有发生崩溃则保持应用正常运行直到触发超时处理而退出。下面是一段网上随处可见的 *perl* 脚本代码：
+这里的 C-Reduce 预期定义将包含更多的内容。首先我们需要给应用设置运行的超时时间。我们会在运行时进行崩溃捕获操作，如果没有发生崩溃则保持应用正常运行直到触发超时处理而退出。下面是一段网上随处可见的 `perl` 脚本代码：
 
-```
+```perl
 function timeout() { perl -e 'alarm shift; exec @ARGV' "$@"; }
 ```
 
 紧接着我们需要拷贝该工程文件：
 
-```
+```bash
 cp -a ~/Development/creduce-examples/Crasher .
 ```
 
-然后将修改后的 **AppDelegate.m** 文件拷贝到合适的路径下。（注意：如果文件发现合适简化版本，C-Reduce 会将文件复制回来，所以一定要在这里使用 **cp** 而不是 **mv**。使用 **mv** 会导致一个奇怪的致命错误。）
+然后将修改后的 `AppDelegate.m` 文件拷贝到合适的路径下。（注意：如果文件发现合适简化版本，C-Reduce 会将文件复制回来，所以一定要在这里使用 `cp` 而不是 `mv`。使用 `mv` 会导致一个奇怪的致命错误。）
 
-```
+```bash
 cp AppDelegate.m Crasher/Crasher
 ```
 
-接下来我们切换到 **Crasher** 目录执行编译命令，并在发生错误时退出。
+接下来我们切换到 `Crasher` 目录执行编译命令，并在发生错误时退出。
 
-```
+```bash
 cd Crasher
 xcodebuild || exit 1
 ```
 
-如果编译成功，则运行应用并且设置超时时间。我的系统对编译项进行了设置，所以 *xcodebuild* 命令会将编译结果存放着本地 *build* 目录下。因为配置可能存在差异，所以你首先需要自行检查。如果你将配置设为共享构建目录的话，那么需要在命令行中增加 **—n 1** 来禁用 C-Reduce 的并发构建操作。
+如果编译成功，则运行应用并且设置超时时间。我的系统对编译项进行了设置，所以 `xcodebuild` 命令会将编译结果存放着本地 `build` 目录下。因为配置可能存在差异，所以你首先需要自行检查。如果你将配置设为共享构建目录的话，那么需要在命令行中增加 `—n 1` 来禁用 C-Reduce 的并发构建操作。
 
-```
+```bash
 timeout 5 ./build/Release/Crasher.app/Contents/MacOS/Crasher
 ```
 
 如果应用发生崩溃的话，那么会返回特定状态码 139 。此时我们需要将其转化为状态码 0 ，其它情形统统返回状态码 1。
 
-```
+```bash
 if [ $? -eq 139 ]; then
     exit 0
 else
@@ -209,7 +211,7 @@ fi
 
 紧接着，我们运行 C-Reduce：
 
-```
+```bash
 $ creduce interestingness.sh Crasher/AppDelegate.m
 ...
 (78.1 %, 151 bytes)
@@ -247,13 +249,13 @@ pass statistics:
 
 我们得到一个极其精简的代码。虽然 C-Reduce 没有移除 `NSLog` 那行代码，但是崩溃看起来并不是它引起的。所以此处导致崩溃的代码只能是 `a = NSInsetRect(a, 0, 10);` 这行代码。通过检查该行代码的功能和使用到的变量，我们能发现它使用了一个 `NSRect` 类型的变量而 `applicationDidFinishLaunching` 函数的入参实际上并不是该类型。
 
-```
+```objc
 - (void)applicationDidFinishLaunching:(NSNotification *)notification;
 ```
 
 因此该崩溃应该是由于类型不匹配导致的错误引起的。
 
-因为编译工程的耗时远超过单文件而且很多测试示例都会触发超时处理，所以此例中的 C-Reduce 运行时间会比较长。C-Reduce 会在每次运行成功后将精简的文件写回原始文件，所以你可以使用文本编辑器保持文件的打开状态并查看更改结果。另外你可以在合适时时机运行 *^C* 命令结束 C-Reduce 执行，此时会得到部分精简过的文件。如果有必要你后续可以在此基础上继续进行精简工作。
+因为编译工程的耗时远超过单文件而且很多测试示例都会触发超时处理，所以此例中的 C-Reduce 运行时间会比较长。C-Reduce 会在每次运行成功后将精简的文件写回原始文件，所以你可以使用文本编辑器保持文件的打开状态并查看更改结果。另外你可以在合适时时机运行 `^C` 命令结束 C-Reduce 执行，此时会得到部分精简过的文件。如果有必要你后续可以在此基础上继续进行精简工作。
 
 ## Swift
 
@@ -263,7 +265,7 @@ pass statistics:
 
 下面我们就来试一试。我在 *bugs.swift.org* 上面找到了一个很好的测试 [用例](https://bugs.swift.org/browse/SR-7354)。不过该崩溃只出现在 Xcode9.3 版本上，而我正好就安装了该版本。下面是该 bug 示例的简易修改版：
 
-```
+```swift
 import Foundation
 
 func crash() {
@@ -302,9 +304,9 @@ class SomeClass: NSObject {
 crash()
 ```
 
-当我们尝试在启用优化的情况下运行代码时会出现如下结果：
+当我们尝试在启用优化的情况下运行代码时，会出现如下结果：
 
-```
+```bash
 $ swift -O test.swift 
 <unknown>:0: error: fatal error encountered during compilation; please file a bug report with your project and the crash log
 <unknown>:0: note: Program used external function '__T04test15ProblematicEnumON' which could not be resolved!
@@ -313,16 +315,18 @@ $ swift -O test.swift
 
 与之对应的验证脚本为：
 
-```
+```bash
 swift -O test.swift
 if [ $? -eq 134 ]; then
     exit 0
 else
     exit 1
 fi
+```
 
 运行 C-Reduce 程序我们可以达到如下的简化版本：
 
+```swift
 enum a {
     case b, c, d
     func e() -> f {
