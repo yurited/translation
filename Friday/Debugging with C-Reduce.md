@@ -1,5 +1,5 @@
 title: "使用 C-Reduce 进行调试"
-date: 2018-06-29
+date: 2018-09-27
 tags: [Debug, C-Reduce]
 categories: [Mike Ash]
 permalink: debugging-with-c-reduce
