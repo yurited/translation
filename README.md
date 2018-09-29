@@ -82,7 +82,7 @@ BigNerdCoding
 | littledogboy ||||
 | Forelax |[ForelaxMe](https://weibo.com/3889029090/profile)|[Forelax's Blog](http://forelax.space/)|[ForelaxX](https://github.com/ForelaxX)|
 | pmst ||||
-| Lision ||||
+| Lision | [Lision](https://weibo.com/lisioncode) | [聊宅](https://lision.me/) | [L君](https://github.com/Lision) |
 | liberalism |[Liberalisman](https://weibo.com/1743643682/profile?topnav=1&wvr=6)|[Liberalism](http://www.xiaolu520.com)|[Liberalisman](https://github.com/liberalisman)|
 | pmst |[pmst](https://weibo.cn/u/2085734687)|[pmst](https://www.jianshu.com/u/596f2ba91ce9)|[pmst](https://github.com/colourful987)|
 | saitjr |[saitjr](https://weibo.com/u/1918545437)|[saitjr](http://saitjr.com/)|[saitjr](github.com/saitjr)|
