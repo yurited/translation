@@ -16,9 +16,14 @@
 
 [NSHipster.cn](https://nshipster.cn/) 对 MarkDown 格式的要求如下：
 
-1. 使用原文的格式，并将**中文在英文下面**，方便校验
-2. 英文、数字与中文之间（中文标点除外）加一个空格
-3. 文章头部加上下面的内容
+1. 使用原文的格式，且**原文在上，译文在下**，方便校验。可以参考我们提交到 NSHipster 的 [Never.md](https://raw.githubusercontent.com/mobilefellow/articles-zh-Hans/master/2018-07-30-never.md)：
+
+    > Every compiler textbook will tell you that a comment like this one can’t and won’t affect the behavior of compiled code. Murphy’s Law says otherwise.
+    >
+    > 所有编译器的教科书都会告诉你，这样一句注释不能也不会对编译出的代码产生任何影响。[墨菲定理](https://en.wikipedia.org/wiki/Murphy%27s_law) 告诉你并非如此，注释以下的代码一定会被触发。
+
+2. 英文、数字与中文之间（中文标点除外）加一个空格。
+3. 文章头部加上下面的内容：
 
 ```
 ---
