@@ -7,7 +7,7 @@
 1. 收集待选文章。雨谨会挑选部分 [NShipster](https://nshipster.com/) 上的文章，如果大家发现了好文章，也可以发给他。
 2. 确定待选文章。雨谨将待选文章发给 [NSHipster.cn](https://nshipster.cn/) 确认，如果他们觉得没问题，我们就挂到 GitHub 的 [issues](https://github.com/SwiftGGTeam/translation/issues) 上，供大家认领。
 3. 认领 issue。当我们有人要翻译某篇文章时，请先联系雨谨，由他跟 [NSHipster.cn](https://nshipster.cn/) 再次确认，避免重复工作。如果他们也没做，我们就可以按正常流程开始翻译了。
-4. 提交给 [NSHipster.cn](https://nshipster.cn/)。翻译完成，并在我们这边校对通过后，按照他们的[格式规范](# [NSHipster.cn](https://nshipster.cn/) 的译文规范)处理译文，然后提交 PR 到 NSHipster 的  [articles-zh-Hans](https://github.com/NSHipster/articles-zh-Hans) 仓库。可以参考 [我们提 PR 的方式](https://github.com/SwiftGGTeam/translation/blob/master/翻译流程概述及PR说明.md#如何发起-pull-request)，先 Fork 他们的仓库，本地修改 push 后再提交 PR。之后 [NSHipster.cn](https://nshipster.cn/) 会再次校对译文，然后发布到他们的 [网站](https://nshipster.cn/) 上。为了让他们能及时开始校对，提交 PR 后，请通知雨谨。
+4. 提交给 [NSHipster.cn](https://nshipster.cn/)。翻译完成，并在我们这边校对通过后，按照他们的[格式规范](# [NSHipster.cn](https://nshipster.cn/) 的译文规范)处理译文，然后提交 PR 到 NSHipster 的  [articles-zh-Hans](https://github.com/NSHipster/articles-zh-Hans) 仓库。可以参考 [我们提 PR 的方式](https://github.com/SwiftGGTeam/translation/blob/master/翻译流程概述及PR说明.md#如何发起-pull-request)，先 Fork 他们的仓库，本地修改 push 后再提交 PR。之后 [NSHipster.cn](https://nshipster.cn/) 会再次校对译文，然后发布到他们的 [网站](https://nshipster.cn/) 上。为了让他们能及时开始校对，提交 PR 后，请通知雨谨。
 5. 同步发布到 SwiftGG 官方发布平台。
 
 ## [NSHipster.cn](https://nshipster.cn/) 的译文规范
