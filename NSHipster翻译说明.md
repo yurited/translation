@@ -16,7 +16,7 @@
 
 [NSHipster.cn](https://nshipster.cn/) 对 MarkDown 格式的要求如下：
 
-1. 使用原文的格式，且**原文在上，译文在下**，方便校对者校验。原文仅用于校对，之后会被发布者删除，因此可以直接将原文粘贴上来，不必使用注释语法。具体参考我们提交到 NSHipster 的 [Never.md](https://raw.githubusercontent.com/mobilefellow/articles-zh-Hans/master/2018-07-30-never.md) 这篇文章中:
+1. 使用原文的格式，且**原文在上，译文在下**，方便校对者校验。原文仅用于校对，之后会被发布者删除，因此可以直接将原文粘贴上来，**不必使用注释语法**。具体参考我们提交到 NSHipster 的 [Never.md](https://raw.githubusercontent.com/mobilefellow/articles-zh-Hans/master/2018-07-30-never.md) 这篇文章中:
 
     > Every compiler textbook will tell you that a comment like this one can’t and won’t affect the behavior of compiled code. Murphy’s Law says otherwise.
     >
