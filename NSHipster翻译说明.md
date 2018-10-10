@@ -12,7 +12,7 @@
  @雨谨 将挑选部分 [NSHipster](https://nshipster.com/) 上的文章，如果自己有想翻译的（NSHipster上的）文章可以找他沟通。
 - **确认翻译人员**
  
-  和 [NSHipster](https://nshipster.com/) 确认之后负责人会找一个人翻译文章。
+ 和 [NSHipster](https://nshipster.com/) 确认之后负责人会找一个人翻译文章。
 - **确认翻译进度** 
 
  确定好翻译人员之后会确定一个翻译交付时间，一般**不超过两周**。
