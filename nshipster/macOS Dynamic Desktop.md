@@ -114,7 +114,7 @@ NAA9AEYASABRAFMAXABlAG4AcAB5AIIAiwCNAJYAnwCoAKoAswC8AMUAxwDQANkA
 4gDkAO0A9gD/AQEBCgETARwBHgEnATABOQE7AUQBTQFWAVgBYQFqAXMBdQF+AYcB
 kAGSAZsBpAGtAa8BuAHBAcMBzAHOAdcB4AHpAesB9AAAAAAAAAIBAAAAAAAAAEkA
 AAAAAAAAAAAAAAAAAAH9
-``
+```
 
 ### 太阳之光
 
@@ -172,7 +172,7 @@ if name == "solar" {
 
 *清晰多了！*
 
-首先由两个一级的键：
+首先有两个一级键：
 
 `ap` 键对应的值是包含 `d` 和 `l` 两个键的字典，它们的值都是整型。
 
