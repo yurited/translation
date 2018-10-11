@@ -122,7 +122,7 @@ AAAAAAAAAAAAAAAAAAH9
 
 让我们来验证一下这个假设：
 
-​```swift
+```swift
 if name == "solar" {
     let data = Data(base64Encoded: value)!
     print(String(data: data, encoding: .ascii))
