@@ -5,28 +5,28 @@
 
 ## 负责人
 
-#### 翻译负责人 @雨谨 
+#### 翻译负责人 @雨谨
 
-- **收集待选文章** 
+- **收集待选文章**
 
  @雨谨 将挑选部分 [NSHipster](https://nshipster.com/) 上的文章，如果自己有想翻译的（NSHipster上的）文章可以找他沟通。
 - **确认翻译人员**
- 
+
  和 [NSHipster](https://nshipster.com/) 确认之后负责人会找一个人翻译文章。
-- **确认翻译进度** 
+- **确认翻译进度**
 
  确定好翻译人员之后会确定一个翻译交付时间，一般**不超过两周**。
 
-#### 校对负责人 @水水 
+#### 校对负责人 @水水
 
 - **确认校对人员**
 
  待文章翻译完成之后，@水水 会找两个人校对文章。
-- **确认校对进度** 
+- **确认校对进度**
 
  确定好校对人员之后，会确认一个校对交付时间。一般**不超过一周**。
-- **校对问题反馈** 
- 
+- **校对问题反馈**
+
  因为校对完成之后的文章 [NSHipster](https://nshipster.com/) 会自己再校对一遍，此过程中出现的相关问题可以在群里同步一下，避免下次发生。
 
 ## 翻译流程
@@ -60,9 +60,21 @@
 
 **因 [NSHipster.cn](https://nshipster.cn/) 对校对有特殊要求故需要调整你原来的译文格式**
 
-- 按照他们的 [格式规范](# [NSHipster.cn](https://nshipster.cn/) 的译文规范) 处理译文
+- 校对格式，使用**原文在上，译文在下**。从 [NSHipster/articles](https://github.com/NSHipster/articles) 仓库下载的原文的 .md 文件，包含了标准的 NSHipster 格式。因此建议将译文复制到原文文件，而不是将 [https://nshipster.com](https://nshipster.com) 上的原文复制到译文文件。示例如下:
+
+> Every compiler textbook will tell you that
+a comment like this one can't and won't affect the behavior of compiled code.
+[Murphy's Law](https://en.wikipedia.org/wiki/Murphy%27s_law) says otherwise.
+>
+> 所有编译器的教科书都会告诉你，这样一句注释不能也不会对编译出的代码产生任何影响。[墨菲定理](https://en.wikipedia.org/wiki/Murphy%27s_law) 告诉你并非如此，注释以下的代码一定会被触发。
+
+- 按照他们的 [格式规范]( [NSHipster.cn](https://nshipster.cn/) 的译文规范 ) 处理译文
+
     - 英文、数字与中文之间（中文标点除外）加一个空格。
-    - 文章头部加上下面的内容：
+    - 对于系统名词（如 Finder，Preview）和被大众所熟悉的英文名词（如 Dark Mode），如果没有贴切的中文词语，可以不翻译。例如，Finder 和 AirDrop 的官方翻译“访达”和“隔空投递”并不是很好因此不建议在译文中使用。
+    - 当需要做名词翻译时，到底是采用“中文（英文）”还是“英文（中文）”模式，如 Dark Mode（深色模式）或 深色模式（Dark Mode），取决于后续段落里再次出现同一个单词时，你打算显示中文还是英文。以 Finder 为例，如果后续段落你都打算显示 “ Finder ”，那么第一次出现时，应该显示“ Finder（访达）”，以便让中文版操作系统的用户知道，Finder 就是 访达；反之，第一次应该显示 “ 访达（Finder）”，以便让英文版操作系统的用户了解对应关系。
+    - 只需要翻译 [NSHipster/articles](https://github.com/NSHipster/articles) 仓库的原文的内容。[NSHipster.com](https://nshipster.com) 的文章可能包含一些其他信息，比如 [macOS Dynamic Desktop](https://nshipster.com/macos-dynamic-desktop/) 中的 “nsmutablehipster”，这些都不需要翻译的。
+    - 文章头部加上下面的内容
 
 ```
 ---
@@ -75,12 +87,6 @@ translator: Candyan
 ```
 
 更多细节可以参考他们的 [articles-zh-Hans](https://github.com/NSHipster/articles-zh-Hans) 仓库中已发布文章的排版格式。
-
-- 校对格式，使用**原文在上，译文在下**，示例如下:
-
-> Every compiler textbook will tell you that a comment like this one can’t and won’t affect the behavior of compiled code. Murphy’s Law says otherwise.
-> 
-> 所有编译器的教科书都会告诉你，这样一句注释不能也不会对编译出的代码产生任何影响。[墨菲定理](https://en.wikipedia.org/wiki/Murphy%27s_law) 告诉你并非如此，注释以下的代码一定会被触发。
 
 - 然后提交 PR 到 NSHipster 的  [articles-zh-Hans](https://github.com/NSHipster/articles-zh-Hans) 仓库。可以参考 [我们提 PR 的方式](https://github.com/SwiftGGTeam/translation/blob/master/翻译流程概述及PR说明.md#如何发起-pull-request)，先 Fork 他们的仓库，本地修改 push 后再提交 PR。
 - [NSHipster.cn](https://nshipster.cn/) 会再次校对译文确定无误后发布到他们的 [网站](https://nshipster.cn/) 上。为了让他们能及时开始校对在你向他们的仓库提交 PR 后，请通知 @水水
