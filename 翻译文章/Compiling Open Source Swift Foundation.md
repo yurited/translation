@@ -89,7 +89,7 @@ BUILD_DIR=build ./configure Debug
 
 ```
 
-首先，我们将环境变量 `PREBUILT_ROOT` 设置到预构建 Swift 及相关工具所在的位置，还可以在下一步操作前设置环境变量 `./configure` 为 `Debug`（你也可以使用 `Release`)。我们还需要将环境变量 `SWIFTC`，`CLANG`，`SWIFT` 和 `SDKROOT` 配置脚本指向我们的“工具链”。最后，环境变量 BUILD_DIR 设置所有中间件和最终输出（libFoundation.so）的放置位置。
+首先，我们将环境变量 `PREBUILT_ROOT` 设置到预构建 Swift 及相关工具所在的位置，还可以在下一步操作前设置 `./configure` 为 `Debug`（你也可以使用 `Release`)。我们还需要将环境变量 `SWIFTC`，`CLANG`，`SWIFT` 和 `SDKROOT` 配置脚本指向我们的“工具链”。最后，环境变量 `BUILD_DIR` 设置所有中间件和最终输出（libFoundation.so）的放置位置。
 
 注意：也许有时你会惊讶于评论中的某些内容。你的 `PREBUILT_ROOT` 是你预工具链的位置。不要期望在 `/root/workspace/Swift-3.0-Pi3-ARM-Incremental` 上找到你系统上的任何内容！
 
