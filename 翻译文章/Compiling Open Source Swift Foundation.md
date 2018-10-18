@@ -1,5 +1,3 @@
-# 编译开源 Swift Foundation 库
-
 title: "编译开源 Swift Foundation 库"
 date: 2016-06-30
 tags: [Swift, iOS]
@@ -15,15 +13,15 @@ description: 这是一篇关于编译 Swift 开源的 Foundation 库的文章
 作者=iAchieved.it 
 原文日期=2016-06-30
 译者=rsenjoyer
-校对=
-定稿=
+校对=numbbbbb,智多芯
+定稿=Forelax
 
 
 <!--此处开始正文-->
 
 ![](https://ws1.sinaimg.cn/large/006tNbRwgy1fuksdkfewij306o06omx6.jpg)
 
-我最近在开源的 [Swift Foundation](https://github.com/apple/swift-corelibs-foundation) 中遇到了 `NSThread` 实现的问题。如果不是尝试在树莓派 3 上运行代码，我也许就发现不了这个问：
+我最近在开源的 [Swift Foundation](https://github.com/apple/swift-corelibs-foundation) 中遇到了 `NSThread` 实现的问题。如果不是尝试在树莓派 3 上运行代码，我也许就发现不了这个问题：
 
 ```swift
 import Foundation
@@ -63,7 +61,7 @@ public init(_ main: (Void) -> Void) {
 
 ## 针对 Foundation 的构建
 
-如果你阅读 [开源库 Foundation](https://github.com/apple/swift-corelibs-foundation) 的 [新手入门文档](https://github.com/apple/swift-corelibs-foundation/blob/master/Docs/GettingStarted.md)，它建议你首先需要构建 Swift，clang 和 llvm。如果可以在一个有大量的 CPU 和快速磁盘的服务器上工作，我丝毫不介意按照文档一步步构建。然而树莓派 3 与其他老式的设备一样，性能提升有点慢。我也可以考虑交叉编译 Swift，但我还没有足够时间来解决交叉编译带来的问题（如果你曾经使用过交叉编译环境，你一定知道它需要很长时间来做相关的配置）。
+如果你阅读了 [开源库 Foundation](https://github.com/apple/swift-corelibs-foundation) 的 [新手入门文档](https://github.com/apple/swift-corelibs-foundation/blob/master/Docs/GettingStarted.md)，你就会知道，它建议在构建 Foundation 之前，首先需要构建 Swift，clang 和 llvm。如果可以在一个有大量的 CPU 和快速磁盘的服务器上工作，我丝毫不介意按照文档一步步构建。然而树莓派 3 与其他老式的设备一样，性能提升有点慢。我也可以考虑交叉编译 Swift，但我还没有足够时间来解决交叉编译带来的问题（如果你曾经使用过交叉编译环境，你一定知道它需要很长时间来做相关的配置）。
 
 我们所需要的是充分利用已有的构建环境并自行编译 Foundation。事实证明是可以做到的，不然的话，我们也不会有这篇博客了。
 
@@ -91,11 +89,11 @@ BUILD_DIR=build ./configure Debug
 
 ```
 
-首先，我们将环境变量 `PREBUILT_ROOT` 设置到预构建 Swift 及相关工具所在的位置。如果你设置了环境变量 `./configure` 为 `Debug`（你也可以使用 `Release`)，这将在下一步中使用。我们还需要将环境变量 SWIFTC，CLANG，SWIFT 和 SDKROOT 配置脚本指向我们的“工具链”。最后，环境变量 BUILD_DIR 设置所有中间件和最终输出（libFoundation.so）的放置位置。
+首先，我们将环境变量 `PREBUILT_ROOT` 设置到预构建 Swift 及相关工具所在的位置，还可以在下一步操作前设置环境变量 `./configure` 为 `Debug`（你也可以使用 `Release`)。我们还需要将环境变量 `SWIFTC`，`CLANG`，`SWIFT` 和 `SDKROOT` 配置脚本指向我们的“工具链”。最后，环境变量 BUILD_DIR 设置所有中间件和最终输出（libFoundation.so）的放置位置。
 
-注意：我不得不指出有时你会对评论中留下的内容感到惊讶。你的 `PREBUILT_ROOT` 是你预工具链的位置。不要期望在 `/root/workspace/Swift-3.0-Pi3-ARM-Incremental` 上找到你系统上的任何内容！
+注意：也许有时你会惊讶于评论中的某些内容。你的 `PREBUILT_ROOT` 是你预工具链的位置。不要期望在 `/root/workspace/Swift-3.0-Pi3-ARM-Incremental` 上找到你系统上的任何内容！
 
-最后，`/usr/bin/ninja` 运行我们的构建。一旦构建结束后，在 `build/Foundation/` 目录中会有一个 `libFoundation.so` 共享库。
+最后，执行 `/usr/bin/ninja` 来运行我们的构建。一旦构建结束后，在 `build/Foundation/` 目录中会有一个 `libFoundation.so` 共享库。
 要使用已安装的 Swift 来测试它，只需将 `libFoundation.so` 复制到 `$YOUR_SWIFT_ROOT/usr/lib/swift/linux/ libFoundation.so`。
 
 ## 运行测试用例
