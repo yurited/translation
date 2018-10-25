@@ -63,7 +63,7 @@ Dark Mode（深色模式）可谓是 macOS 最受欢迎的特性之一了 ——
 | Pixel Width  | 5,120      |
 | Profile Name | Display P3 |
 
-> 后缀 `.heic` 表示图片容器采用 HFIF（High-Efficiency Image File Format）编码，即高效率图档格式（这种格式基于 __HEVC__（High-Efficiency Video Compression），即高效率视频压缩，也就是 H.265）。更多信息，可以参考 [WWDC 2017 Session 503"Introducing HEIF and HEVC"](https://developer.apple.com/videos/play/wwdc2017/503/)
+> 后缀 `.heic` 表示图片容器采用 HFIF（High-Efficiency Image File Format）编码，即高效率图档格式（这种格式基于 __HEVC__（High-Efficiency Video Compression），即高效率视频压缩，也就是 H.265）。更多信息，可以参考 [WWDC 2017 Session 503 "Introducing HEIF and HEVC"](https://developer.apple.com/videos/play/wwdc2017/503/)
 
 想要获得更多的数据，我们还需要脚踏实地，真真切切的深入底层 API。
 
