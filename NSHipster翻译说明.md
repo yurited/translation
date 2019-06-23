@@ -52,7 +52,7 @@
 
 - 按照 [这个说明](https://github.com/SwiftGGTeam/translation/blob/master/%E7%BF%BB%E8%AF%91%E6%B5%81%E7%A8%8B%E6%A6%82%E8%BF%B0%E5%8F%8APR%E8%AF%B4%E6%98%8E.md#%E5%A6%82%E4%BD%95%E5%8F%91%E8%B5%B7-pull-request) 创建 Pull requests（以下简称 PR） 在 PR 的内容里关联对应的 Issues，关联方式：将 Issues 页面的网址复制到 PR 信息中或者直接在 Pull requests 信息中评论 `#11` 11 是对应的 Issues 号
 - 翻译文章放到 `translation/nshipster` 文件夹下，命名建议 `yyyyMMdd_文章名.md` 例如 `20180730_Never.md`。
-- 提交 PR 之后提醒 @水水 安排校对人员
+- 提交 PR 之后等待校对
 
 #### 3. [NSHipster.cn](https://nshipster.cn/) 校对
 
@@ -87,7 +87,7 @@ translator: Candyan
 更多细节可以参考他们的 [articles-zh-Hans](https://github.com/NSHipster/articles-zh-Hans) 仓库中已发布文章的排版格式。
 
 - 然后提交 PR 到 NSHipster 的  [articles-zh-Hans](https://github.com/NSHipster/articles-zh-Hans) 仓库。可以参考 [我们提 PR 的方式](https://github.com/SwiftGGTeam/translation/blob/master/翻译流程概述及PR说明.md#如何发起-pull-request)，先 Fork 他们的仓库，本地修改 push 后再提交 PR。
-- [NSHipster.cn](https://nshipster.cn/) 会再次校对译文确定无误后发布到他们的 [网站](https://nshipster.cn/) 上。为了让他们能及时开始校对在你向他们的仓库提交 PR 后，请通知 @雨谨。
+- [NSHipster.cn](https://nshipster.cn/) 会再次校对译文确定无误后发布到他们的 [网站](https://nshipster.cn/) 上。为了让他们能及时开始校对，向他们的仓库提交 PR 后，请通知 @雨谨。
 
 #### 4.同步发布到 SwiftGG 官方发布平台。
 - @Forelax 负责。
