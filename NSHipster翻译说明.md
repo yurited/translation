@@ -9,13 +9,13 @@
 
 - **收集待选文章**
 
- @雨谨 将挑选部分 [NSHipster](https://nshipster.com/) 上的文章，如果自己有想翻译的（NSHipster上的）文章可以找他沟通。
+ @雨谨 将挑选部分 [NSHipster](https://nshipster.com/) 上的文章，如果自己有想翻译的（NSHipster上的）文章可以找他沟通，避免和 NSHipster.cn 团队翻译重复。
 - **确认翻译人员**
 
- 和 [NSHipster](https://nshipster.com/) 确认之后负责人会找一个人翻译文章。
+ 和 [NSHipster](https://nshipster.com/) 确认之后，负责人会答复，确认你为翻译人员。
 - **确认翻译进度**
 
- 确定好翻译人员之后会确定一个翻译交付时间，一般**不超过两周**。
+ 和负责人确定翻译交付时间，一般**不超过两周**。
 
 #### 校对
 
@@ -34,7 +34,7 @@
 - 认领之后
 
     - 确定要翻译的文章之后，点击打开 [**Issues**](https://github.com/SwiftGGTeam/translation/issues)，在右侧的 **Assignees** 栏点击 **assign yourself**
-    - 确定最后的交付日期，在保证质量的前提下尽量以最快速度完成。
+    - 确定最后的交付日期，在保证质量的前提下尽快完成。
 
 - 翻译时
 
