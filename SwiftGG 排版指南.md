@@ -230,4 +230,4 @@ Markdown 的【加粗】和【斜体】，内容部分不能有空格，否则�
 跳转目标
 ```
 
-比如，我们要跳转到 [本文开头](#beginning)。
+比如，我们要跳转到 [本文开头](#beginning)，点击链接就可以跳到本文开头。如果你查看这篇文章的 [源代码](https://raw.githubusercontent.com/SwiftGGTeam/translation/master/SwiftGG%20%E6%8E%92%E7%89%88%E6%8C%87%E5%8D%97.md)，可以看到全文最开头有一个 `<a name="beginning"></a>`，上一句的链接写法是 `[本文开头](#beginning)`。
