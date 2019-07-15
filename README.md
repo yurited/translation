@@ -42,6 +42,7 @@
 | ericchuhong | | | [ericchuhong](https://github.com/ericchuhong) |
 | CyberHex | [Penstein](https://weibo.com/u/2392553762) | [CyberHex](https://cyberhex.me/) | [quintessencegpy](https://github.com/quintessencegpy) |
 | Joeytat | [JoeyQAQ](https://weibo.com/u/1592639685) | [Joeytat's Blog](https://joeytat.github.io/) | [Joeytat](https://github.com/joeytat) |
+| Sunsetwan | | | [Sunsetwan](https://github.com/SunsetWan)
 
 ## 校对
 
