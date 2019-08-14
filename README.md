@@ -17,7 +17,7 @@
 
 ### 名单
 
-|群ID|微博|个站|Github|
+|群ID|微博|个站|GitHub|
 |---- |---- |---- |---- |
 | BigNerdCoding | [BigNerdCoding](https://weibo.com/1314ddml) | [BigNerdCoding](https://bignerdcoding.com)|[BigNerdCoding](https://github.com/BigNerdCoding) |
 |森尼羊|[Sunnyyoung咩](https://weibo.com/34992577) | [Sunnyyoung](https://www.sunnyyoung.net)|[Sunnyyoung](https://github.com/Sunnyyoung) |
