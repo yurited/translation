@@ -60,8 +60,7 @@ by Gabriel Theodoropoulos, appcoda.com October 25, 2019 06:55 AM
 
 你可以下载一个Starter Project。 它包含Demo App的所有部分，但是这些部分和应用内购没有直接关系。下载后用Xcode打开它。 这个Project是用Xcode 11.1创建的。
 
-尽管Demo Project非常简单，它也是基于MVVM架构构建的，因此你可以更轻松地专注于项目的各个部分。 简单看看，并熟悉一下它的各个部分。
-您可能会发现在Model.swift文件的Model类中定义的GameData Struct比较有趣。 这个Struct的gameData实例是用来保存与购买的商品有关的数据的。 GameData用SettingsManageable protocol 在本地保存他的数据。 该协议已在以前的教程中介绍，该教程介绍了如何使用协议来管理应用程序配置。
+尽管Demo Project非常简单，它也是基于MVVM架构构建的，因此你可以更轻松地专注于项目的各个部分。 简单看看，并熟悉一下它的各个部分。您可能会发现在Model.swift文件的Model类中定义的GameData Struct 比较有趣。 这个Struct 的gameData实例是用来保存与购买的商品有关的数据的。 GameData实现了SettingsManageable 协议，用于在本地保存数据。该协议我们已在之前的如何使用协议管理应用程序配置的教程中讲过。
 
 Note: The way you’ll store any data regarding in-app purchases is always a matter totally dependent on your app itself and the available mechanisms to save data locally. What I strongly advice to avoid is using User Defaults as your storage solution.
 
