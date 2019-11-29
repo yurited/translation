@@ -1,53 +1,38 @@
-title: "iOS 应用内购开发完全指南"
-date: 
-tags: [Swift，iOS 开发]
-categories: [Swift]
-permalink: 
-keywords: 
-
-------
-
-原文链接=https://www.appcoda.com/in-app-purchases-guide/
-作者=Gabriel Theodoropoulos
-原文日期=2019-10-25
-译者=Li Yu
-校对=
-定稿=
-
-<!--此处开始正文-->
-
 iOS 应用内购开发完全指南
 
 by Gabriel Theodoropoulos, appcoda.com October 25, 2019 06:55 AM
 
-大家好！在这个App Store里面已经满是App的时代，用户的有过剩的选择。在所有App 种类里面都有很多的竞争，用户也想前先试用再决定自己是否喜欢。另一方面，开发者的目标是使他们发布的App 创造利润，但首先他们需要创造出用户群。发布一个收费软件并不是经济上成功的保证；除非这个App实在十分卓越，用户为其买单的几率很低。令人欣慰的是，有一种方案可以满足双方的需求，用户可以先试用App，开发者也可以有利润；这个方案叫应用内购买(In-App Purchase)。
+大家好！在这个App Store里面已经满是App的时代，用户的有过剩的选择。在所有App 种类里面都有很多的竞争，用户也想前先试用再决定自己是否喜欢。另一方面，开发者的目标是使他们发布的App 创造利润，但首先他们需要创造出用户群。发布一个收费软件并不是经济上成功的保证；除非这个App实在十分卓越，用户为其买单的几率很低。令人欣慰的是，有一种方案可以满足双方的需求，用户可以先试用App，开发者也可以有利润；这个方案叫*应用内购买(In-App Purchase)*。
 
-编者按：本指南在原指南的基础上提供了全面的更新。
+编者按：本指南在[原指南](https://www.appcoda.com/in-app-purchase-tutorial/).的基础上提供了全面的更新。
 
-通过为应用程序提供应用内购买，我们（作为开发人员）可以把一些内容或功能锁定，隐藏或标记为不可用，直到用户付费。 用户这边会高兴因为他们可以体验应用程序的免费部分，如果满意，他们将愿意购买高级内容。
+通过为应用程序提供[应用内购](https://developer.apple.com/in-app-purchase/)，我们（作为开发人员）可以把一些内容或功能锁定，隐藏或标记为不可用，直到用户付费。 用户这边会高兴因为他们可以体验应用程序的免费部分，如果满意，他们将愿意购买高级内容。
 
-通过应用内购买可以购买的任何的东西都称为商品。 App Store提供了四种不同的商品：
+通过应用内购买可以购买的任何的东西都称为_商品_。App Store提供了四种不同的商品：
 
-* 消耗品(Consumable)：这些是消耗完之后可以再次购买的商品。
-* 非消耗品(Non-consumable)：这些是只能购买一次购买的商品。 在重装App后，用户无需再次付费，而是从App Store恢复购买(restore)这些产品。
-* 自动续订(Auto-renewable subscriptions)：用户订阅一定时间的内容或功能，到期自动续订。用户可以随时取消订阅。
-* 不可续订的订阅(Non-renewing subscriptions)：与上述类似，但不会自动续订。 购买的内容也有所不同。
+* _消耗品(Consumable)_：这些是消耗完之后可以再次购买的商品。
+* _非消耗品(Non-consumable)_：这些是只能购买一次购买的商品。 在重装App后，用户无需再次付费，而是从App Store恢复购买(restore)这些产品。
+* _自动续订(Auto-renewable subscriptions)_：用户订阅一定时间的内容或功能，到期自动续订。用户可以随时取消订阅。
+* _不可续订的订阅(Non-renewing subscriptions)_：与上述类似，但不会自动续订。 购买的内容也有所不同。
 
 在本教程中，我们不会讨论订阅。我们仅关注消耗品和非消耗品。因为在单一教程中不可能涵盖所有内容。
 
-使用应用内购买(IAP)时，可能会有只在用户付费后才可下载内容。 这些内容可以存在您的或Apple的服务器中。 这种情况我们也不会涉及。但我希望您在完成后可以拓展在教程中所学到的，并且根据您的所需加上缺少的东西。
+使用应用内购买(IAP)时，可能会有只在用户付费后才_可下载内容_。 这些内容可以存在您的或Apple的服务器中。这种情况我们也不会涉及。但我希望您在完成后可以拓展在教程中所学到的，并且根据您的所需加上缺少的东西。
 
 集成和提供应用内购并不困难，其实只有几个步骤。 如果你以前没有做过，你可能会觉得它复杂。但请相信我它其实并不复杂。 请继续阅和读学习演示程序，然后写出你人生中第一次的应用内购功能！
 
 关于演示程序
+---
 
-我们在本教程中搭建的演示程序，是一个假想游戏的一部分。 在它的（假）功能中，有三个应用内购功能（这些是真的）。用户可以：
+我们在本教程中搭建的演示程序，是一个_假想游戏_的一部分。 在它的（假）功能中，有三个应用内购功能（这些是真的）。用户可以：
 
 1. 买一条命
 2. 买超能力点数
 3. 解锁所有游戏地图
 
 你可以敞开脑洞来写游戏剧情！
+
+![in-app purchase-swift demo](https://www.appcoda.com/wp-content/uploads/2019/10/t68_1_app_screen-571x1024.png)
 
 前两个是消耗品(Consumable)：意思是消耗完之后可以再次购买。第三个是解锁所有地图，是只能买一次的非消耗品(Non-consumable)。
 
@@ -62,34 +47,37 @@ by Gabriel Theodoropoulos, appcoda.com October 25, 2019 06:55 AM
 
 尽管Demo Project非常简单，它也是基于MVVM架构构建的，因此你可以更轻松地专注于项目的各个部分。 简单看看，并熟悉一下它的各个部分。您可能会发现在Model.swift文件的Model类中定义的GameData Struct 比较有趣。 这个Struct 的gameData实例是用来保存与购买的商品有关的数据的。 GameData实现了SettingsManageable 协议，用于在本地保存数据。该协议我们已在之前的如何使用协议管理应用程序配置的教程中讲过。
 
-Note: The way you’ll store any data regarding in-app purchases is always a matter totally dependent on your app itself and the available mechanisms to save data locally. What I strongly advice to avoid is using User Defaults as your storage solution.
+注意：存储应用内购相关数据的方式完全取决于你的App本身以及在本地保存数据的机制。我强烈建议你避免使用UserDefaults 作为本地存储数据的解决方案。
 
-With the above said, get ready to learn how to implement in-app purchases into your apps; it’s going to be an interesting exploration from start to finish!
+综上所述，请准备好开始学习如何使用应用内购； 从开始到结束，全程都会是有趣的探索过程！
 
-Preparing In-App Purchases On The App Store
+在App Store 中准备应用内购
 
-The first thing we have to do before we start writing code in Xcode is to create the in-app purchase products that we’ll be offering through the app. This is an action taking place on App Store, where we are going to create a new app (or app record) on it. Besides that, there are a couple of other steps included in the whole process of getting prepared for in-app purchases integration.
+在开始往Xcode里写代码之前，我们要做的第一件事就是建立将通过该应用提供的应用内购的产品。这是要在App Store上完成的事，我们要在该App Store上创建一个新应用程序（或应用程序记录）。此外，在准备集成应用内购的过程中还包括其他几个步骤。
 
-In summary the actions we’ll take before we switch to Xcode are:
+总而言之，在切换到Xcode之前我们要做的事有：
 
-Create a new app identifier.
-Take care of any pending agreements on the App Store.
-Create test users for the in-app purchases.
-Create a new app record on the App Store.
-Create the actual in-app purchases.
-Let’s see them now in detail.
+1. 创建一个新的应用程序标识符(app identifier)。
+2. 同意App Store上所有需要同意的协议。
+3. 为应用内购创建测试用户。
+4. 在App Store上创建一个新的应用程序记录(app record)。
+5. 创建应用内购。
 
-Creating A New App Identifier
-An app identifier is a unique string value that identifies an application on the App Store. It refers to a specific application and it’s related to it through the Bundle identifier of the app. You can find it in the Project Editor under the General tab in Xcode; it’s the com.appcoda.FakeGame value in the starter project.
+我们一步一步的具体看。
 
-An app identifier is necessary when creating new apps for the App Store. Let’s create one now, therefore get connected to your Apple developer account in your favorite browser. Once you’re in, click on the Certificates, IDs & Profiles link in the options on the left.
+创建一个新的应用程序标识符(app identifier)。
 
-In the next screen, click on the Identifiers menu item, and then click on small blue plus button to create a new one.
+_应用程序标识符_(app identifier)是一个用于标识App Store上应用程序的唯一的字符串。 
 
+它指向一个特定的应用程序，并与该应用程序的包标识符(Bundle identifier) 相关。在_General_选项卡下的_Project Editor_ 中找到它； Starter Project中是_com.appcoda.FakeGame_。
 
-You’ll be presented with a list of various types of identifiers to choose from. What we need is the first one, so make sure to click on the App IDs and then press Continue.
+在App Store创建新的应用时，必须有一个应用标识符。 我们在浏览器中创建一个新的并且连接到你的[苹果开发者账号](http://developer.apple.com/account/)。登陆后，点击左侧选项中的*证书，ID和配置文件(Certificates, IDs & Profiles)* 链接。
 
-It’s time to create the identifier. Make sure to fill in two fields:
+在下一页中，单击“标识符(Identifiers)”项，然后单击蓝色小加号按钮创建一个新的。
+
+它会显示给你各种标识符的列表，我们需要的是第一个，因此请单击应用程序的ID，然后点继续。
+
+是时候该创建标识符了，请确保填写一下两个部分：
 
 The Description of the app identifier. Feel free to provide any description you think it’s best, just respect the limitations shown right below the field. For example, what I wrote in that field is: “FakeGame App ID for IAP Demo App by AppCoda“.
 Next, in the Bundle ID keep the Explicit radio selected, and copy-and-paste the Bundle identifier from Xcode to that field.
