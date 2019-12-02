@@ -2,13 +2,13 @@ iOS 应用内购开发完全指南
 
 by Gabriel Theodoropoulos, appcoda.com October 25, 2019 06:55 AM
 
-大家好！在这个App Store里面已经满是App的时代，用户的有过剩的选择。在所有App 种类里面都有很多的竞争，用户也想前先试用再决定自己是否喜欢。另一方面，开发者的目标是使他们发布的App 创造利润，但首先他们需要创造出用户群。发布一个收费软件并不是经济上成功的保证；除非这个App实在十分卓越，用户为其买单的几率很低。令人欣慰的是，有一种方案可以满足双方的需求，用户可以先试用App，开发者也可以有利润；这个方案叫*应用内购买(In-App Purchase)*。
+大家好！在这个App Store里面已经满是App的时代，用户的有过剩的选择。在所有App 种类里面都有很多的竞争，用户也想前先试用再决定自己是否喜欢。另一方面，开发者的目标是使他们发布的App 创造利润，但首先他们需要创造出用户群。发布一个收费软件并不是经济上成功的保证；除非这个App实在十分卓越，用户为其买单的几率很低。令人欣慰的是，有一种方案可以满足双方的需求，用户可以先试用App，开发者也可以有利润；这个方案叫*应用内购买(In-App Purchase)*。
 
-编者按：本指南在[原指南](https://www.appcoda.com/in-app-purchase-tutorial/).的基础上提供了全面的更新。
+编者按：本指南在[原指南](https://www.appcoda.com/in-app-purchase-tutorial/)的基础上提供了全面的更新。
 
 通过为应用程序提供[应用内购](https://developer.apple.com/in-app-purchase/)，我们（作为开发人员）可以把一些内容或功能锁定，隐藏或标记为不可用，直到用户付费。 用户这边会高兴因为他们可以体验应用程序的免费部分，如果满意，他们将愿意购买高级内容。
 
-通过应用内购买可以购买的任何的东西都称为_商品_。App Store提供了四种不同的商品：
+通过应用内购买可以购买的任何的东西都称为 _商品_。App Store提供了四种不同的商品：
 
 * _消耗品(Consumable)_：这些是消耗完之后可以再次购买的商品。
 * _非消耗品(Non-consumable)_：这些是只能购买一次购买的商品。 在重装App后，用户无需再次付费，而是从App Store恢复购买(restore)这些产品。
@@ -17,7 +17,7 @@ by Gabriel Theodoropoulos, appcoda.com October 25, 2019 06:55 AM
 
 在本教程中，我们不会讨论订阅。我们仅关注消耗品和非消耗品。因为在单一教程中不可能涵盖所有内容。
 
-使用应用内购买(IAP)时，可能会有只在用户付费后才_可下载内容_。 这些内容可以存在您的或Apple的服务器中。这种情况我们也不会涉及。但我希望您在完成后可以拓展在教程中所学到的，并且根据您的所需加上缺少的东西。
+使用应用内购买(IAP)时，可能会有只在用户付费后才_可下载内容_。 这些内容可以存在你的或Apple的服务器中。这种情况我们也不会涉及。但我希望你在完成后可以拓展在教程中所学到的，并且根据你的所需加上缺少的东西。
 
 集成和提供应用内购并不困难，其实只有几个步骤。 如果你以前没有做过，你可能会觉得它复杂。但请相信我它其实并不复杂。 请继续阅和读学习演示程序，然后写出你人生中第一次的应用内购功能！
 
@@ -45,7 +45,7 @@ by Gabriel Theodoropoulos, appcoda.com October 25, 2019 06:55 AM
 
 你可以下载一个Starter Project。 它包含Demo App的所有部分，但是这些部分和应用内购没有直接关系。下载后用Xcode打开它。 这个Project是用Xcode 11.1创建的。
 
-尽管Demo Project非常简单，它也是基于MVVM架构构建的，因此你可以更轻松地专注于项目的各个部分。 简单看看，并熟悉一下它的各个部分。您可能会发现在Model.swift文件的Model类中定义的GameData Struct 比较有趣。 这个Struct 的gameData实例是用来保存与购买的商品有关的数据的。 GameData实现了SettingsManageable 协议，用于在本地保存数据。该协议我们已在之前的如何使用协议管理应用程序配置的教程中讲过。
+尽管Demo Project非常简单，它也是基于MVVM架构构建的，因此你可以更轻松地专注于项目的各个部分。 简单看看，并熟悉一下它的各个部分。你可能会发现在Model.swift文件的Model类中定义的GameData Struct 比较有趣。 这个Struct 的gameData实例是用来保存与购买的商品有关的数据的。 GameData实现了SettingsManageable 协议，用于在本地保存数据。该协议我们已在之前的如何使用协议管理应用程序配置的教程中讲过。
 
 注意：存储应用内购相关数据的方式完全取决于你的App本身以及在本地保存数据的机制。我强烈建议你避免使用UserDefaults 作为本地存储数据的解决方案。
 
@@ -58,8 +58,8 @@ by Gabriel Theodoropoulos, appcoda.com October 25, 2019 06:55 AM
 总而言之，在切换到Xcode之前我们要做的事有：
 
 1. 创建一个新的应用程序标识符(app identifier)。
-2. 同意App Store上所有需要同意的协议。
-3. 为应用内购创建测试用户。
+2. 同意所需协议
+3. 创建测试用户
 4. 在App Store上创建一个新的应用程序记录(app record)。
 5. 创建应用内购。
 
@@ -79,38 +79,42 @@ _应用程序标识符_(app identifier)是一个用于标识App Store上应用�
 
 是时候该创建标识符了，请确保填写一下两个部分：
 
-1.  The **Description** of the app identifier. Feel free to provide any description you think it’s best, just respect the limitations shown right below the field. For example, what I wrote in that field is: “_FakeGame App ID for IAP Demo App by AppCoda_“.
-2.  Next, in the **Bundle ID** keep the **Explicit** radio selected, and **copy-and-paste the Bundle identifier** from Xcode to that field.
+1. 应用程序标识符的**说明(Description)**。 请提供你认为最好的描述，遵守下方显示的规则即可。 例如我在该字段中写的内容是："_FakeGame App ID for IAP Demo App by AppCoda_"。
+
+2. 接下来，在**包ID**中，选中**直接(Explicit)**，然后**把包标识符(Bundle ID)从Xcode复制并粘贴**到此处。
 
 ![A Complete Guide to In-App Purchases for iOS Development 4](https://www.appcoda.com/wp-content/uploads/2019/10/t68_7_register_app_id-1024x293.png)
 
-Finally, click _Continue_ and then in the last step click **Register**. By going back to the list of the app identifiers, you should be able to see the one that we just created!
+
+最后，单击 _继续_ 并且在最后一步单击 **注册(Register)**。回到应用程序标识符列表后，你应该可以看到我们刚刚新建的这一项！
 
 ![A Complete Guide to In-App Purchases for iOS Development 5](https://www.appcoda.com/wp-content/uploads/2019/10/t68_8_listed_app_id-1024x293.png)
 
-### Fix Any Pending Agreements
+### 同意所需协议
 
-Let’s leave the developer’s account now and let’s go to the App Store, also known as the [_iTunesConnect_](listed_app_id). If you did not sign out from the developer’s account then you’ll be automatically connected, otherwise just provide your credentials to sing in again. Here’s the place where we’ll create a new record for our application and we’ll setup the in-app purchases, as well as the place to perform a few more necessary actions. One of them is to check if you have any _pending agreements_ that should be taken care of, like for example the next one:
+我们离开开发者的帐户页，然后到App Store，或者说是[_iTunesConnect_](https://appstoreconnect.apple.com)。 如果你没有登出开发者帐户的话就会自动登陆，否则你需要自己输入账号密码来登陆。 在这里，我们将为我们的应用程序创建新的记录，并为其设置应用程序内购，以及做其他一些必要的操作。 其中一项是检查你是否有任何 _待处理协议(pending agreements)_，例如下面的协议：
 
 ![A Complete Guide to In-App Purchases for iOS Development 6](https://www.appcoda.com/wp-content/uploads/2019/10/t68_9_pending_agreement-1024x146.png)
 
-Notifications like the one illustrated right above contain links to the page you should visit so you can accept the agreement(s). You can also go there on your own if you select the **Agreements, Tax, and Banking** options on the home screen of the App Store:
+像上面这样的提醒包含了你需要阅读和同意的协议的链接。你也可以自己在App Store主页面选择 **(协议，税务和银行业务)Agreements, Tax, and Banking**以便自己查看。
 
 ![A Complete Guide to In-App Purchases for iOS Development 7](https://www.appcoda.com/wp-content/uploads/2019/10/t68_10_agreements_option-1024x509.png)
 
-Once you get there, find the agreement or any other pending task (such as setting up a bank account) and proceed to the suggested or required actions so you eliminate all issues.
+打开后，找到协议以及任何其他待处理任务（比如设置银行账户）, 然后完成建议或者必须做的事情直到没有问题为止。
 
 ![A Complete Guide to In-App Purchases for iOS Development 8](https://www.appcoda.com/wp-content/uploads/2019/10/t68_11_agreement_to_fix-1024x143.png)
 
-Even though it’s not necessary to have the above fixed when you’re creating and testing in-app purchases, you still have to take care about it if you’re planning to send your app either for testing to TestFlight, or to release it.
+即使在创建和测试应用内购买时不必修复上面的问题，但如果你打算将应用发给TestFlight进行测试或发布，你还是需要做这些事情的。
 
-### Create Test Users
+### 创建测试用户
 
-Until an app is released on the App Store, all in-app purchases should be tested in a _sandbox mode_ and neither you nor anyone else testing should pay with real money. By default, external testers who test in-app purchases through TestFlight don’t actually pay when they are asked to. However, internal testers like the developers of an app should be using _test user accounts_ and not their real Apple ID and iCloud accounts.
+在App Store发布应用程序之前，所有应用内购都应以 _沙盒模式_ 进行测试，你和其他任何测试者都不需要用真钱付款。 默认情况下，通过TestFlight测试应用内购的外部测试人员在购买时也不需真正付款。 但是，像应用程序开发者这种内部测试人员应使用 _测试用户帐号_ 而不是真的Apple ID和iCloud帐号。
 
 Creating test users in the App Store it’s easy, however there’s a _negative point_: Even though we’re talking about _fake_ accounts, _real email addresses are required_. A confirmation email is sent by Apple which should be validated before any test account is used!
 
-So, if you want to have multiple test users it might be a bit of a hassle to have the same number of email addresses. I’d recommend to check if your email service provider allows to use _aliases_ along with your normal email address (as _GMail_ does for example). If you have a paid server service (shared hosted, dedicated, or a personal one), then things are easier for you as you can create as many temporary email addresses as you want if you don’t like using aliases, and then delete them easily.
+在App Store中创建测试用户很容易，但有一个 _缺点_：即使是 _假_ 帐户，也 _需要真正电子邮件地址_。 你需要在使用任何测试帐户之前验证Apple发送的验证电子邮件！
+
+因此，如果你想拥有多个测试用户，拥有相同数量的电子邮件地址可能会有些麻烦。 我建议你检查你的电子邮件服务提供商是否允许将 _别名(aliases)_ 和你的普通电子邮件地址一起使用（比如 _gmail_）。如果你有付费服务器服务（共享托管服务，专用服务或个人服务），那么对你来说就更容易了，如果你不喜欢 _别名(aliases)_ 的话，你可以创造任意数量的临时邮件账号，然后将它们删除。
 
 Onto the actual process now, select the **Users and Accesses** option in the home screen of the App Store. In the next one, you’ll find out a section called **Sandbox** to the left menu, and right below a link titled **Testers**:
 
