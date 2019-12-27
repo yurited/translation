@@ -110,48 +110,47 @@ _应用程序标识符_(app identifier)是一个用于标识App Store上应用�
 
 在App Store发布应用程序之前，所有应用内购都应以 _沙盒模式_ 进行测试，你和其他任何测试者都不需要用真钱付款。 默认情况下，通过TestFlight测试应用内购的外部测试人员在购买时也不需真正付款。 但是，像应用程序开发者这种内部测试人员应使用 _测试用户帐号_ 而不是真的Apple ID和iCloud帐号。
 
-Creating test users in the App Store it’s easy, however there’s a _negative point_: Even though we’re talking about _fake_ accounts, _real email addresses are required_. A confirmation email is sent by Apple which should be validated before any test account is used!
-
 在App Store中创建测试用户很容易，但有一个 _缺点_：即使是 _假_ 帐户，也 _需要真正电子邮件地址_。 你需要在使用任何测试帐户之前验证Apple发送的验证电子邮件！
 
 因此，如果你想拥有多个测试用户，拥有相同数量的电子邮件地址可能会有些麻烦。 我建议你检查你的电子邮件服务提供商是否允许将 _别名(aliases)_ 和你的普通电子邮件地址一起使用（比如 _gmail_）。如果你有付费服务器服务（共享托管服务，专用服务或个人服务），那么对你来说就更容易了，如果你不喜欢 _别名(aliases)_ 的话，你可以创造任意数量的临时邮件账号，然后将它们删除。
 
-Onto the actual process now, select the **Users and Accesses** option in the home screen of the App Store. In the next one, you’ll find out a section called **Sandbox** to the left menu, and right below a link titled **Testers**:
+现在进入真正的流程，在App Store的主屏幕中选择**用户与权限(Users and Accesses)**选项。 然后，你会在左侧菜单的**测试人员(Tester)**的链接的下方找到**沙盒(sandbox)**：
 
 ![A Complete Guide to In-App Purchases for iOS Development 9](https://www.appcoda.com/wp-content/uploads/2019/10/t68_12_testers_menu.png)
 
-By clicking on it you’ll be taken in the test users page. There’s a **blue plus button** on top that you should press. You then fill in the information for the new tester.
+点击它之后你会进入测试用户页面。 点击**蓝色加号**后你可以填写新的测试人员信息。
 
-If you’re about to create multiple users, then I’d suggest to choose different App Store territories so you can test in-app purchases with different currencies. Also, _make sure to remember the password you set_, because there’s no way to edit this form again. You’ll have to start over if you forget a test user’s password.
+如果你想创建多个用户，那我建议选择不同的App Store区域，以便测试使用不同货币的应用内购。 另外，请 _记住你设置的密码_，因为这个表单无法再修改。 如果你忘了测试用户的密码就必须再创建新的。
 
-When you’re done typing the test user’s information, click on the _Invite_ button and wait for a confirmation email to come. Repeat the process by completing a new form for each new tester account you need to add.
+输入完测试用户信息后，点击 _邀请(Invite)_ 按钮，之后会有确认电子邮件发过来。重复这个过程就可以为您需要添加的每个测试人员帐户填写表格。
 
-Created test accounts are listed as shown next. You can remove them by clicking on the _Edit_ button on the top-right side of the window, but you cannot edit them.
+创建的测试帐户如下所示。 您可以通过单击窗口右上角的 _编辑(Edit)_ 按钮将其删除，但是无法对其进行编辑。
 
 ![A Complete Guide to In-App Purchases for iOS Development 10](https://www.appcoda.com/wp-content/uploads/2019/10/t68_14_listed_test_users-1024x479.png)
 
-### Create A New App On The App Store
+### 在应用商店里创建一个新的应用程序
 
-Let’s go now to some more juicy stuff, and let’s create a new app record on the App Store which we’ll connect to the actual iOS application. Get started by clicking on the **My Apps** option on the home screen of the App Store. Then, click on the **Plus button** on the top-left side of the top bar.
+现在让我们来做一些更实在的事情，在App Store上创建一个新的应用程序记录，将其连接到真正的iOS应用程序。单击App Store主屏幕上的**我的应用(My Apps)**选项，然后，点击顶部栏左上方的**加号按钮**。
 
-In the form that shows up, there are four fields that have to be mandatorily filled in:
+在出现的表单上有四项必须填写的内容：
 
-1.  The name of the app. Make sure to provide a **unique app name**! If you provide a name already taken you’ll see an error message when you’ll try to create the app, so just go and change it.
-2.  The primary language the app is using.
-3.  The Bundle ID. Use the drop down menu to locate the _app ID_ we created earlier which is connected to the Bundle Identifier of the app.
-4.  The _SKU_ – a unique string for the app not visible on the App Store.
+1. 应用程序的名称。 必须是**独一无二的应用名称**！ 如果您提供了已经使用的名字，就会在尝试创建应用程序时会看到错误消息，只需因此进行更改即可。
+2. 应用程序使用的主要语言。
+3. 包ID(Bundle Id)。 使用下拉菜单找到我们先前创建的 _(应用程序ID)app ID_，该ID已连接到应用的包标识符。
+4. _SKU_ –该应用程序的独一无二的字符串，在App Store中不可见。
 
-Also, make sure to select the **iOS checkbox** in the _Platforms_ section.
+并且在平台中选上**iOS 选项**
 
-Right below you can see the form completed. Use it as a guide and fill it in on your side too.
+下图中您可以看到已完成的表格，参照这个表格完成您的填写。
 
 ![A Complete Guide to In-App Purchases for iOS Development 11](https://www.appcoda.com/wp-content/uploads/2019/10/t68_16_new_app_form.png)
 
-If there’s no missing data and the name you provided is unique, then a new app will be created right after you click on the _Create_ button. You’ll automatically be navigated to the _app information_ page:
+
+如果没有缺少的必填项，同时您提供的名称是唯一的，在您单击 _创建(Create)_ 按钮后就会创建一个新应用。 页面将会自动跳转到 _app信息(App Information)_：
 
 ![A Complete Guide to In-App Purchases for iOS Development 12](https://www.appcoda.com/wp-content/uploads/2019/10/t68_17_app_info_page-1024x723.png)
 
-### Adding In-App Purchases
+### 添加应用内购
 
 The most wanted time is finally here! In this part we’ll create the in-app purchases that our app is going to offer. Before we do that, let’s recap on what exactly we’re going to provide:
 
