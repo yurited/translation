@@ -152,65 +152,66 @@ _应用程序标识符_(app identifier)是一个用于标识App Store上应用�
 
 ### 添加应用内购
 
-The most wanted time is finally here! In this part we’ll create the in-app purchases that our app is going to offer. Before we do that, let’s recap on what exactly we’re going to provide:
+最期待的时候终于到了！ 在此部分中，我们将为我们的应用程序提供的应用内购。在此之前，让我们回忆一下我们要卖的东西：
 
-*   A _consumable_ in-app purchase for buying three lives to use in the game.
-*   A _consumable_ in-app purchase for buying two super powers.
-*   A _non-consumable_ in-app purchase for unlocking all game maps.
+* 一个 _消耗品(Consumable)_：游戏中三条命的应用内购
+* 一个 _消耗品(Consumable)_：两个超能力点数的应用内购
+* 一个 _非消耗品(Non-consumable)_：解锁全部游戏地图的应用内购
 
-With all the above in mind, let’s start creating them. Click on the **Features** link in the top bar, and then make sure that the **In-App Purchases** is selected on the left menu options.
+有了以上内容，让我们开始创建应用内购。单击顶部栏中的 **功能(Features)** 链接，然后在左侧菜单选项中选择 **应用内购(In-App Purchases)** 。
 
-The main area of the screen is where in-app purchases entries are going to be listed. At the time being there’s none, so click the **blue plus button** to add one. The following popup will ask you to select the kind of in-app purchase you want to create, so click on the **Consumable** radio button and then on Create.
+屏幕的主要区域是应用内购买条目的列表，现在暂时是空的。点击 **蓝色加号** 按钮添加。下面的弹出窗口将要求您选择要创建的应用内购买类型，点 **消耗品(Consumable)** ，然后点创建。
 
 ![A Complete Guide to In-App Purchases for iOS Development 13](https://www.appcoda.com/wp-content/uploads/2019/10/t68_19_select_iap_type.png)
 
-A new empty form to fill in is appearing once again. Let’s go through its fields and what they’re all about:
+一个新表单会出现，让我们看一下它各个部分的意思：
 
-*   **Reference Name**: It’s the name of the in-app purchase on the App Store, but it’s for internal use only. It won’t be shown to the users so don’t worry too much about the value you will provide here. However, give a name that makes clear what this in-app purchase regards. For example, “_Extra Lives_” (without the quotes) is a good name to make us understand that this one is about the additional lives a user can buy in the game.
-*   **Product ID**: This must be a unique string (alphanumeric as Apple says) that will be used for reporting, but here’s a recommendation: _Use the app’s bundle identifier as a prefix to the ID value you will specify here_. That way you ensure that it’ll always be unique. In our case, “_com.appcoda.fakegame.extra-lives_” (without quotes) is a unique product ID. **Important**: Note the product IDs you create here somewhere, we’re going to need them later on.
-*   **Cleared for Sale**: Keep it always selected if you want the in-app purchase to be available to the public.
-*   **Pricing**: Select the price you want for your in-app purchase. Since this is just a demo, choose any price you would like from the drop down menu. Scroll to bottom to find alternative prices as well.
-*   **App Store Information – Display Name**: This is the name of the in-app purchase as it will be shown to users in the app. Note this: For each supported language in your app, you should provide a localized version of this and the next field as well. The value I set here for the first in-app purchase is “_Get Extra Lives_“.
-*   **App Store Information – Description**: A description of the in-app purchase publicly shown, but also optional to be presented by the app. I would recommend to always show it to your users so they can get more details on what they’re about to purchase. For example: “_Acquire three (3) additional lives!_“.
+* **参考名称(Reference Name)**：这是在App Store中进行的应用内购买的名称，仅供内部使用，不会显示给用户，因此不必过于纠结你在这里填写的内容。但请给出一个清楚说明此应用内购内容的名称。比如，“ _额外的生命(Extra Lives)_”（不带引号）就不错，可以使我们知道这是用户可以在游戏中购买的额外生命。
+* **产品ID(Product ID)**：这是用于提交的（必须是）唯一的字串（Apple说必须是字母数字的组合），我们建议：_使用App的bundle identifier作为这个ID的前缀_ 。这样一来，您就可以确保它始终是唯一的。在我们的例子中，“ _com.appcoda.fakegame.extra-lives_ ”（不带引号）是产品唯一ID。 **重要** ：请记录下您在此处创建的产品ID，稍后我们将需要使用它们。
+* **待售(Cleared for Sale)**：如果您希望你的公开应用内购，就始终选择此项。
+* **定价(Pricing)**：选择您应用内购的价格。由于这只是一个演示，因此您可以选择从下拉菜单中想要的任何价格。滚动到底部可以看到替代价格。
+* **应用商店信息–显示名称(App Store Information – Display Name)**：这是应用内购的名称，因为它将在应用中显示给用户。请注意：对于你应用程序每种支持的语言，您还应该提供此语言以及下面的信息的本地化版本。我在此处给第一个应用内购设置的值是“ _(获得额外的命)Get Extra Lives_”。
+* **应用商店信息-描述(App Store Information – Description)**：给用户显示的应用内购的描述，也可以选择不显示。我建议你显示给用户看，这样用户获的他们将购买商品的更多详细信息。例如：“ _获得三（3）个额外的生命！_”。
 
-Here it is completed:
+填完之后是这样的：
 
 ![A Complete Guide to In-App Purchases for iOS Development 14](https://www.appcoda.com/wp-content/uploads/2019/10/t68_20_iap_completed_1-1024x446.png)
 
-By scrolling to the bottom of the page you’ll notice two more sections lying there:
+滚动到页面底部，您会看到还有两个部分：
 
-*   **App Store Promotion (Optional)**: By default, right below the app’s name on the App Store there will be a string saying something like: “Free – Offers In-App Purchases”. However, if you want to advertise the offered in-app purchases in the app’s page on the App Store, then provide a promotional image as described by Apple.
-*   **Review Information**: This is not required when implementing and testing in-app purchases, but _it’s required when an in-app purchase is about to be reviewed_ either for releasing it to the App Store along with the app, or for TestFlight testing. **Review Notes** are not mandatory to be provided, however a **Screenshot** is needed. You can take a screenshot of the app where in-app purchases are offered and upload it, it’ll be suffice. For now, however, leave it empty; we can proceed without it.
+* **App Store 促销（可选）**：默认情况下，在App Store上应用程序名称的下方会显示一句话，例如：“免费-提供应用程序内购买”。 但是，如果您想在App Store的应用程序页面上促销应用内购，可以按照Apple的提示提供促销图片。
 
-When you finish providing the in-app purchase details, click on the **Save** button you will find on the top-right side of the form. Then go back and start creating the second in-app purchase. Select a _consumable_ IAP again, and fill in the form using the following information:
+* **评论信息(Review Information)**：在实施和测试应用内购买时不是必需的，但是在应用内购与App一起发布到App Store，或者用于TestFlight测试的 _审核时是必需的_ 。 **审核信息(Review Notes)**项不是必填，但**截图**必须有。您可以在应用显示应用内购买功能时截屏，然后上传即可。 我们暂时留空这部分，不提供这项信息，我们也可以继续。
 
-*   _Reference Name_: Super Powers
-*   _Product ID_: com.appcoda.fakegame.superpowers _(change it according to your own Bundle ID)_
-*   _Price_: Any price you want
-*   _Display Name_: Additional Super Powers
-*   _Description_: Get two (2) additional super powers!
+提供完应用内购的详细信息后，请点击表单右上角的**保存(Save)**按钮。然后返回并开始创建第二个应用内购。再次选 _consumable_ IAP，并用下面的信息填写表单：
+
+* _参考名称_：超能力点数
+* _产品ID_：com.appcoda.fakegame.superpowers _（根据您的Bundle ID更改）_
+* _价格_：随便填
+* _显示名称_：更多超能力点数
+* _说明_：额外获得两（2）点超能力点数！
 
 ![A Complete Guide to In-App Purchases for iOS Development 15](https://www.appcoda.com/wp-content/uploads/2019/10/t68_22_iap_completed_2-1024x444.png)
 
-Save this in-app purchase, and then create the last one. This time, select a _non-consumable_ one:
+保存这个内购，然后创建我们最后一个内购。这次择 _非消耗品(non-consumable)_：
 
 ![A Complete Guide to In-App Purchases for iOS Development 16](https://www.appcoda.com/wp-content/uploads/2019/10/t68_23_non_consumable_iap.png)
 
-On the contrary of the previous two, this is a kind of purchase that each user will make once. However, this doesn’t change the way it’s being set up. The exact same kind of data must be given in this case too:
+与前两个相反，这个是每个用户只能购买一次的那种内购。但需要填写的信息相同：
 
-*   _Reference Name_: Unlock All Maps
-*   _Product ID_: com.appcoda.fakegame.unlock\_maps _(change it according to your own Bundle ID)_
-*   _Price_: Any price you want
-*   _Display Name_: Unlock Maps
-*   _Description_: Unlock all maps in the game forever!
+* _参考名称_：解锁所有地图
+* _产品ID_：com.appcoda.fakegame.unlock_maps _（根据您的Bundle ID更改）_
+* _价格_：随便填
+* _显示名称_：解锁地图
+* _说明_：永久解锁游戏中的所有地图！
 
 ![A Complete Guide to In-App Purchases for iOS Development 17](https://www.appcoda.com/wp-content/uploads/2019/10/t68_24_iap_completed_3-1024x517.png)
 
-The in-app purchases that our app will be offering are now ready and you can find them all together listed in the IAP home page:
+我们的App将要提供的应用内购已经准备好了，您可以在IAP主页上看到所有产品：
 
 ![A Complete Guide to In-App Purchases for iOS Development 18](https://www.appcoda.com/wp-content/uploads/2019/10/t68_25_iap_listed-1024x164.png)
 
-You’ll notice that the _Status_ of all in-app purchases is set to _Missing Metadata_. That’s because we didn’t set a _review image_ to any of them. Don’t worry though, by adding a review image and saving the status will change to _Waiting For Review_. Such an action isn’t necessary here; we’re not going to publish this demo app.
+您会注意到，所有应用内购买的 _状态(Status)_ 都被设置成 _(缺少元数据)Missing Metadata_。 那是因为我们没有给它们设置 _审核用截图(review image)_。 不过放心，添加审核用截图后的状态将变为 _待审核(Waiting For Review)_。 这里不需要做； 我们不会发布这个演示App。
 
 Using Product IDs In Xcode
 --------------------------
