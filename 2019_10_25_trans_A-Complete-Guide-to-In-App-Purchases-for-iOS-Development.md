@@ -168,7 +168,7 @@ _应用程序标识符_(app identifier)是一个用于标识App Store上应用�
 
 * **参考名称(Reference Name)**：这是在App Store中进行的应用内购买的名称，仅供内部使用，不会显示给用户，因此不必过于纠结你在这里填写的内容。但请给出一个清楚说明此应用内购内容的名称。比如，“ _额外的生命(Extra Lives)_”（不带引号）就不错，可以使我们知道这是用户可以在游戏中购买的额外生命。
 * **产品ID(Product ID)**：这是用于提交的（必须是）唯一的字串（Apple说必须是字母数字的组合），我们建议：_使用App的bundle identifier作为这个ID的前缀_ 。这样一来，您就可以确保它始终是唯一的。在我们的例子中，“ _com.appcoda.fakegame.extra-lives_ ”（不带引号）是产品唯一ID。 **重要** ：请记录下您在此处创建的产品ID，稍后我们将需要使用它们。
-* **待售(Cleared for Sale)**：如果您希望你的公开应用内购，就始终选择此项。
+* **待售(Cleared for Sale)**：如果你想公开应用内购，就始终选择此项。
 * **定价(Pricing)**：选择您应用内购的价格。由于这只是一个演示，因此您可以选择从下拉菜单中想要的任何价格。滚动到底部可以看到替代价格。
 * **应用商店信息–显示名称(App Store Information – Display Name)**：这是应用内购的名称，因为它将在应用中显示给用户。请注意：对于你应用程序每种支持的语言，您还应该提供此语言以及下面的信息的本地化版本。我在此处给第一个应用内购设置的值是“ _(获得额外的命)Get Extra Lives_”。
 * **应用商店信息-描述(App Store Information – Description)**：给用户显示的应用内购的描述，也可以选择不显示。我建议你显示给用户看，这样用户获的他们将购买商品的更多详细信息。例如：“ _获得三（3）个额外的生命！_”。
@@ -213,7 +213,7 @@ _应用程序标识符_(app identifier)是一个用于标识App Store上应用�
 
 您会注意到，所有应用内购买的 _状态(Status)_ 都被设置成 _(缺少元数据)Missing Metadata_。 那是因为我们没有给它们设置 _审核用截图(review image)_。 不过放心，添加审核用截图后的状态将变为 _待审核(Waiting For Review)_。 这里不需要做； 我们不会发布这个演示App。
 
-Using Product IDs In Xcode
+在Xcode中使用产品ID
 --------------------------
 
 Finally, all necessary preparation has come to its end. It’s now time to leave App Store and go to the starter project in Xcode. The final goal in this post is to create a reusable class that will manage in-app purchases, but this class will need to know about the available _product identifiers_ created on the App Store. So, let’s start with that and let’s add all IAP product identifiers to a special file you’ll find in Xcode under the _In-App Purchases group_, called _IAP\_ProductIDs.plist_.
