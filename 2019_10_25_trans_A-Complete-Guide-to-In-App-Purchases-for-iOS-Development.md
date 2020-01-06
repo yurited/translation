@@ -216,26 +216,25 @@ _应用程序标识符_(app identifier)是一个用于标识App Store上应用�
 在Xcode中使用产品ID
 --------------------------
 
-Finally, all necessary preparation has come to its end. It’s now time to leave App Store and go to the starter project in Xcode. The final goal in this post is to create a reusable class that will manage in-app purchases, but this class will need to know about the available _product identifiers_ created on the App Store. So, let’s start with that and let’s add all IAP product identifiers to a special file you’ll find in Xcode under the _In-App Purchases group_, called _IAP\_ProductIDs.plist_.
+终于，所有准备工作都完成了。 现在关上App Store然后打开Xcode中的Starter Project。 这篇教程的目标是创建一个可重用的类来管理应用内购，但是这个类需要知道App Store上的 _产品标识符(product identifiers)_。 因此，让我们首先将所有IAP产品标识符添加到一个特殊文件中，该文件在Xcode中的 _In-App Purchases group_ 里，叫  _IAP\_ProductIDs.plist_。
 
-The purpose of this file is to let us keep product identifiers gathered in one place, in a simple and code-unrelated fashion. The class we’ll implement next will get all product identifiers by just reading the contents of this file.
+该文件的作用是让我们用简单且与代码无关的方式将产品标识符收集在同一个地方。接下来将要实现的类会通过读取此文件的内容来获取所有产品标识符。
 
-So, open _IAP\_ProductIDs.plist_ in Xcode and make sure that the **type** of the _Root_ item is set to **Array**. Then, add three items one after another, and each time copy and paste the product ID of a different in-app purchase created earlier. In the end you should end up with this:
+因此，在Xcode中打开 _IAP\_ProductIDs.plist_ 并确保 _Root_ 项的**type**是 **Array**。 然后，一个一个地添加三条数据，每次复制粘贴之前创建一个应用程序内购买的产品ID。 完成后应该是这个样子：
 
 ![A Complete Guide to In-App Purchases for iOS Development 19](https://www.appcoda.com/wp-content/uploads/2019/10/t68_26_product_ids_plist.png)
 
-Start Implementing The In-App Purchases Managing Class
+实现应用内购的管理类
 ------------------------------------------------------
+现在让我们集中精力实现这个可被重用的类，该类不仅可以在我们的Demo App 中管理应用内购买，也可以在其他地方使用。 在Xcode的starter project中，打开名为 _IAPManager.swift_ 的文件，您也可以在Project Navigator里面的 _In-App Purchases_ Group下找到这个文件。它目前是空的，但我们将在这一步和下面几步中把它完善。
 
-Let’s focus on implementing the reusable class now that will manage in-app purchases in our demo app and not only. In the starter project in Xcode, open the file called _IAPManager.swift_ which you’ll also find under the _In-App Purchases_ group in Project Navigator. It’s currently empty, but we’ll change that here and in the following parts.
-
-The first move is to import the _StoreKit_ framework; it’s the one that will allow us to deal with all in-app purchase related concepts and entities in programming level. Right after the first `import` statement add the following:
+第一步是导入 _StoreKit_ 框架。它可以让我们在代码层面上处理所有与应用内购相关的概念与实体。在第一个import语句之后，添加以下内容：
 
 ```swift
 import StoreKit
 ```
 
-Let’s declare the new class now which will have the same name to the file: _IAPManager_. Leave a couple of empty lines and add this:
+声明一个新类，该类与文件同名：_IAPManager_。 留下几个空行并添加以下内容：
 
 ```swift
 class  IAPManager: NSObject  {
@@ -243,7 +242,7 @@ class  IAPManager: NSObject  {
 }
 ```
 
-_Note: Later on the `IAPManager` class will adopt a protocol called `SKPaymentTransactionObserver`. This protocol requires any conforming types to also conform to `NSObjectProtocol`, and that’s something we can do with no hassle simply by just making `IAPManager` a subclass of the `NSObject` class._
+_注意：稍后在`IAPManager`类上将采用一个名字叫`SKPaymentTransactionObserver`的协议。 这个协议要求所有符合条件的类型也要符合`NSObjectProtocol`，而我们只需将`IAPManager`设为`NSObject`类的子类就可以轻松做到这一点。_
 
 In order to keep things simple and to avoid potential troubles by having multiple instances of this class, we’ll apply the _Singleton_ pattern and we’ll be using _one instance only_, the _shared instance_. Adopting the Singleton pattern requires two things:
 
