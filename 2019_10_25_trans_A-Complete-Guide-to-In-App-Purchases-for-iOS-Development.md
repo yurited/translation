@@ -244,12 +244,12 @@ class  IAPManager: NSObject  {
 
 _注意：稍后在`IAPManager`类上将采用一个名字叫`SKPaymentTransactionObserver`的协议。 这个协议要求所有符合条件的类型也要符合`NSObjectProtocol`，而我们只需将`IAPManager`设为`NSObject`类的子类就可以轻松做到这一点。_
 
-In order to keep things simple and to avoid potential troubles by having multiple instances of this class, we’ll apply the _Singleton_ pattern and we’ll be using _one instance only_, the _shared instance_. Adopting the Singleton pattern requires two things:
+为了让事情保持简单，避免同时有多个此类的实例所带来的麻烦，我们将采用 _单例(Singleton)_ 模式，而且是 _单一实例(one instance only)_，即 _shared instance_。 采用Singleton模式需要做两件事：
 
-1.  To have an instance of the class initialized as a static property.
-2.  Keep the initializer _private_ so no more instances of the class can be created anywhere in the app.
+1. 将此类的实例初始化为一个静态属性。
+2. 把初始化方法(initializer) 设置为 _private_，这样做的话就无法在应用程序中的任何其他位置创建该类的更多实例。
 
-Here it is:
+像这样:
 
 ```swift
 class IAPManager: NSObject {
@@ -261,7 +261,7 @@ class IAPManager: NSObject {
 }
 ```
 
-As you will see next, there will be cases where the various operations won’t return the desired or expected results. It’s important to treat these cases gracefully and make `IAPManager` class indicate them properly in any custom type using it. For that purpose, we’re going to create the following `enum` with a few _custom errors_:
+接下来我们会看到，在某些情况下，有些操作不会返回预期的结果。 妥善处理这些情况很重要，并让`IAPManager`类在各种类似情况下正确指出错误。为此，我们要创建包含 _自定义错误(custom errors)_ 的`enum`：
 
 ```swift
 enum IAPManagerError: Error {
@@ -272,14 +272,14 @@ enum IAPManagerError: Error {
 }
 ```
 
-Make sure to add the enum _inside_ the class body. The meaning of them:
+请在类的主体代码内部加入这个enum，这些错误的意义分别是：
 
-*   `noProductIDsFound`: It indicates that the product identifiers could not be found.
-*   `noProductsFound`: No IAP products were returned by the App Store because none was found.
-*   `paymentWasCancelled`: The user cancelled an initialized purchase process.
-*   `productRequestFailed`: The app cannot request App Store about available IAP products for some reason.
+* `noProductIDsFound`：表示找不到产品标识符。
+* `noProductsFound`：由于未找到任何IAP产品，因此App Store未返回。
+* `paymentWasCancelled`：用户取消了已经开始了的购买过程。
+* `productRequestFailed`：由于某种原因，App无法向App Store请求可用的IAP产品。
 
-Along with the above enum, it’s necessary to add the following extension _right after the closing of the `IAPManager` class_. In it, the _localized descriptions_ of the custom errors are specified:
+除了上面的Enum，还要紧接着在`IAPManager`类主体代码之后添加下面这个扩展(extension)。在里面定义我们自定义错误的 _本地化说明(localized descriptions)_:
 
 ```swift
 extension IAPManager.IAPManagerError: LocalizedError {
@@ -294,10 +294,10 @@ extension IAPManager.IAPManagerError: LocalizedError {
 }
 ```
 
-Reading Product Identifiers
+读取产品标识符(Product Identifiers)
 ---------------------------
 
-Before we perform any action related to in-app purchases, it’s necessary to get the product identifiers that we previously added to the _IAP\_ProductIDs.plist_ file. For that purpose, we’ll implement a small helper method that will do just that: Reading the property list file from the _app bundle_ and returning the product identifiers as _an array of String elements_.
+在执行与应用内购相关的任何操作之前，要拿到我们先前添加到 _IAP\_ProductIDs.plist_ 文件中的产品标识符。 为此，我们将实现一个小的辅助方法完成该任务：从 _应用程序包(app bundle)_ 中读取属性列表文件，并以 _字符串数组_ 的形式返回产品标识符。
 
 ```swift
 fileprivate func getProductIDs() -> [String]? {
@@ -305,17 +305,17 @@ fileprivate func getProductIDs() -> [String]? {
 }
 ```
 
-The method is marked as `fileprivate` because we want it to be visible in this file only. There’s no reason to be accessible by other entities out of this class. However, remove the `fileprivate` keyword if you ever need to have the product identifiers available somewhere else besides here.
+该方法被标记为`fileprivate`，因为我们想让它仅在此文件中可见。没理由向除了这个类意外的任何其他实体开放访问。但是，如果您需要在此处以外的地方使用产品标识符，可以删除`fileprivate`关键字。
 
-The first step in this method is to get a _URL_ pointing to the _IAP\_ProductIDs.plist_ file in the app bundle:
+此方法的第一步是获取指向应用程序包中 _IAP\_ProductIDs.plist_ 文件的 _URL_：
 
 ```swift
 guard let url = Bundle.main.url(forResource: "IAP_ProductIDs", withExtension: "plist") else { return nil }
 ```
 
-Always make sure to type the file name and its extension correctly when using the above method; a typo error is enough to make you lose time and wonder why the file cannot be found even though it exists in the project. If the file is found, its URL is assigned to the `url` property.
+使用上述方法时，务必要正确输入文件名及扩展名；打错字会让你奇怪为什么即使项目中存在该文件也找不到该文件并且浪费时间。如果找到文件，则将其URL分配给`url`属性。
 
-Next, we’ll load the file contents to a _Data_ NSObject:
+接下来，我们将文件内容加载到 _Data_ 的NSObject：
 
 ```swift
 do {
@@ -326,25 +326,25 @@ do {
 }
 ```
 
-Initializing a `Data` object as shown above can throw an exception, so including it in a `do-catch` statement is necessary. In case the file cannot be read and the `data` property to be initialized, then we print the description of the error occurred, and we return `nil`.
+像上面那样初始化Data对象可能会引起异常，因此需要将其包含在`do-catch`语句中。如果文件无法读取但要初始化`data`属性，那么我们就可以将打印出错误的描述，然后返回`nil`。
 
-Since the above `data` object was created by using the contents of a _property list file_, we’ll decode it and convert it to an array of String elements with the help of the [_PropertyListSerialization_](https://developer.apple.com/documentation/foundation/propertylistserialization) class; it allows to encode to and decode from property list objects. If you’re familiar to the _JSONSerialization_ class, then this one is the equivalent for property lists, not JSON objects.
+由于上述`data`对象是通过使用 _property list file_ 的内容创建出的，因此我们要在[_PropertyListSerialization_](https://developer.apple.com/documentation/foundation/propertylistserialization)类的帮助下将其转换为String数组；它允许对属性列表对象进行编码和解码。如果您熟悉 _JSONSerialization_ 类，这两个类基本等效，只是一个作用在Property list，一个作用于JSON对象。
 
-Still inside the `do-catch` statement, let’s convert the loaded property list data into an array as shown right below:
+在do-catch语句中，让我们把加载的属性列表数据转换为数组，如下：
 
 ```swift
 let productIDs = try PropertyListSerialization.propertyList(from: data, options: .mutableContainersAndLeaves, format: nil) as? [String] ?? []
 ```
 
-In case it’s not possible to convert to a collection of String values, then we just assign an empty array to `productIDs`.
+在无法转换成字符串数组的情况下，我们就赋一个空数组给`productIDs`。
 
-Finally, we need to return it:
+最后我们需要返回结果:
 
 ```swift
 return productIDs
 ```
 
-Here’s the whole method:
+这是完整的方法：
 
 ```swift
 fileprivate func getProductIDs() -> [String]? {
@@ -360,12 +360,12 @@ fileprivate func getProductIDs() -> [String]? {
 }
 ```
 
-Requesting App Store For Available IAP Products
+向App Store请求可用的IAP商品
 -----------------------------------------------
 
-Making `IAPManager` capable of loading the product IDs, the next step is to fetch all available products offered for purchase from the App Store. This action will return a collection of `SKProduct` objects, where each one describes an in-app purchase and contains its details as it was configured on the App Store.
+要让`IAPManager`能够加载产品ID，下一步就是从App Store读取所有可用的产品。此操作将返回`SKProduct`对象的数组，其中每个对象都描述了对应的应用内购和其在App Store中配置的详细信息。
 
-We’ll start by defining a new method:
+我们先定义一个新方法：
 
 ```swift
 func getProducts(withHandler productsReceiveHandler: @escaping (_ result: Result<[SKProduct], IAPManagerError>) -> Void) {
@@ -373,29 +373,31 @@ func getProducts(withHandler productsReceiveHandler: @escaping (_ result: Result
 }
 ```
 
-Let’s talk a bit about the parameter of this method, and let me start with a question: Are you aware of the [**Result**](https://developer.apple.com/documentation/swift/result) type that was first-introduced in Swift 5? Citing the official documentation:
+先谈谈这个方法的参数，让我先问你一个问题：你是否了解在Swift 5中新加入的 [**Result**](https://developer.apple.com/documentation/swift/result)？这是官方文档的介绍：
 
-_A value that represents either a success or a failure, including an associated value in each case._
+_代表成功或失败的值，每种情况下都有一个相应的关联值。(A value that represents either a success or a failure, including an associated value in each case.)_
 
-In simple words, this type makes it easy to return the outcome of an operation and to indicate whether it was successful or not. On success, it’s possible to carry any necessary custom data; on failure it carries the error that caused the operation to fail.
+简而言之，使用这种类型可以很容易地返回操作结果并说明操作是否成功。成功后，可以携带任何必要的自定义数据；失败时，会携带导致操作失败的错误。
 
-In our case, our `Result` value will carry the _collection of fetched products from the App Store_ if we get them successfully, and a custom error type (`IAPManagerError`) on failure.
+在我们的例子中，如果成功，我们的`Result`值将会含有 _从App Store中获取的商品的集合_，如果失败，将会含有我们的自定义错误类型(`IAPManagerError`)。
 
-Fetching IAP products from the App Store is an asynchronous process. That means that the above method _cannot return the products fetching result instantly_. So, the parameter of the method has to be a _closure_ (or a _callback handler_ in other words) which will be called when `StoreKit` notifies our class that has got a response from the App Store. The parameter of that closure is the `Result` value as shown in the method definition above.
+从App Store提取IAP产品是一个异步过程。 这意味着上述方法 _无法立即返回获取的产品_。 因此，该方法的参数必须是 _closure_（或 _callback handler_），当`StoreKit`通知我们的类它已经收到App Store的响应时，该方法将被调用。如上方法定义所示，该闭包的参数是`Result`值。
 
 The above borns a new requirement now: To declare a property in the `IAPManager` class which will keep a reference to the handler (closure) even when the execution of the `getProducts(withHandler:)` method is finished. Go to the beginning of the class in the properties declaration area and add the following:
+
+根据上面的说法，我们有了一个新需求：在`IAPManager`声明一个属性用来在`getProducts(withHandler:)`方法调用完成之后继续保留对其handler（closure）的引用。到开头部分的属性声明区域添加如下代码：
 
 ```swift
 var onReceiveProductsHandler: ((Result<[SKProduct], IAPManagerError>) -> Void)?
 ```
 
-Back to the `getProducts(withHandler:)` method now. We start implementing it by assigning the `productsReceiveHandler` parameter value to the `onReceiveProductsHandler` property so we can call it at any time later in the future:
+现在回到`getProducts(withHandler:)`方法。我们开始实现这个方法，首先是把`productsReceiveHandler`赋给`onReceiveProductsHandler`以便在以后的任何时间使用它。
 
 ```swift
 onReceiveProductsHandler = productsReceiveHandler
 ```
 
-Next, let’s get the collection of the identifiers for the products that we want to fetch data for. For this purpose, we’ll make use of the `getProductIDs()` method we implemented earlier:
+接下来，让我们获取要为其请求具体数据的产品的标识符。为了实现这一目的， 我们将用到我们之前已经实现了的`getProductIDs()`方法。
 
 ```swift
 guard let productIDs = getProductIDs() else {
@@ -404,9 +406,9 @@ guard let productIDs = getProductIDs() else {
 }
 ```
 
-Remember that it’s possible for the above to return `nil`. If that happens, then the wanted product identifiers could not be read for some reason and we should return from this method immediately. However, it’s necessary to notify the caller of the class about the error that occurred. We call the `productsReceiveHandler` handler and we pass a `Result` type with a _failure_ indicating the exact error happened.
+记住，上面的逻辑可能会返回`nil`。 如果发生这种情况，则是由于某种原因无法读取所需的产品标识符，我们应立即从此方法返回。但是，有必要将发生的错误通知给类的调用者。 我们调用`productsReceiveHandler`，然后传过去带有 _failure_ 的`Result`类型，来说明发生了什么错误。
 
-_Note: If you find yourself being uncomfortable by the syntax of the `Result` type, then I’d recommend to search for more usage examples on the Internet, as well as to play with it in a playground until you master it._
+_注意：如果您对使用`Result`类型的语法感到不太习惯，那么我建议您在网上搜索一些使用示例，并在Playground中试着用用，直到掌握为止。_
 
 Continuing to the implementation, let’s initialize a _products request_ for the App Store:
 
@@ -504,7 +506,7 @@ Even though finding no products is not necessarily an error (when, for example, 
 
 Here’s the entire method:
 
-```
+```swift
 func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
     // Get the available products contained in the response.
     let products = response.products
