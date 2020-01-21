@@ -410,27 +410,27 @@ guard let productIDs = getProductIDs() else {
 
 _注意：如果您对使用`Result`类型的语法感到不太习惯，那么我建议您在网上搜索一些使用示例，并在Playground中试着用用，直到掌握为止。_
 
-Continuing to the implementation, let’s initialize a _products request_ for the App Store:
+继续往下写，让我们初始化一个向App Store的 _products request_：
 
 ```swift
 let request = SKProductsRequest(productIdentifiers: Set(productIDs))
 ```
 
-The initializer shown above awaits for a `Set` of product identifiers, not an array. That’s why we initialize a new `Set` using the `productIDs` array.
+上面显示的初始化方法正在等待产品标识符的`Set`，而不是数组。所以我们使用`productIDs`数组初始化来建立新的`Set`。
 
-As mentioned already, requesting the App Store is not a synchronous operation. The result of it, meaning the response from the App Store, is available through a couple of methods provided by the `SKProductsRequestDelegate` and `SKRequestDelegate` protocols. `IAPManager` class will adopt them, but first it must be set as the request’s delegate:
+如前所述，请求App Store的操作不是同步的。它的结果（来自App Store返回的响应）可通过`SKProductsRequestDelegate`和`SKRequestDelegate`协议所提供的几种方法获得。 `IAPManager`类将采用这些协议，但首先必须将其设置为request的delegate：
 
 ```swift
 request.delegate = self
 ```
 
-We are now ready to make the request:
+我们现在就可以发发出请求了：
 
 ```swift
 request.start()
 ```
 
-The `getProducts(withHandler:)` method is a quite important one, and even though it’s small, it contains vital steps for making in-app purchases possible. Here it is all together:
+`getProducts（withHandler :)`这个方法虽然很小但是很重要，但它里面有使应用内购买成为可能的重要步骤。下面是整个方法：
 
 ```swift
 func getProducts(withHandler productsReceiveHandler: @escaping (_ result: Result<[SKProduct], IAPManagerError>) -> Void) {
@@ -455,12 +455,12 @@ func getProducts(withHandler productsReceiveHandler: @escaping (_ result: Result
 }
 ```
 
-Handling App Store Response
+处理App Store的响应
 ---------------------------
 
-Right above we set the `IAPManager` class as the delegate of the `SKProductsRequest` object (the request). Now, it’s mandatory to adopt the `SKProductsRequestDelegate` protocol and implement at least one required method.
+上面，我们已经将`IAPManager`类设置为`SKProductsRequest`对象(request)的委托。现在，必须采用`SKProductsRequestDelegate`协议并至少写出一种必需的方法。
 
-Go after the closing curly bracket of the `IAPManager` class, and add the following extension:
+在`IAPManager`类的花括号后面，添加下面的扩展：
 
 ```swift
 extension IAPManager: SKProductsRequestDelegate {
@@ -468,7 +468,7 @@ extension IAPManager: SKProductsRequestDelegate {
 }
 ```
 
-In it we’ll implement the following method which gets called when the App Store sends back a response to the original request:
+在里面我们将实现下面的方法，这个方法会在App Store响应我们发出的请求时被调用：
 
 ```swift
 func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
@@ -477,6 +477,9 @@ func productsRequest(_ request: SKProductsRequest, didReceive response: SKProduc
 ```
 
 The first parameter value regards the request that triggered the response. The second (the `response`) is what we really care about here, as it contains a collection of `SKProduct` objects; the available content for purchase. Each product contained in the response matches to a single product identifier in the list of identifiers existing in our property list file.
+
+第一个参数是触发响应的请求。 第二个参数(`request`)是我们在这里真正关心的，因为它包含`SKProduct`对象的集合：可购买内容。
+响应中包含的每个产品都与我们属性列表文件中存在的标识符列表中的单个产品标识符匹配。
 
 Going into the logic that we’ll apply here, at first we’ll get the collection of products:
 
